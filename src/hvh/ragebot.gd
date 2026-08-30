@@ -19,7 +19,7 @@ func _init(r: Resolver) -> void:
 	resolver = r
 
 
-func run(me: Node, enemies: Array, space: PhysicsDirectSpaceState3D, now: float) -> Dictionary:
+func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: float) -> Dictionary:
 	shot_this_tick = false
 	want_autostop = false
 	want_scope = false
@@ -134,7 +134,7 @@ func _points(e: Node, yaw: float) -> Array:
 	return pts
 
 
-func _trace(from: Vector3, to: Vector3, space: PhysicsDirectSpaceState3D, me: Node, enemy: Node, group: String) -> Dictionary:
+func _trace(from: Vector3, to: Vector3, space: PhysicsDirectSpaceState3D, me: Player, enemy: Node, group: String) -> Dictionary:
 	var w := Weapons.get_w(me.weapon_id)
 	var dist := from.distance_to(to)
 	var walls := Hitscan.walls_to(space, from, to, [me.get_rid()])
@@ -151,7 +151,7 @@ func _trace(from: Vector3, to: Vector3, space: PhysicsDirectSpaceState3D, me: No
 	return {"dmg": dmg, "spread_ok": n == 0}
 
 
-func _hitchance(me: Node, aim: Vector3, clean: bool, w: Dictionary) -> float:
+func _hitchance(me: Player, aim: Vector3, clean: bool, w: Dictionary) -> float:
 	var inacc := float(w.spread)
 	var spd: float = Vector2(me.velocity.x, me.velocity.z).length()
 	if spd > 0.25:
@@ -164,7 +164,7 @@ func _hitchance(me: Node, aim: Vector3, clean: bool, w: Dictionary) -> float:
 		inacc += 12.0
 	if bool(w.get("revolver", false)) and not me.revolver_ready:
 		inacc += 2.0
-	var dist := me.eye().distance_to(aim)
+	var dist: float = me.eye().distance_to(aim)
 	var ang := rad_to_deg(atan2(Net.HEAD_R, maxf(dist, 0.01)))
 	var hc := clampf(100.0 * (ang / maxf(inacc * 0.32, 0.04)), 0.0, 100.0)
 	if not clean:

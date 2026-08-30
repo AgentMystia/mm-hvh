@@ -228,7 +228,7 @@ class PrimBuilder:
         self.indices = []
 
     def add_tri(self, verts, albedo):
-        base = len(self.positions)
+        base = len(self.positions) // 3
         for v in verts:
             px, py, pz = vcomp(v.position, 0), vcomp(v.position, 1), vcomp(v.position, 2)
             nx, ny, nz = vcomp(v.normal, 0), vcomp(v.normal, 1), vcomp(v.normal, 2)
@@ -291,6 +291,7 @@ def write_glb(path: Path, prims: dict[str, PrimBuilder], tex_files: dict[str, Pa
         col = np.asarray(pb.colors, dtype=np.float32)
         idx = np.asarray(pb.indices, dtype=np.uint32)
         nvert = pos.size // 3
+        print("  cat", cat, "nvert", nvert, "nidx", idx.size, "maxidx", int(idx.max()) if idx.size else -1, "head", pb.indices[:6])
         # accessors
         def acc_vec(arr, ncomp, bview, mins=None, maxs=None, ctype=5126):
             a = {"bufferView": bview, "componentType": ctype, "count": nvert if ncomp != 1 else len(idx), "type": {1: "SCALAR", 2: "VEC2", 3: "VEC3", 4: "VEC4"}[ncomp]}
@@ -339,6 +340,11 @@ def write_glb(path: Path, prims: dict[str, PrimBuilder], tex_files: dict[str, Pa
             }
         )
 
+    meshes = []
+    nodes = []
+    for i, prim in enumerate(primitives):
+        meshes.append({"name": materials[prim["material"]]["name"], "primitives": [prim]})
+        nodes.append({"name": materials[prim["material"]]["name"], "mesh": i})
     binary = b"".join(bin_chunks)
     gltf = {
         "asset": {"version": "2.0", "generator": "hvh2018-bsp"},
@@ -348,9 +354,9 @@ def write_glb(path: Path, prims: dict[str, PrimBuilder], tex_files: dict[str, Pa
         "images": images,
         "textures": textures,
         "materials": materials,
-        "meshes": [{"name": "de_mirage", "primitives": primitives}],
-        "nodes": [{"name": "de_mirage", "mesh": 0}],
-        "scenes": [{"nodes": [0]}],
+        "meshes": meshes,
+        "nodes": nodes,
+        "scenes": [{"nodes": list(range(len(nodes)))}],
         "scene": 0,
     }
     js = json.dumps(gltf, separators=(",", ":")).encode("utf-8")

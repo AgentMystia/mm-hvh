@@ -98,7 +98,8 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if Cheat.menu_open and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var mp := event.position
+		var mb := event as InputEventMouseButton
+		var mp: Vector2 = mb.position
 		for h in _hits:
 			if h.rect.has_point(mp):
 				h.fn.call()

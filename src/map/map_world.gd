@@ -35,14 +35,40 @@ func _load_ents() -> void:
 
 
 func _mesh() -> void:
-	if not ResourceLoader.exists("res://assets/maps/de_mirage/de_mirage.glb"):
+	var loaded := false
+	if ResourceLoader.exists("res://assets/maps/de_mirage/de_mirage.glb"):
+		var packed = load("res://assets/maps/de_mirage/de_mirage.glb")
+		if packed is PackedScene:
+			var inst := (packed as PackedScene).instantiate()
+			inst.name = "MirageMesh"
+			add_child(inst)
+			loaded = true
+	if not loaded:
+		_mesh_from_obj()
+	_collision_mesh()
+
+
+func _mesh_from_obj() -> void:
+	if not ResourceLoader.exists("res://assets/maps/de_mirage/collision.obj"):
 		_fallback_ground()
 		return
-	var packed: PackedScene = load("res://assets/maps/de_mirage/de_mirage.glb")
-	var inst := packed.instantiate()
-	inst.name = "MirageMesh"
-	add_child(inst)
-	_make_trimesh(inst)
+	var mi := MeshInstance3D.new()
+	mi.name = "MirageMesh"
+	var mesh = load("res://assets/maps/de_mirage/collision.obj")
+	if mesh is Mesh:
+		mi.mesh = mesh
+	elif mesh is PackedScene:
+		add_child((mesh as PackedScene).instantiate())
+		return
+	else:
+		_fallback_ground()
+		return
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.72, 0.62, 0.48)
+	mat.roughness = 0.9
+	mi.material_override = mat
+	add_child(mi)
+	_make_trimesh(mi)
 
 
 func _make_trimesh(n: Node) -> void:
@@ -59,9 +85,24 @@ func _make_trimesh(n: Node) -> void:
 
 
 func _collision() -> void:
-	if ResourceLoader.exists("res://assets/maps/de_mirage/collision.obj"):
-		# extra collider if glb collision is thin
-		pass
+	pass
+
+
+func _collision_mesh() -> void:
+	if not ResourceLoader.exists("res://assets/maps/de_mirage/collision.obj"):
+		return
+	var mi := MeshInstance3D.new()
+	mi.name = "MirageCollision"
+	mi.visible = false
+	var mesh = load("res://assets/maps/de_mirage/collision.obj")
+	if mesh is Mesh:
+		mi.mesh = mesh
+		add_child(mi)
+		mi.create_trimesh_collision()
+		for c in mi.get_children():
+			if c is StaticBody3D:
+				(c as StaticBody3D).collision_layer = 1
+				(c as StaticBody3D).collision_mask = 0
 
 
 func _fallback_ground() -> void:
