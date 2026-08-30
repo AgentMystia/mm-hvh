@@ -2,7 +2,17 @@
 
 CS:GO **2018 matchmaking HvH** on official **de_mirage**. Cheats are the game, not a overlay on someone else's client: ragebot, Auto-Revolver, LBY breaker, resolver, chams, ESP, thirdperson Real/Fake/LBY.
 
-This is a Godot 4.7 project (GL Compatibility, 64-tick physics). Play in the browser or locally.
+This is a Godot 4.7 project (GL Compatibility, 64-tick physics). The Web export in `export/web` is a static site: publish it to Vercel (or any static host) for a public URL anyone can open in a browser.
+
+## Play online
+
+The game is already exported. In this Cursor chat, click **Publish** to put `export/web` on Vercel. That URL is public — share it and anyone can play without installing Godot.
+
+Local preview (same files):
+
+```bash
+python3 tools/serve.py --port 43187 --dir export/web
+```
 
 ## Rules (MM competitive, not a $16k HvH server)
 
@@ -47,15 +57,14 @@ godot --path . --display-driver x11
 
 Or open the project in the editor and press Play. Main scene is `scenes/main_menu.tscn`.
 
-## Web export
+## Web export (rebuild)
 
 ```bash
 mkdir -p export/web
 godot --headless --path . --export-release Web export/web/index.html
-python3 tools/serve.py --port 43187 --dir export/web
 ```
 
-The server sends COOP/COEP headers. Threads are **off** in the export preset so it also runs without SharedArrayBuffer.
+Threads are **off**, so the build runs on ordinary HTTPS (Vercel, nginx, GitHub Pages) without SharedArrayBuffer / COOP-COEP. After a fresh Godot export, set `ensureCrossOriginIsolationHeaders` to `false` in `export/web/index.html` if Godot turned it back on.
 
 ## Docker
 

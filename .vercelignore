@@ -1,0 +1,11 @@
+.godot
+raw
+agent-tools
+docs
+assets
+src
+scenes
+tools
+*.glb
+*.obj
+*.wav
