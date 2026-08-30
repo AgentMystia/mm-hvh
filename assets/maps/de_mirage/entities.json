@@ -1,0 +1,6668 @@
+{
+  "t_spawns": [
+    {
+      "origin": [
+        34.9504,
+        -3.6576,
+        7.7216
+      ],
+      "angles": [
+        0.0,
+        227.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        34.9504,
+        -3.6576,
+        5.2832
+      ],
+      "angles": [
+        0.0,
+        227.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        34.9504,
+        -3.6576,
+        2.8447999999999998
+      ],
+      "angles": [
+        0.0,
+        141.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        34.9504,
+        -3.6576,
+        0.4064
+      ],
+      "angles": [
+        0.0,
+        141.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        32.9184,
+        -3.6576,
+        8.9408
+      ],
+      "angles": [
+        0.0,
+        227.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        32.9184,
+        -3.6576,
+        6.5024
+      ],
+      "angles": [
+        0.0,
+        227.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        32.9184,
+        -3.6576,
+        4.064
+      ],
+      "angles": [
+        0.0,
+        227.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        32.9184,
+        -3.6576,
+        1.6256
+      ],
+      "angles": [
+        0.0,
+        141.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        32.9184,
+        -3.6576,
+        -0.8128
+      ],
+      "angles": [
+        0.0,
+        141.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        30.8864,
+        -3.6576,
+        0.4064
+      ],
+      "angles": [
+        0.0,
+        90.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        30.8864,
+        -3.6576,
+        2.921
+      ],
+      "angles": [
+        0.0,
+        90.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        30.8864,
+        -3.6576,
+        5.3594
+      ],
+      "angles": [
+        0.0,
+        270.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        30.8864,
+        -3.6576,
+        7.7978
+      ],
+      "angles": [
+        0.0,
+        270.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        28.8544,
+        -3.6576,
+        6.5024
+      ],
+      "angles": [
+        0.0,
+        270.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        28.8544,
+        -3.6576,
+        4.064
+      ],
+      "angles": [
+        0.0,
+        270.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        28.8544,
+        -3.6576,
+        1.6256
+      ],
+      "angles": [
+        0.0,
+        90.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        28.8544,
+        -3.6576,
+        -0.8128
+      ],
+      "angles": [
+        0.0,
+        90.0,
+        0.0
+      ]
+    }
+  ],
+  "ct_spawns": [
+    {
+      "origin": [
+        -45.1104,
+        -6.096,
+        50.1904
+      ],
+      "angles": [
+        0.0,
+        331.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -50.1904,
+        -6.908799999999999,
+        46.0248
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -50.0888,
+        -6.7056,
+        50.4952
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -45.1104,
+        -6.096,
+        45.72
+      ],
+      "angles": [
+        0.0,
+        36.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -48.3108,
+        -6.096,
+        46.1264
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -48.3108,
+        -6.096,
+        50.1904
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -49.7078,
+        -6.6548,
+        48.209199999999996
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -41.452799999999996,
+        -6.096,
+        52.6288
+      ],
+      "angles": [
+        0.0,
+        270.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -40.5892,
+        -6.096,
+        43.992799999999995
+      ],
+      "angles": [
+        0.0,
+        106.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -40.843199999999996,
+        -6.096,
+        47.9552
+      ],
+      "angles": [
+        0.0,
+        306.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -46.482,
+        -6.096,
+        48.1584
+      ],
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -39.4208,
+        -6.096,
+        45.9232
+      ],
+      "angles": [
+        0.0,
+        116.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -43.687999999999995,
+        -6.096,
+        48.1584
+      ],
+      "angles": [
+        0.0,
+        50.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -42.0624,
+        -6.096,
+        45.72
+      ],
+      "angles": [
+        0.0,
+        94.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -42.0624,
+        -6.096,
+        50.1904
+      ],
+      "angles": [
+        0.0,
+        299.0,
+        0.0
+      ]
+    },
+    {
+      "origin": [
+        -39.4208,
+        -6.096,
+        49.9872
+      ],
+      "angles": [
+        0.0,
+        288.0,
+        0.0
+      ]
+    }
+  ],
+  "bomb_sites": [
+    {
+      "mins": [
+        -15.6464,
+        -4.572,
+        51.00319379882812
+      ],
+      "maxs": [
+        -6.705796112060547,
+        -3.9623999999999997,
+        59.1312
+      ],
+      "center": [
+        -11.176098056030273,
+        -4.2672,
+        55.06719689941406
+      ],
+      "name": "A"
+    },
+    {
+      "mins": [
+        -56.2864,
+        -4.0386,
+        -11.176
+      ],
+      "maxs": [
+        -47.751999999999995,
+        -3.6321999999999997,
+        -1.8288
+      ],
+      "center": [
+        -52.0192,
+        -3.8354,
+        -6.5024
+      ],
+      "name": "B"
+    }
+  ],
+  "buyzones": [
+    {
+      "mins": [
+        -55.270399999999995,
+        -8.128,
+        39.2176
+      ],
+      "maxs": [
+        -37.388799999999996,
+        -5.2832,
+        55.4736
+      ],
+      "center": [
+        -46.3296,
+        -6.7056000000000004,
+        47.3456
+      ],
+      "team": 3
+    },
+    {
+      "mins": [
+        27.635199999999998,
+        -4.064,
+        -3.8608
+      ],
+      "maxs": [
+        35.7632,
+        -2.6416,
+        10.769599999999999
+      ],
+      "center": [
+        31.699199999999998,
+        -3.3528000000000002,
+        3.4543999999999997
+      ],
+      "team": 2
+    }
+  ],
+  "props": [
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -23.875999999999998,
+        2.8447999999999998,
+        40.233599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -23.875999999999998,
+        2.8447999999999998,
+        56.184799999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -37.7952,
+        4.4704,
+        -5.7404
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -37.7952,
+        4.4704,
+        -11.379199999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -37.7952,
+        4.4704,
+        -17.1196
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -37.846,
+        4.4704,
+        -22.7076
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -37.8968,
+        4.4704,
+        -0.0508
+      ],
+      "pitch": 0.0,
+      "yaw": 264.5,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -38.2016,
+        4.4704,
+        5.6388
+      ],
+      "pitch": 0.0,
+      "yaw": 264.5,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        37.541199999999996,
+        11.5824,
+        -0.7111999999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        37.541199999999996,
+        11.5824,
+        3.9116
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        37.541199999999996,
+        11.5824,
+        8.636
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        12.5476
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        17.3228
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        22.0472
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        26.7716
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        31.4452
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        36.1188
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.9156,
+        11.5824,
+        40.7924
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        20.32,
+        11.5824,
+        43.687999999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        15.6464,
+        11.5824,
+        43.687999999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        10.9728,
+        11.5824,
+        44.297599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 285.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        6.604,
+        11.5824,
+        45.211999999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 193.5,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        5.588,
+        10.921999999999999,
+        50.3936
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        5.588,
+        9.9568,
+        58.419999999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        16.5608,
+        16.4592,
+        63.398399999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        11.7348,
+        16.4592,
+        63.093599999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        2.1336,
+        16.4592,
+        62.788799999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        6.908799999999999,
+        16.4592,
+        62.788799999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -2.6416,
+        16.4592,
+        62.788799999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -7.416799999999999,
+        16.4592,
+        62.8396
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -19.6088,
+        16.4592,
+        72.4408
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -19.6088,
+        16.4592,
+        77.1144
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -19.6088,
+        16.4592,
+        81.788
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -19.6088,
+        16.4592,
+        86.46159999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -21.843999999999998,
+        16.4592,
+        88.392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -22.2504,
+        16.4592,
+        92.8624
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -21.9456,
+        16.4592,
+        97.33279999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -25.1968,
+        5.7912,
+        78.33359999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -25.1968,
+        5.7912,
+        74.0664
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -25.1968,
+        5.7912,
+        69.7992
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/bench_wood_new.mdl",
+      "origin": [
+        -21.996399999999998,
+        -6.756399999999999,
+        20.0152
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        6.400799999999999,
+        0.4064,
+        52.832
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        11.074399999999999,
+        -6.593611486816406,
+        -16.9672
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        11.074399999999999,
+        -5.4356,
+        -16.9672
+      ],
+      "pitch": 0.0,
+      "yaw": 268.5,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        10.6172,
+        -6.593611486816406,
+        -15.6464
+      ],
+      "pitch": 0.0,
+      "yaw": 100.5,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_food_crates_74.mdl",
+      "origin": [
+        -51.053999999999995,
+        -4.2672,
+        8.2804
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -60.452,
+        -3.240811486816406,
+        -16.205199999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 353.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -1.8288,
+        -4.2672,
+        36.4236
+      ],
+      "pitch": 0.0,
+      "yaw": 273.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -3.3274,
+        -2.9718,
+        37.7952
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -3.3274,
+        -3.048,
+        36.4998
+      ],
+      "pitch": 0.0,
+      "yaw": 3.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -3.175,
+        -4.256811486816406,
+        36.321999999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 353.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        0.9144,
+        -2.8194,
+        45.7708
+      ],
+      "pitch": 0.0,
+      "yaw": 353.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/hr_dust/dust_crates/dust_crate_style_02_32x32x32.mdl",
+      "origin": [
+        -20.2438,
+        -4.2672,
+        29.5656
+      ],
+      "pitch": 0.0,
+      "yaw": 353.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        -16.4846,
+        -0.9144,
+        63.754
+      ],
+      "pitch": 0.0,
+      "yaw": 116.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        -16.357599999999998,
+        -0.9144,
+        64.008
+      ],
+      "pitch": 0.0,
+      "yaw": 116.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/towertop_d_skybox.mdl",
+      "origin": [
+        134.82319999999999,
+        2.25425,
+        24.0919
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/towertop_d_skybox.mdl",
+      "origin": [
+        133.9596,
+        2.413,
+        26.9621
+      ],
+      "pitch": 0.0,
+      "yaw": 359.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/towertop_d_skybox.mdl",
+      "origin": [
+        131.4196,
+        2.55905,
+        28.8798
+      ],
+      "pitch": 0.0,
+      "yaw": 116.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_wasteland/prison_switchbox001a.mdl",
+      "origin": [
+        -53.7464,
+        -1.8288,
+        11.629085522460937
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_c17/furnitureboiler001a.mdl",
+      "origin": [
+        -28.244799999999998,
+        -3.1496,
+        5.4864
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -39.0652,
+        -3.250488803100586,
+        -1.500817403411865
+      ],
+      "pitch": 0.0,
+      "yaw": 11.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -39.1922,
+        -4.291888803100586,
+        -1.4986
+      ],
+      "pitch": 0.0,
+      "yaw": 186.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -3.5305999999999997,
+        -2.8257499999999998,
+        39.3446
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -3.3781999999999996,
+        -4.2672,
+        39.395399999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -50.825399999999995,
+        -3.3781999999999996,
+        -2.6162
+      ],
+      "pitch": 0.0,
+      "yaw": 10.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -50.9524,
+        -4.4196,
+        -2.6162
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        1.3208,
+        -3.9116,
+        45.1104
+      ],
+      "pitch": 0.0,
+      "yaw": 5.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        1.3208,
+        -4.9784,
+        45.1104
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        -42.3926,
+        -0.15239999999999998,
+        -16.6116
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": -180.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        26.060399999999998,
+        2.54,
+        2.1336
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -14.122399999999999,
+        -4.410684652709961,
+        51.815999999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 9.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_food_crates_74.mdl",
+      "origin": [
+        7.7978,
+        -4.1148,
+        14.6304
+      ],
+      "pitch": 0.0,
+      "yaw": 318.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props_interiors/sofa_chair02.mdl",
+      "origin": [
+        -38.9128,
+        -1.21285,
+        -21.6408
+      ],
+      "pitch": 0.0,
+      "yaw": 231.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_interiors/side_table_square.mdl",
+      "origin": [
+        -40.132,
+        -1.169860472869873,
+        -21.9456
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        -16.9672,
+        -4.4704,
+        13.1572
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        -20.2184,
+        -4.4704,
+        13.1572
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        -23.418799999999997,
+        -4.4704,
+        13.1572
+      ],
+      "pitch": 0.0,
+      "yaw": 315.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        -23.418799999999997,
+        -4.4704,
+        9.194799999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        -40.9448,
+        -0.15239999999999998,
+        -16.6116
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 180.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_cinderblock01.mdl",
+      "origin": [
+        -31.241999999999997,
+        -3.7338,
+        12.0396
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -31.394399999999997,
+        -4.26085,
+        11.9634
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -31.318199999999997,
+        -4.0893999999999995,
+        11.8872
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -31.318199999999997,
+        -3.9116,
+        11.9888
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -22.682199999999998,
+        -2.8321,
+        -0.6095999999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 181.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        -48.209199999999996,
+        -3.9043609069824217,
+        34.6456
+      ],
+      "pitch": 0.0,
+      "yaw": 91.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        35.9918,
+        -4.262145269775391,
+        -1.7271999999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 209.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_junk/trashdumpster01a.mdl",
+      "origin": [
+        -26.0096,
+        -4.572,
+        -28.1432
+      ],
+      "pitch": 0.0,
+      "yaw": 190.0,
+      "roll": 0.0,
+      "size": [
+        1.1,
+        1.2,
+        1.8
+      ]
+    },
+    {
+      "name": "models/props_junk/trashdumpster01a.mdl",
+      "origin": [
+        -25.907999999999998,
+        -4.572,
+        -26.0096
+      ],
+      "pitch": 0.0,
+      "yaw": 177.5,
+      "roll": 0.0,
+      "size": [
+        1.1,
+        1.2,
+        1.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        -29.0322,
+        -0.762,
+        -21.0312
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 180.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        -31.496,
+        -0.762,
+        -21.0312
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": -180.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a.mdl",
+      "origin": [
+        -27.432,
+        -4.969738513183594,
+        -29.5656
+      ],
+      "pitch": 0.13071799278259277,
+      "yaw": 256.5060119628906,
+      "roll": 4.998300075531006,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -33.324799999999996,
+        -1.5748,
+        -30.8864
+      ],
+      "pitch": 0.0,
+      "yaw": 256.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_junk/garbage_carboard002a.mdl",
+      "origin": [
+        -25.4254,
+        -4.2418,
+        2.921
+      ],
+      "pitch": 0.0,
+      "yaw": 15.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_junk/garbage_carboard001a.mdl",
+      "origin": [
+        -26.441399999999998,
+        -4.2418,
+        2.1844
+      ],
+      "pitch": 0.0,
+      "yaw": 134.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_junk/garbage_carboard001a.mdl",
+      "origin": [
+        -30.124399999999998,
+        -1.3986966987609863,
+        7.9756
+      ],
+      "pitch": 0.0,
+      "yaw": 334.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/furniture_couch02a.mdl",
+      "origin": [
+        -26.7208,
+        -1.524,
+        -20.269199999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 250.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_interiors/table_end.mdl",
+      "origin": [
+        -25.8572,
+        -2.032,
+        -19.2532
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props_interiors/sofa_chair02.mdl",
+      "origin": [
+        8.9408,
+        -3.44805,
+        -21.971
+      ],
+      "pitch": 0.0,
+      "yaw": 262.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -27.177999999999997,
+        -8.6868,
+        -10.210799999999999
+      ],
+      "pitch": 85.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -26.949399999999997,
+        -9.118599999999999,
+        -10.8204
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 74.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -26.7208,
+        -9.347199999999999,
+        -12.090399999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 35.5,
+      "roll": 0.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -12.8524,
+        -2.4383999999999997,
+        30.5308
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02d.mdl",
+      "origin": [
+        -19.735799999999998,
+        -2.667,
+        27.711399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -19.7866,
+        -2.6923999999999997,
+        28.092399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_wasteland/prison_switchbox001a.mdl",
+      "origin": [
+        -60.5282,
+        -1.7271999999999998,
+        10.4648
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a_corner.mdl",
+      "origin": [
+        27.2288,
+        -4.021505694580078,
+        6.124854440307617
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        25.0952,
+        0.889,
+        60.9092
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        22.453599999999998,
+        0.889,
+        60.9092
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        17.8816,
+        0.889,
+        61.315599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        15.24,
+        0.889,
+        61.315599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        12.5984,
+        0.889,
+        61.315599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        15.6464,
+        -1.6691661392211914,
+        67.4624
+      ],
+      "pitch": 0.0,
+      "yaw": 180.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        6.7056,
+        -1.6691661392211914,
+        67.437
+      ],
+      "pitch": 0.0,
+      "yaw": 179.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel03.mdl",
+      "origin": [
+        129.18439999999998,
+        0.4572,
+        37.9476
+      ],
+      "pitch": 0.0,
+      "yaw": 250.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02d.mdl",
+      "origin": [
+        -0.17779999999999999,
+        -1.7526,
+        -22.479
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -0.5588,
+        -1.778,
+        -22.529799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        121.5136,
+        0.508,
+        25.7048
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel03.mdl",
+      "origin": [
+        123.2408,
+        0.7111999999999999,
+        22.86
+      ],
+      "pitch": 0.0,
+      "yaw": 129.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        122.02159999999999,
+        0.2286,
+        28.8544
+      ],
+      "pitch": 0.0,
+      "yaw": 300.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        121.10719999999999,
+        0.7111999999999999,
+        22.9616
+      ],
+      "pitch": 0.0,
+      "yaw": 240.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        125.1712,
+        0.7111999999999999,
+        34.036
+      ],
+      "pitch": 0.0,
+      "yaw": 150.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        126.18719999999999,
+        0.6095999999999999,
+        36.2712
+      ],
+      "pitch": 0.0,
+      "yaw": 214.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        129.03199999999998,
+        0.0508,
+        35.3568
+      ],
+      "pitch": 0.0,
+      "yaw": 40.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        126.5936,
+        0.508,
+        19.2024
+      ],
+      "pitch": 0.0,
+      "yaw": 77.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        129.64159999999998,
+        0.7111999999999999,
+        16.662399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 165.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel03.mdl",
+      "origin": [
+        133.60399999999998,
+        0.7111999999999999,
+        17.6784
+      ],
+      "pitch": 0.0,
+      "yaw": 129.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        137.4648,
+        0.9144,
+        17.4752
+      ],
+      "pitch": 0.0,
+      "yaw": 54.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        135.3312,
+        0.6095999999999999,
+        12.090399999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 104.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        134.21359999999999,
+        0.30479999999999996,
+        14.9352
+      ],
+      "pitch": 0.0,
+      "yaw": 69.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        130.9624,
+        -0.15239999999999998,
+        35.3568
+      ],
+      "pitch": 0.0,
+      "yaw": 49.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        122.93599999999999,
+        0.1016,
+        33.528
+      ],
+      "pitch": 0.0,
+      "yaw": 349.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel03.mdl",
+      "origin": [
+        120.0912,
+        0.6095999999999999,
+        30.6832
+      ],
+      "pitch": 0.0,
+      "yaw": 217.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        117.9576,
+        0.2286,
+        27.5336
+      ],
+      "pitch": 0.0,
+      "yaw": 156.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel01.mdl",
+      "origin": [
+        139.4968,
+        0.6095999999999999,
+        21.4376
+      ],
+      "pitch": 0.0,
+      "yaw": 17.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/skybox_dust_hotel02.mdl",
+      "origin": [
+        140.8176,
+        0.7111999999999999,
+        22.86
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        -43.6626,
+        -5.1053999999999995,
+        54.7624
+      ],
+      "pitch": 0.0,
+      "yaw": 296.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        -41.528999999999996,
+        -5.1053999999999995,
+        59.055
+      ],
+      "pitch": 0.0,
+      "yaw": 296.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        -47.498,
+        -5.1053999999999995,
+        52.349399999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_b.mdl",
+      "origin": [
+        -50.6222,
+        -5.1053999999999995,
+        52.349399999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_cinderblock01.mdl",
+      "origin": [
+        -3.2258,
+        -4.258945077514649,
+        37.6682
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_cinderblock01.mdl",
+      "origin": [
+        -35.052,
+        -4.2672,
+        29.337
+      ],
+      "pitch": 0.0,
+      "yaw": 76.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -35.1282,
+        -4.2672,
+        22.1742
+      ],
+      "pitch": 0.0,
+      "yaw": 183.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -36.576,
+        1.016,
+        21.0312
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -0.1016,
+        -4.26085,
+        45.6184
+      ],
+      "pitch": 0.0,
+      "yaw": 355.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -5.306923745727539,
+        -4.2672,
+        39.395399999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 86.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -5.3086,
+        -2.8257499999999998,
+        39.41267336425781
+      ],
+      "pitch": 0.0,
+      "yaw": 265.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_shelf1.mdl",
+      "origin": [
+        -28.956,
+        -8.93445,
+        -5.334
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.956,
+        -7.91845,
+        -5.0291999999999994
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": -27.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.956,
+        -8.426449999999999,
+        -5.334
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": -27.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_shelf1.mdl",
+      "origin": [
+        -28.956,
+        -8.93445,
+        -3.4543999999999997
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.956,
+        -7.91845,
+        -3.556
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": -27.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.956,
+        -8.426449999999999,
+        -3.048
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": -27.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.956,
+        -7.4422,
+        -3.0734
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": -27.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.828999999999997,
+        -8.9408,
+        -5.7404
+      ],
+      "pitch": 0.0,
+      "yaw": 262.0,
+      "roll": 0.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -28.2702,
+        -8.6868,
+        -6.4262
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 74.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -30.3784,
+        -8.93445,
+        -2.1082
+      ],
+      "pitch": 0.0,
+      "yaw": 176.5,
+      "roll": 0.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_container3.mdl",
+      "origin": [
+        -30.3784,
+        -8.8138,
+        -2.1082
+      ],
+      "pitch": 0.0,
+      "yaw": 190.5,
+      "roll": 0.0,
+      "size": [
+        2.4,
+        2.6,
+        6.0
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/couch_a.mdl",
+      "origin": [
+        17.526,
+        -0.07715504102706909,
+        49.580799999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/couch_a.mdl",
+      "origin": [
+        12.801599999999999,
+        -0.07715504102706909,
+        49.4792
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        8.2296,
+        0.43815,
+        48.8696
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        27.7368,
+        0.43815,
+        58.419999999999995
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_c17/furnituretable001a_static.mdl",
+      "origin": [
+        29.362399999999997,
+        1.4731999999999998,
+        46.7868
+      ],
+      "pitch": 0.0,
+      "yaw": 75.0,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_rusty_barrel.mdl",
+      "origin": [
+        -27.025599999999997,
+        -4.236948745727539,
+        4.7752
+      ],
+      "pitch": 0.0,
+      "yaw": 137.0,
+      "roll": 0.0,
+      "size": [
+        0.45,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        16.052799999999998,
+        -4.876799999999999,
+        29.8704
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        27.1272,
+        -4.2672,
+        0.5841999999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_wasteland/prison_switchbox001a.mdl",
+      "origin": [
+        -25.6286,
+        0.4064,
+        -16.052799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_c17/furnitureshelf002a.mdl",
+      "origin": [
+        -25.4254,
+        -0.2794,
+        -9.982199999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a.mdl",
+      "origin": [
+        -84.1248,
+        -3.8608,
+        45.9232
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        -79.6544,
+        -6.0451999999999995,
+        34.1376
+      ],
+      "pitch": 0.01745159924030304,
+      "yaw": 90.9999008178711,
+      "roll": -0.9998480081558228,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        -73.25359999999999,
+        -5.9436,
+        34.0868
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": -0.5,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        -66.80199999999999,
+        -5.9436,
+        34.4932
+      ],
+      "pitch": 0.0,
+      "yaw": 83.0,
+      "roll": -0.5,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        -82.90559999999999,
+        -6.085230502319336,
+        34.1884
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/bench_wood_new.mdl",
+      "origin": [
+        -62.1538,
+        -4.2418,
+        -7.7216
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props_wasteland/prison_switchbox001a.mdl",
+      "origin": [
+        -42.9006,
+        -1.7018,
+        18.0594
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/trashbin01.mdl",
+      "origin": [
+        -61.2648,
+        -4.1402,
+        2.1844
+      ],
+      "pitch": 1.4994900226593018,
+      "yaw": 359.96099853515625,
+      "roll": -1.5005099773406982,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/furniturecouch001a.mdl",
+      "origin": [
+        -39.878,
+        -3.839032336425781,
+        13.512799999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_c17/furnituretable001a_static.mdl",
+      "origin": [
+        -39.9796,
+        -3.9878,
+        15.113
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        -25.755599999999998,
+        -4.262145269775391,
+        56.8198
+      ],
+      "pitch": 0.0,
+      "yaw": 247.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -52.0192,
+        1.1176,
+        86.15679999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 334.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_vehicles/cara_82hatchback.mdl",
+      "origin": [
+        28.55264787597656,
+        -2.3062539962768556,
+        -29.200093627929686
+      ],
+      "pitch": 0.0,
+      "yaw": 34.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_vehicles/cara_82hatchback_glass.mdl",
+      "origin": [
+        28.55264787597656,
+        -2.3062539962768556,
+        -29.200093627929686
+      ],
+      "pitch": 0.0,
+      "yaw": 34.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        33.274,
+        -1.8288,
+        -23.723599999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 81.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        26.8732,
+        -1.8288,
+        -24.7396
+      ],
+      "pitch": 0.0,
+      "yaw": 80.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        20.4724,
+        -1.8288,
+        -25.755599999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 81.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_256.mdl",
+      "origin": [
+        38.7604,
+        -1.8288,
+        -25.5524
+      ],
+      "pitch": 0.0,
+      "yaw": 135.5,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence_post001.mdl",
+      "origin": [
+        40.766999999999996,
+        -1.82245,
+        -27.6098
+      ],
+      "pitch": 0.0,
+      "yaw": 135.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a.mdl",
+      "origin": [
+        37.1856,
+        -2.1560433975219726,
+        -24.5364
+      ],
+      "pitch": 0.0,
+      "yaw": 131.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        41.452799999999996,
+        6.2992,
+        -43.8912
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_mkt_table2.mdl",
+      "origin": [
+        -28.701999999999998,
+        -4.2672,
+        26.3144
+      ],
+      "pitch": 0.0,
+      "yaw": 357.5,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        -20.6756,
+        -4.2164,
+        45.1612
+      ],
+      "pitch": 0.0,
+      "yaw": 87.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        -20.6248,
+        -4.2164,
+        50.8
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        -42.3672,
+        -2.0827999999999998,
+        62.0776
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        -48.1584,
+        -2.0827999999999998,
+        62.0776
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_vehicles/cara_82hatchback.mdl",
+      "origin": [
+        -72.59802451171875,
+        -3.2912049224853512,
+        -26.938985131835935
+      ],
+      "pitch": 3.2649600505828857,
+      "yaw": 83.83670043945312,
+      "roll": -2.361219882965088,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_vehicles/cara_82hatchback_glass.mdl",
+      "origin": [
+        -72.59802451171875,
+        -3.2912049224853512,
+        -26.938985131835935
+      ],
+      "pitch": 3.2649600505828857,
+      "yaw": 83.83670043945312,
+      "roll": -2.361219882965088,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_street/trashbin01.mdl",
+      "origin": [
+        -62.6872,
+        -3.1242,
+        -27.129485131835935
+      ],
+      "pitch": -1.2925599813461304,
+      "yaw": 284.94500732421875,
+      "roll": 4.830450057983398,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a.mdl",
+      "origin": [
+        -61.0616,
+        -2.8956,
+        -27.177999999999997
+      ],
+      "pitch": 0.13071799278259277,
+      "yaw": 268.5060119628906,
+      "roll": 4.998300075531006,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        -20.6248,
+        -4.572,
+        48.1584
+      ],
+      "pitch": 0.0,
+      "yaw": 8.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/furniturecouch001a.mdl",
+      "origin": [
+        -25.8572,
+        -1.6256,
+        -17.667096813964843
+      ],
+      "pitch": 0.0,
+      "yaw": 176.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        -21.1328,
+        -2.6416,
+        25.298399999999997
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -71.5264,
+        2.8447999999999998,
+        -45.516799999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        31.94735849609375,
+        -2.4892,
+        29.819599999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/rusted_fence_a.mdl",
+      "origin": [
+        31.9532,
+        -2.4892,
+        25.019
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_interiors/refrigeratordoor01a.mdl",
+      "origin": [
+        -28.448,
+        -1.2446,
+        -9.5758
+      ],
+      "pitch": 0.0,
+      "yaw": 89.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_interiors/refrigeratordoor02a.mdl",
+      "origin": [
+        -28.448,
+        -0.30479999999999996,
+        -9.5758
+      ],
+      "pitch": 0.0,
+      "yaw": 89.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        -19.304,
+        -0.47625,
+        -16.3068
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -58.7756,
+        -3.2512,
+        -16.205199999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 260.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        17.0688,
+        4.2672,
+        -10.769599999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02c.mdl",
+      "origin": [
+        25.603199999999998,
+        -3.1496,
+        -8.7884
+      ],
+      "pitch": 0.0,
+      "yaw": 45.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_128.mdl",
+      "origin": [
+        27.1272,
+        -4.26085,
+        -1.5748
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_urban/fence001_64.mdl",
+      "origin": [
+        27.1272,
+        -4.26085,
+        0.8128
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        1.6,
+        2.4
+      ]
+    },
+    {
+      "name": "models/props_vehicles/van.mdl",
+      "origin": [
+        -59.1312,
+        -3.2512,
+        -17.932399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 79.5,
+      "roll": 0.0,
+      "size": [
+        2.2,
+        2.0,
+        5.2
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_rusty_barrel.mdl",
+      "origin": [
+        -59.8424,
+        -3.2003999999999997,
+        -20.269199999999998
+      ],
+      "pitch": -0.674560010433197,
+      "yaw": 12.982799530029297,
+      "roll": 2.9232499599456787,
+      "size": [
+        0.45,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/market_dolly01.mdl",
+      "origin": [
+        -56.9214,
+        -3.24485,
+        -18.9992
+      ],
+      "pitch": 357.0,
+      "yaw": 72.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_militia/van_glass.mdl",
+      "origin": [
+        -59.1312,
+        -3.2512,
+        -17.932399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 79.5,
+      "roll": 0.0,
+      "size": [
+        2.2,
+        2.0,
+        5.2
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -3.6576,
+        5.892799999999999,
+        -24.790399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -12.090399999999999,
+        1.6639261489868162,
+        -20.7772
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_interiors/sofa01.mdl",
+      "origin": [
+        16.4592,
+        -3.4543999999999997,
+        -20.828
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_c17/furnituretable001a_static.mdl",
+      "origin": [
+        11.785599999999999,
+        -2.9972,
+        -22.352
+      ],
+      "pitch": 0.0,
+      "yaw": 345.0,
+      "roll": 0.0,
+      "size": [
+        0.9,
+        0.8,
+        1.4
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        1.7271999999999998,
+        -4.241876351928711,
+        54.4576
+      ],
+      "pitch": 0.0,
+      "yaw": 169.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/awning_smalldoor.mdl",
+      "origin": [
+        14.528799999999999,
+        -0.2032,
+        -15.24
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -32.512,
+        4.1655999999999995,
+        53.6448
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        28.0416,
+        5.6133999999999995,
+        18.8976
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -6.908799999999999,
+        -4.2672,
+        57.912
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -8.5852,
+        -4.2672,
+        59.7408
+      ],
+      "pitch": 0.0,
+      "yaw": 30.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -8.178799999999999,
+        -4.572,
+        53.3908
+      ],
+      "pitch": 0.0,
+      "yaw": 287.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -14.0716,
+        -4.572,
+        51.8668
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vertigo/pallet_01.mdl",
+      "origin": [
+        -48.9204,
+        -4.05765,
+        -9.8552
+      ],
+      "pitch": 0.0,
+      "yaw": 265.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        -67.3608,
+        -2.20345,
+        -13.5636
+      ],
+      "pitch": 0.0,
+      "yaw": 135.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -16.306342663574217,
+        -4.563084652709961,
+        53.134766015625
+      ],
+      "pitch": 0.0,
+      "yaw": 120.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/wine_barrel_static.mdl",
+      "origin": [
+        8.001,
+        -3.3528,
+        17.1704
+      ],
+      "pitch": 0.6118940114974976,
+      "yaw": 217.03199768066406,
+      "roll": 6.954949855804443,
+      "size": [
+        0.45,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -48.768,
+        1.524,
+        30.276799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/couch_a.mdl",
+      "origin": [
+        17.1704,
+        -0.1016,
+        60.553599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/couch_a.mdl",
+      "origin": [
+        13.3096,
+        -0.1016,
+        60.553599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 91.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        -27.1272,
+        -7.5018134155273435,
+        -3.1496
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -18.694399999999998,
+        4.2418,
+        -1.2191999999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -61.7728,
+        6.400799999999999,
+        6.7056
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -70.3072,
+        5.384799999999999,
+        -2.2352
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        -42.672,
+        3.2512,
+        6.6548
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/small_door_b.mdl",
+      "origin": [
+        37.4904,
+        -3.7592,
+        3.8737030883789063
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_lab/powerbox02a.mdl",
+      "origin": [
+        2.9972,
+        -0.4064,
+        6.5024
+      ],
+      "pitch": 0.0,
+      "yaw": 296.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        15.0368,
+        3.81,
+        0.5588
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        3.6576,
+        1.524,
+        0.6095999999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        13.4112,
+        5.1815999999999995,
+        24.180799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_street/electrical_box02.mdl",
+      "origin": [
+        -28.448,
+        5.08,
+        11.176
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props_c17/gate_door01a.mdl",
+      "origin": [
+        30.3784,
+        -2.6416,
+        38.3032
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/wine_barrel_static.mdl",
+      "origin": [
+        7.3152,
+        -3.4543999999999997,
+        16.128999999999998
+      ],
+      "pitch": -3.383650064468384,
+      "yaw": 8.87775993347168,
+      "roll": -10.650300025939941,
+      "size": [
+        0.45,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/wine_barrel_static.mdl",
+      "origin": [
+        5.9944,
+        -4.1148,
+        15.849599999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 316.0,
+      "roll": 0.0,
+      "size": [
+        0.45,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_food_crates_74.mdl",
+      "origin": [
+        8.128,
+        -4.1148,
+        18.8976
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/de_dust/dust_food_crates_74.mdl",
+      "origin": [
+        6.1975999999999996,
+        -4.1148,
+        17.779999999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 315.0,
+      "roll": 0.0,
+      "size": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        11.811,
+        -5.08,
+        -15.849599999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props_junk/trashcluster01a.mdl",
+      "origin": [
+        -3.7592,
+        -1.9304,
+        -9.8552
+      ],
+      "pitch": 0.0,
+      "yaw": 188.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_dust/stoneblock01b.mdl",
+      "origin": [
+        -22.682199999999998,
+        -4.2672,
+        -0.6095999999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 359.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        -27.635199999999998,
+        -2.43205,
+        -8.128
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        -2.6416,
+        -2.4383999999999997,
+        7.924799999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        -37.592,
+        -5.07365,
+        36.169599999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        15.24,
+        3.2512,
+        24.180799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        10.363199999999999,
+        1.22555,
+        28.244799999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        -9.753599999999999,
+        -2.63525,
+        22.758399999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        5.08,
+        3.2512,
+        30.0736
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/cs_italy/it_doora.mdl",
+      "origin": [
+        25.4,
+        1.63195,
+        22.9616
+      ],
+      "pitch": 0.0,
+      "yaw": 270.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        -21.996399999999998,
+        0.0,
+        201.01559999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 109.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        -29.971999999999998,
+        0.0,
+        201.0664
+      ],
+      "pitch": 0.0,
+      "yaw": 79.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -31.699199999999998,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -26.0096,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -19.9136,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -11.785599999999999,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -11.785599999999999,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -10.16,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -40.233599999999996,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -40.233599999999996,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -41.8592,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -35.052,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        -16.9672,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -35.0012,
+        0.0229757218003273,
+        197.25639999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0000100135803223,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -34.3154,
+        0.0229757218003273,
+        197.231
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -17.57725733642578,
+        0.0229757218003273,
+        197.2056
+      ],
+      "pitch": 0.0,
+      "yaw": 359.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        -16.891,
+        0.0229757218003273,
+        197.21017646484376
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        -29.057599999999997,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 1.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        -23.5966,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 0.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        -26.3144,
+        0.1066558687210083,
+        182.5752
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -17.32325733642578,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -34.65880849609375,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        -26.0096,
+        3.35915,
+        201.77759999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        -26.026619116210938,
+        3.35915,
+        202.06106796875
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        82.042,
+        0.0,
+        201.01559999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 109.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        74.0664,
+        0.0,
+        201.0664
+      ],
+      "pitch": 0.0,
+      "yaw": 79.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        72.33919999999999,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        78.02879999999999,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        84.1248,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        92.2528,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        92.2528,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        93.8784,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        63.8048,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        63.8048,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        62.179199999999994,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        68.9864,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        87.07119999999999,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        69.0372,
+        0.0229757218003273,
+        197.25639999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0000100135803223,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        69.723,
+        0.0229757218003273,
+        197.231
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        86.46109150390625,
+        0.0229757218003273,
+        197.2056
+      ],
+      "pitch": 0.0,
+      "yaw": 359.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        87.14739999999999,
+        0.0229757218003273,
+        197.21017646484376
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        74.9808,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 1.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        80.4418,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 0.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        77.724,
+        0.1066558687210083,
+        182.5752
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        86.71509150390625,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        69.37959150390624,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        78.02879999999999,
+        3.35915,
+        201.77759999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        78.011783984375,
+        3.35915,
+        202.06106796875
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        186.0804,
+        0.0,
+        201.01559999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 109.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        178.10479999999998,
+        0.0,
+        201.0664
+      ],
+      "pitch": 0.0,
+      "yaw": 79.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        176.3776,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        182.06719999999999,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        188.1632,
+        14.224,
+        202.4888
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        196.2912,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        196.2912,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        197.9168,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        167.8432,
+        9.9568,
+        193.8528
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        167.8432,
+        9.9568,
+        189.78879999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        166.2176,
+        9.9568,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        173.0248,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        191.1096,
+        5.892799999999999,
+        187.7568
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        173.07559999999998,
+        0.0229757218003273,
+        197.25639999999999
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0000100135803223,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        173.76139999999998,
+        0.0229757218003273,
+        197.231
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        190.49949150390626,
+        0.0229757218003273,
+        197.2056
+      ],
+      "pitch": 0.0,
+      "yaw": 359.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        191.1858,
+        0.0229757218003273,
+        197.21017646484376
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        179.01919999999998,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 1.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        184.4802,
+        0.4572,
+        182.4736
+      ],
+      "pitch": 0.0,
+      "yaw": 0.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        181.76239999999999,
+        0.1066558687210083,
+        182.5752
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        190.75349150390625,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        173.41799150390625,
+        0.00876729279756546,
+        195.07403398437498
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        182.06719999999999,
+        3.35915,
+        201.77759999999998
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        182.050183984375,
+        3.35915,
+        202.06106796875
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        30.0228,
+        0.0,
+        288.798
+      ],
+      "pitch": 0.0,
+      "yaw": 109.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        22.0472,
+        0.0,
+        288.8488
+      ],
+      "pitch": 0.0,
+      "yaw": 79.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        20.32,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        26.0096,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        32.105599999999995,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        40.233599999999996,
+        9.9568,
+        281.6352
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        40.233599999999996,
+        9.9568,
+        277.5712
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        41.8592,
+        9.9568,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        11.785599999999999,
+        9.9568,
+        281.6352
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        11.785599999999999,
+        9.9568,
+        277.5712
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        10.16,
+        9.9568,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        16.9672,
+        5.892799999999999,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        35.052,
+        5.892799999999999,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        17.018,
+        0.0229757218003273,
+        285.0388
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0000100135803223,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        17.703799999999998,
+        0.0229757218003273,
+        285.0134
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        34.44189150390625,
+        0.0229757218003273,
+        284.988
+      ],
+      "pitch": 0.0,
+      "yaw": 359.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        35.1282,
+        0.0229757218003273,
+        284.9930849609375
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        22.9616,
+        0.4572,
+        270.256
+      ],
+      "pitch": 0.0,
+      "yaw": 1.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        28.4226,
+        0.4572,
+        270.256
+      ],
+      "pitch": 0.0,
+      "yaw": 0.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        25.7048,
+        0.1066558687210083,
+        270.3576
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        34.695891503906246,
+        0.00876729279756546,
+        282.856930078125
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        17.36039150390625,
+        0.00876729279756546,
+        282.856930078125
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        26.0096,
+        3.35915,
+        289.56
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        25.99258243408203,
+        3.35915,
+        289.8444849609375
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        134.06119999999999,
+        0.0,
+        288.798
+      ],
+      "pitch": 0.0,
+      "yaw": 109.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        126.0856,
+        0.0,
+        288.8488
+      ],
+      "pitch": 0.0,
+      "yaw": 79.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        124.35839999999999,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        130.048,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        136.144,
+        14.224,
+        290.27119999999996
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        144.272,
+        9.9568,
+        281.6352
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        144.272,
+        9.9568,
+        277.5712
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        145.89759999999998,
+        9.9568,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        115.824,
+        9.9568,
+        281.6352
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        115.824,
+        9.9568,
+        277.5712
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        114.19839999999999,
+        9.9568,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        121.0056,
+        5.892799999999999,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/brush_shape_1.mdl",
+      "origin": [
+        139.0904,
+        5.892799999999999,
+        275.5392
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        121.0564,
+        0.0229757218003273,
+        285.0388
+      ],
+      "pitch": 0.0,
+      "yaw": 2.0000100135803223,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        121.7422,
+        0.0229757218003273,
+        285.0134
+      ],
+      "pitch": 0.0,
+      "yaw": 185.0,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        138.48029150390624,
+        0.0229757218003273,
+        284.988
+      ],
+      "pitch": 0.0,
+      "yaw": 359.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/gg_vietnam/ammobox_stack.mdl",
+      "origin": [
+        139.1666,
+        0.0229757218003273,
+        284.9930849609375
+      ],
+      "pitch": 0.0,
+      "yaw": 182.5,
+      "roll": 0.0,
+      "size": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        127.0,
+        0.4572,
+        270.256
+      ],
+      "pitch": 0.0,
+      "yaw": 1.0,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/bench_a.mdl",
+      "origin": [
+        132.46099999999998,
+        0.4572,
+        270.256
+      ],
+      "pitch": 0.0,
+      "yaw": 0.5,
+      "roll": 0.0,
+      "size": [
+        0.5,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "name": "models/props/de_vostok/trashcan.mdl",
+      "origin": [
+        129.7432,
+        0.1066558687210083,
+        270.3576
+      ],
+      "pitch": 0.0,
+      "yaw": 266.5,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        138.73429150390623,
+        0.00876729279756546,
+        282.856930078125
+      ],
+      "pitch": 0.0,
+      "yaw": 180.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        121.39879150390624,
+        0.00876729279756546,
+        282.856930078125
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_b.mdl",
+      "origin": [
+        130.048,
+        3.35915,
+        289.56
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_mirage/large_door_c.mdl",
+      "origin": [
+        130.03098398437498,
+        3.35915,
+        289.8444849609375
+      ],
+      "pitch": 0.0,
+      "yaw": 90.0,
+      "roll": 0.0,
+      "size": [
+        0.12,
+        2.2,
+        1.1
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -6.8987161193847655,
+        -4.10588465270996,
+        57.939433984375
+      ],
+      "pitch": -0.0,
+      "yaw": 16.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -22.936403088378906,
+        -4.283684652709961,
+        62.70244248046875
+      ],
+      "pitch": -0.0,
+      "yaw": 103.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    },
+    {
+      "name": "models/props/de_inferno/shell_pallet.mdl",
+      "origin": [
+        -48.97373937988281,
+        -3.8772846527099607,
+        -9.889972296142577
+      ],
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0,
+      "size": [
+        0.6,
+        0.8,
+        0.6
+      ]
+    }
+  ],
+  "scale": 0.0254,
+  "map": "de_mirage",
+  "radar": {
+    "min": [
+      -64.0,
+      -20.0
+    ],
+    "max": [
+      44.0,
+      70.0
+    ],
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "places": [
+    "TSpawn",
+    "BombsiteA",
+    "CTSpawn",
+    "BombsiteB",
+    "TopofMid",
+    "Shop",
+    "Middle",
+    "Catwalk",
+    "Apartments",
+    "SnipersNest",
+    "BackAlley",
+    "Jungle",
+    "PalaceAlley",
+    "PalaceInterior",
+    "Scaffolding",
+    "Balcony",
+    "House",
+    "SideAlley",
+    "TunnelStairs",
+    "Connector",
+    "Stairs",
+    "Ladder",
+    "Truck",
+    "Tunnel",
+    "TicketBooth",
+    "TRamp"
+  ]
+}

@@ -1,0 +1,10 @@
+# Ignore Godot import cache and local user data
+.godot/
+*.translation
+agent-tools/
+raw/
+.import/
+*.tmp
+*~
+.DS_Store
+export/linux/

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#121412"/>
+  <rect x="0" y="0" width="10" height="128" fill="#84c44c"/>
+  <text x="22" y="58" font-family="DejaVu Sans, sans-serif" font-size="22" fill="#e8ece4">HVH</text>
+  <text x="22" y="86" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#84c44c">2018</text>
+</svg>
