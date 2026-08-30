@@ -39,6 +39,20 @@ static func yaw_vec(yaw_deg: float) -> Vector3:
 	return Vector3(-sin(r), 0.0, -cos(r))
 
 
+static func right_vec(yaw_deg: float) -> Vector3:
+	var f := yaw_vec(yaw_deg)
+	return Vector3(-f.z, 0.0, f.x)
+
+
+static func look_dir(pitch_deg: float, yaw_deg: float) -> Vector3:
+	var fwd := yaw_vec(yaw_deg)
+	var p := deg_to_rad(pitch_deg)
+	var look := fwd * cos(p) + Vector3(0.0, -sin(p), 0.0)
+	if look.length_squared() < 0.0001:
+		return fwd
+	return look.normalized()
+
+
 static func look_basis(dir: Vector3) -> Basis:
 	var d := dir.normalized()
 	if d.length_squared() < 0.0001:

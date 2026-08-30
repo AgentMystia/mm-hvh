@@ -8,6 +8,7 @@ var bots: Array[BotAI] = []
 var local_player: Player
 var hud: GameHUD
 var bomb_node: Node3D
+var _qa_frames := 0
 
 
 func _ready() -> void:
@@ -81,7 +82,7 @@ func _place_spawns(give_bomb: bool) -> void:
 			ci += 1
 		var sp: Dictionary = world.spawn_for(p.team, slot)
 		var o: Array = sp.origin
-		var origin := Vector3(o[0], o[1] + 0.12, o[2])
+		var origin := world.snap_spawn(Vector3(o[0], o[1], o[2]))
 		var yaw := float(sp.angles[1]) if sp.angles.size() > 1 else 0.0
 		var c4 := false
 		if give_bomb and p.team == Match.Team.T and bomber == null:
@@ -131,6 +132,12 @@ func _physics_process(delta: float) -> void:
 		ai.tick(delta, world, players)
 	_update_resolve()
 	_sync_bomb()
+	_qa_frames += 1
+	if (_qa_frames == 12 or _qa_frames == 64) and local_player:
+		print("QA t=%d y=%.3f floor=%s pitch=%.1f" % [_qa_frames, local_player.global_position.y, str(local_player.is_on_floor()), local_player.aa.real_pitch])
+		if _qa_frames == 64:
+			for p in players:
+				print("  %s y=%.3f floor=%s" % [p.player_name, p.global_position.y, str(p.is_on_floor())])
 
 
 func _update_resolve() -> void:

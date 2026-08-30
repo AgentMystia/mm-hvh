@@ -219,11 +219,25 @@ func _safety_floor() -> void:
 	body.collision_mask = 0
 	var cs := CollisionShape3D.new()
 	var box := BoxShape3D.new()
-	box.size = Vector3(140, 1.0, 140)
+	box.size = Vector3(160, 1.0, 160)
 	cs.shape = box
 	body.add_child(cs)
-	body.position = Vector3(-10, -9.0, 25)
+	body.position = Vector3(-10, -16.0, 25)
 	add_child(body)
+
+
+func snap_spawn(origin: Vector3) -> Vector3:
+	var space := get_world_3d().direct_space_state
+	if space == null:
+		return origin
+	# Short ray from just above the entity origin so we hit the walkable floor,
+	# not a roof or awning starting 6m up.
+	var q := PhysicsRayQueryParameters3D.create(origin + Vector3(0, 0.7, 0), origin + Vector3(0, -2.8, 0))
+	q.collision_mask = 1
+	var hit := space.intersect_ray(q)
+	if hit:
+		return Vector3(origin.x, hit.position.y + 0.04, origin.z)
+	return origin
 
 
 func _apply_night() -> void:

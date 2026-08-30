@@ -389,6 +389,13 @@ def collect_meshes(bsp):
             except ValueError:
                 pass
 
+    def as_meshes(raw):
+        if raw is None:
+            return []
+        if isinstance(raw, (list, tuple)):
+            return [m for m in raw if m is not None]
+        return [raw]
+
     def consume_mesh(mesh, force_collision=False):
         name = mat_name(mesh)
         cat = categorize(name)
@@ -402,7 +409,8 @@ def collect_meshes(bsp):
                 for t in tris:
                     collision.append(t)
 
-    # Regular + displacement faces for every brush model except skipped
+    # Regular + displacement faces for every brush model except skipped.
+    # CS:GO bsp_tool.face_mesh returns a Mesh, not a list — iterating it skipped every brush.
     for mi, model in enumerate(bsp.MODELS):
         if mi in skip_models:
             continue
@@ -411,11 +419,12 @@ def collect_meshes(bsp):
         for fi in range(first, last):
             face = bsp.FACES[fi]
             try:
-                if face.displacement_info is not None and int(face.displacement_info) >= 0:
-                    mesh = bsp.displacement_mesh(fi)
-                    consume_mesh(mesh)
+                disp = getattr(face, "displacement_info", -1)
+                if disp is not None and int(disp) >= 0:
+                    for mesh in as_meshes(bsp.displacement_mesh(fi)):
+                        consume_mesh(mesh)
                 else:
-                    for mesh in bsp.face_mesh(fi):
+                    for mesh in as_meshes(bsp.face_mesh(fi)):
                         consume_mesh(mesh)
             except Exception:
                 continue
@@ -802,18 +811,37 @@ def write_collision_obj(collision, path: Path):
 
     for t in collision:
         ids = []
-        ok = True
+        pts = []
         for v in t:
             x, y, z = src_to_godot(vcomp(v.position, 0), vcomp(v.position, 1), vcomp(v.position, 2))
+            # Playable mirage AABB — drop skybox hulls that wreck web trimesh.
+            if abs(x) > 90.0 or abs(z) > 90.0 or y > 22.0 or y < -14.0:
+                ids = []
+                break
+            pts.append((x, y, z))
             ids.append(vid(x, y, z))
-        if len(set(ids)) == 3:
-            faces.append(ids)
+        if len(ids) != 3 or len(set(ids)) < 3:
+            continue
+        a, b, c = ids
+        va, vb, vc = pts
+        ux, uy, uz = vb[0] - va[0], vb[1] - va[1], vb[2] - va[2]
+        vx, vy, vz = vc[0] - va[0], vc[1] - va[1], vc[2] - va[2]
+        nx = uy * vz - uz * vy
+        ny = uz * vx - ux * vz
+        nz = ux * vy - uy * vx
+        ln = math.sqrt(nx * nx + ny * ny + nz * nz) or 1.0
+        # Y-flip mirrors winding; reverse so walkable floors face +Y in Godot.
+        faces.append((a, c, b))
+        # Double-side floors — ConcavePolygonShape is one-way.
+        if abs(ny) / ln > 0.35:
+            faces.append((a, b, c))
     with path.open("w") as f:
         f.write("# de_mirage collision\n")
         for v in verts:
             f.write(f"v {v[0]} {v[1]} {v[2]}\n")
         for a, b, c in faces:
             f.write(f"f {a} {b} {c}\n")
+    print(f"collision verts {len(verts)} faces {len(faces)}")
     print(f"collision verts {len(verts)} faces {len(faces)}")
 
 

@@ -117,7 +117,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 
 
 func _points(e: Node, yaw: float) -> Array:
-	var hb: Array = e.hitboxes_at_yaw(yaw)
+	var hb: Array = e.hitboxes_at_yaw(yaw, float(e.aa.real_pitch))
 	var want: Dictionary = Cheat.t("rage/hitboxes", {"head": true, "chest": true, "stomach": true})
 	var mp := bool(Cheat.t("rage/multipoint", true))
 	var pts: Array = []

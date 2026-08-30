@@ -349,6 +349,7 @@ func _cock_revolver() -> void:
 		cocking = true
 		revolver_ready = false
 		revolver_ready_at = time + float(w.get("cock", 0.207))
+		Sfx.play("res://assets/sounds/weapons/revolver_cock.wav", global_position, -4)
 
 
 func _attack_manual() -> void:
@@ -452,7 +453,7 @@ func _fire(dir: Vector3, silent: bool, r8_alt := false) -> void:
 	for p in _enemies():
 		if not p.alive or p.team == team:
 			continue
-		var boxes: Array = p.hitboxes_at_yaw(p.aa.real_yaw)
+		var boxes: Array = p.hitboxes_at_yaw(p.aa.real_yaw, p.aa.real_pitch)
 		var hit: Dictionary = Hitscan.closest_hitbox(from, to, boxes)
 		if hit.is_empty():
 			continue
@@ -531,14 +532,17 @@ func _die(attacker: Player, w: Dictionary, hs: bool) -> void:
 	model.visible = false
 
 
-func hitboxes_at_yaw(yaw: float) -> Array:
+func hitboxes_at_yaw(yaw: float, pitch: float = 0.0) -> Array:
 	var f := Net.yaw_vec(yaw)
-	var rgt := Vector3(f.z, 0, -f.x)
+	var rgt := Net.right_vec(yaw)
+	var look := Net.look_dir(pitch, yaw)
 	var h := lerpf(Net.PLAYER_HULL_H, Net.PLAYER_DUCK_H, duck_amt)
 	var eh := lerpf(Net.EYE_STAND, Net.EYE_DUCK, duck_amt)
 	var o := global_position
+	# Down pitch 89 drops / drives the head along aim — 2018 AA visual + hitbox.
+	var head := o + Vector3(0, eh, 0) + look * 0.12
 	return [
-		{"group": "head", "pos": o + Vector3(0, eh, 0) + f * 0.05, "radius": Net.HEAD_R},
+		{"group": "head", "pos": head, "radius": Net.HEAD_R},
 		{"group": "chest", "pos": o + Vector3(0, h * 0.68, 0) + f * 0.03, "radius": 0.16},
 		{"group": "stomach", "pos": o + Vector3(0, h * 0.48, 0), "radius": 0.15},
 		{"group": "pelvis", "pos": o + Vector3(0, h * 0.32, 0), "radius": 0.14},
@@ -555,21 +559,22 @@ func _move(delta: float) -> void:
 		var f := Input.get_axis("move_back", "move_forward")
 		var s := Input.get_axis("move_left", "move_right")
 		var fwd := Net.yaw_vec(view_yaw)
-		var rgt := Vector3(fwd.z, 0, -fwd.x)
+		var rgt := Net.right_vec(view_yaw)
 		wish = (fwd * f + rgt * s)
 		if wish.length() > 1:
 			wish = wish.normalized()
 		ducking = Input.is_action_pressed("duck") or bool(Cheat.t("aa/fakeduck", false))
-		if bool(Cheat.t("misc/bhop", true)):
-			if Input.is_action_pressed("jump") and is_on_floor():
+		if Match.in_play():
+			if bool(Cheat.t("misc/bhop", true)):
+				if Input.is_action_pressed("jump") and is_on_floor():
+					velocity.y = Net.JUMP_IMPULSE
+			elif Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = Net.JUMP_IMPULSE
-		elif Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = Net.JUMP_IMPULSE
 	# bot wish is set externally via bot_wish
 	if is_bot:
 		wish = bot_wish
 		ducking = bot_duck
-		if bot_jump and is_on_floor():
+		if bot_jump and is_on_floor() and Match.in_play():
 			velocity.y = Net.JUMP_IMPULSE
 	if want_autostop or (is_local and bool(Cheat.t("rage/autostop", true)) and last_rage.get("shoot", false)):
 		wish = Vector3.ZERO
@@ -588,6 +593,8 @@ func _move(delta: float) -> void:
 		wish = Vector3.ZERO
 		velocity.x = 0.0
 		velocity.z = 0.0
+		if velocity.y > 0.0:
+			velocity.y = 0.0
 	if is_local and bool(Cheat.t("misc/autostrafe", 0)) and not is_on_floor():
 		wish = _autostrafe()
 	if is_on_floor():
@@ -653,7 +660,7 @@ func _camera() -> void:
 	cam.fov = fov
 	var eye_h := lerpf(Net.EYE_STAND, Net.EYE_DUCK, duck_amt)
 	var fwd := Net.yaw_vec(view_yaw)
-	var look := fwd * cos(deg_to_rad(view_pitch)) + Vector3(0, -sin(deg_to_rad(view_pitch)), 0)
+	var look := Net.look_dir(view_pitch, view_yaw)
 	if look.length_squared() < 0.0001:
 		look = fwd
 	look = look.normalized()

@@ -365,13 +365,15 @@ func _draw_esp(_sz: Vector2) -> void:
 
 func _draw_skel(cam: Camera3D, p: Player) -> void:
 	var yaw := p.resolved_yaw if bool(Cheat.t("visuals/skeleton_resolved", true)) else p.aa.fake_yaw
+	var pitch := p.aa.real_pitch
 	var origin := p.global_position
 	var fwd := Net.yaw_vec(yaw)
-	var right := Vector3(-fwd.z, 0, fwd.x)
+	var right := Net.right_vec(yaw)
+	var look := Net.look_dir(pitch, yaw)
 	var pelvis := origin + Vector3(0, 0.92, 0)
 	var chest := origin + Vector3(0, 1.28, 0)
 	var neck := origin + Vector3(0, 1.48, 0)
-	var head := origin + Vector3(0, 1.62, 0) + fwd * 0.04
+	var head := neck + look * 0.16
 	var l_sh := chest - right * 0.18 + Vector3(0, 0.08, 0)
 	var r_sh := chest + right * 0.18 + Vector3(0, 0.08, 0)
 	var l_el := l_sh - right * 0.12 + Vector3(0, -0.22, 0)
@@ -426,7 +428,7 @@ func _draw_indicators(sz: Vector2) -> void:
 		var st := "READY" if lp.revolver_ready else ("COCK %.0f%%" % (lp.revolver_cock_frac() * 100.0) if lp.cocking else "idle")
 		_t(Vector2(x, y + 32), "R8  %s" % st, 12, rc, true)
 	if bool(Cheat.t("aa/enable", true)):
-		_t(Vector2(x, y + 48), "AA  %s" % YAW_N[clampi(int(Cheat.t("aa/yaw", 1)), 0, YAW_N.size() - 1)], 12, Color(0.55, 0.75, 1.0), true)
+		_t(Vector2(x, y + 48), "AA  %s  PITCH %s" % [YAW_N[clampi(int(Cheat.t("aa/yaw", 1)), 0, YAW_N.size() - 1)], PITCH_N[clampi(int(Cheat.t("aa/pitch", 1)), 0, PITCH_N.size() - 1)]], 12, Color(0.55, 0.75, 1.0), true)
 	if bool(Cheat.t("aa/fakelag", true)):
 		_t(Vector2(x, y + 64), "FL  %d" % int(Cheat.t("aa/fakelag_amt", 14)), 12, Color(0.7, 0.7, 0.75), true)
 	_t(Vector2(x, y + 80), "RES %s" % (lp.resolved_label if false else RES_N[clampi(int(Cheat.t("rage/resolver_type", 3)), 0, 3)]), 12, Color(0.95, 0.55, 0.4), true)

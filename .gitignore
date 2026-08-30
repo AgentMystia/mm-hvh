@@ -8,3 +8,4 @@ raw/
 *~
 .DS_Store
 export/linux/
+tools/__pycache__/
