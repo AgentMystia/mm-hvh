@@ -5,6 +5,14 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>HVH 2018 — MM HvH</title>
 		<base href="./">
+		<script>
+		(function () {
+			var p = location.pathname;
+			if (p && p.slice(-1) !== "/" && !/\.[a-z0-9]+$/i.test((p.split("/").pop() || ""))) {
+				location.replace(p + "/" + location.search + location.hash);
+			}
+		})();
+		</script>
 		<style>
 html, body, #canvas {
 	margin: 0;

@@ -6,7 +6,11 @@ This is a Godot 4.7 project (GL Compatibility, 64-tick physics). The Web export 
 
 ## Play online
 
-The game is already exported. In this Cursor chat, click **Publish** to put `export/web` on Vercel. That URL is public — share it and anyone can play without installing Godot.
+Public GitHub Pages (anyone can open this):
+
+**https://agentmystia.github.io/mm-hvh/**
+
+Repo: https://github.com/AgentMystia/mm-hvh
 
 Local preview (same files):
 
