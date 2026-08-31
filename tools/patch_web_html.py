@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-HTML = Path("/workspace/export/web/index.html")
+ROOT = Path(__file__).resolve().parent.parent
+HTML = ROOT / "export" / "web" / "index.html"
 
 
 def main() -> None:

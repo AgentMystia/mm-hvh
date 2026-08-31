@@ -15,18 +15,49 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install libraries Godot needs headless
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libfontconfig1 libgl1 libx11-6 libxcursor1 libxinerama1 \
+            libxrandr2 libxi6 libasound2t64 || \
+          sudo apt-get install -y --no-install-recommends \
+            libfontconfig1 libgl1 libx11-6 libasound2
+
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.2
+          use-dotnet: false
+          include-templates: true
+
+      - name: Import and export Web
+        run: |
+          set -euo pipefail
+          mkdir -p export/web
+          godot --headless --path "$GITHUB_WORKSPACE" --import
+          godot --headless --path "$GITHUB_WORKSPACE" --export-release Web "$GITHUB_WORKSPACE/export/web/index.html"
+          python3 tools/patch_web_html.py
+          python3 tools/verify_web_export.py
+          touch export/web/.nojekyll
+          ls -la export/web
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: export/web
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Keep Godot files out of Jekyll
-        run: touch export/web/.nojekyll
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: export/web
       - id: deployment
         uses: actions/deploy-pages@v4
