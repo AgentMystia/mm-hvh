@@ -158,6 +158,7 @@ func _qa_tick() -> void:
 		if world.nav != null and bool(world.nav.loaded):
 			var hops: Array = world.nav.path(local_player.global_position, a_site)
 			print("QA path_t_to_a hops=%d" % hops.size())
+		# T-spawn 18 HU treads: walk +Z up the staircase south of spawn.
 		local_player.global_position = Vector3(32.07, -5.70, -8.20)
 		local_player.velocity = Vector3.ZERO
 		local_player.qa_wish = Vector3(0.0, 0.0, 1.0)
@@ -175,6 +176,7 @@ func _qa_tick() -> void:
 			_qa_sweep(space, "palace", Vector3(20.96, -0.20, 51.75))
 			_qa_sweep(space, "connector", Vector3(-17.14, -4.80, 21.59))
 			_qa_sweep(space, "mid", Vector3(0.00, -3.20, 15.56))
+			# Horizontal traces at eye height so we measure walls, not the floor brush.
 			_qa_wall(space, "palace_window", Vector3(20.96, -0.20, 51.75), Vector3(8.00, -0.20, 53.50), 2.5, 115.0)
 			_qa_wall(space, "connector", Vector3(-17.14, -4.80, 21.59), Vector3(-6.99, -4.80, 16.51), 2.0, 86.0)
 			_qa_wall(space, "a_site_wall", Vector3(-13.02, -0.20, 38.42), Vector3(-8.00, -0.20, 38.42), 2.5, 115.0)
@@ -184,6 +186,7 @@ func _qa_tick() -> void:
 		_qa_stair_y0 = local_player.global_position.y
 		print("QA stair start y=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [_qa_stair_y0, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
 	if _qa_frames == 80:
+		# Stay on the treads after the climb so end-Y is not a fall off the side.
 		if local_player.qa_steps >= 4:
 			local_player.qa_wish = Vector3.ZERO
 			local_player.velocity = Vector3.ZERO
