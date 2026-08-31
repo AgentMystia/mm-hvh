@@ -32,7 +32,7 @@ static func fire(p, dir: Vector3, silent: bool, r8_alt := false) -> void:
 	var spd := Vector2(p.velocity.x, p.velocity.z).length()
 	if spd > 0.3:
 		spread += 1.6
-	if not p.is_on_floor():
+	if not p.grounded:
 		spread += 4.0
 	if bool(w.get("zoom", false)) and not p.scoped:
 		spread += 10.0
@@ -87,10 +87,15 @@ static func knife(p, _dir: Vector3) -> void:
 
 
 static func spread_dir(dir: Vector3, spread_deg: float) -> Vector3:
+	if dir.length_squared() < 0.0001:
+		dir = Vector3.FORWARD
 	var rx := deg_to_rad(randf_range(-spread_deg, spread_deg) * 0.15)
 	var ry := deg_to_rad(randf_range(-spread_deg, spread_deg) * 0.15)
 	var basis := Net.look_basis(dir)
-	return (basis * Vector3(sin(ry), sin(rx), -1)).normalized()
+	var out: Vector3 = (basis * Vector3(sin(ry), sin(rx), -1)).normalized()
+	if out.length_squared() < 0.0001:
+		return dir.normalized()
+	return out
 
 
 static func attack_manual(p) -> void:

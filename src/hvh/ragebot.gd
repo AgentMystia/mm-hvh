@@ -109,16 +109,17 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 		if bool(Cheat.t("rage/delay_shot", false)) or w.id == "awp" or w.id == "ssg08":
 			if not me.scoped:
 				return out
-	if bool(Cheat.t("rage/autostop", true)):
-		out.autostop = true
-		want_autostop = true
 	var can_fire := bool(Cheat.t("rage/autoshoot", true))
 	if is_r8 and bool(Cheat.t("rage/auto_revolver", true)):
 		# Hold cock every tick; only fire when postpone ready (2018 auto-revolver).
 		can_fire = can_fire and me.revolver_ready
-	if not me.is_on_floor() and not bool(Cheat.t("rage/shoot_jump", false)):
+	if not me.grounded and not bool(Cheat.t("rage/shoot_jump", false)):
 		if w.get("type") == "sniper" or is_r8:
 			can_fire = false
+	# Autostop on the shot, not whenever someone is a valid target (that glued WASD).
+	if can_fire and bool(Cheat.t("rage/autostop", true)):
+		out.autostop = true
+		want_autostop = true
 	out.shoot = can_fire
 	if out.shoot:
 		shot_this_tick = true
@@ -170,7 +171,7 @@ func _hitchance(me: Player, aim: Vector3, clean: bool, w: Dictionary) -> float:
 	var spd: float = Vector2(me.velocity.x, me.velocity.z).length()
 	if spd > 0.25:
 		inacc += 2.1
-	if not me.is_on_floor():
+	if not me.grounded:
 		inacc += 5.0
 	if me.ducking:
 		inacc *= 0.62
@@ -183,7 +184,7 @@ func _hitchance(me: Player, aim: Vector3, clean: bool, w: Dictionary) -> float:
 	var hc := clampf(100.0 * (ang / maxf(inacc * 0.32, 0.04)), 0.0, 100.0)
 	if not clean:
 		hc *= 0.7
-	if me.is_on_floor() and spd < 0.12:
+	if me.grounded and spd < 0.12:
 		hc = minf(100.0, hc + 14.0)
 	if bool(w.get("revolver", false)) and me.revolver_ready and spd < 0.12:
 		hc = minf(100.0, hc + 8.0)

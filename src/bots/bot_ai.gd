@@ -125,7 +125,7 @@ func _hold_and_shoot() -> void:
 	var spd: float = Vector2(player.velocity.x, player.velocity.z).length()
 	if spd > Net.hu(40.0):
 		return
-	if not player.is_on_floor():
+	if not player.grounded:
 		return
 	if player.time < player.next_attack or player.clip <= 0:
 		return
