@@ -134,3 +134,22 @@ func eye() -> Vector3:
 
 func head_pos() -> Vector3:
 	return eye()
+
+
+func revolver_cock_frac() -> float:
+	var w := Weapons.get_w(weapon_id)
+	if not bool(w.get("revolver", false)):
+		return 1.0
+	if revolver_ready:
+		return 1.0
+	if not cocking:
+		return 0.0
+	var cock := float(w.get("cock", 0.207))
+	if cock <= 0.001:
+		return 1.0
+	return clampf(1.0 - (revolver_ready_at - time) / cock, 0.0, 1.0)
+
+
+func add_money(amt: int) -> void:
+	money = clampi(money + amt, 0, Match.MAX_MONEY)
+	Match.money_changed.emit()
