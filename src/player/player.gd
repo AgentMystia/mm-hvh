@@ -70,6 +70,7 @@ var bot_wish := Vector3.ZERO
 var bot_duck := false
 var bot_jump := false
 var bot_fire := false
+var bot_use := false
 var qa_wish := Vector3.ZERO
 var qa_steps := 0
 var _origin_prev := Vector3.ZERO
@@ -87,10 +88,11 @@ func _ready() -> void:
 	floor_max_angle = deg_to_rad(45.573)
 	# 8 HU snap rides wall lips; Source sticks with a short ground trace.
 	floor_snap_length = Net.hu(2.0)
-	safe_margin = 0.001
-	max_slides = 4 if OS.has_feature("web") else 6
-	# 0° slides around every trimesh corner ("wall suction").
-	wall_min_slide_angle = deg_to_rad(15.0)
+	safe_margin = 0.002
+	max_slides = 8
+	# 0° = always slide along walls (CS). 15° stopped you dead when hugging a wall.
+	# Vertical suction is stripped in PlayerMove._stop_edge_lift, not here.
+	wall_min_slide_angle = 0.0
 	set_process(true)
 	var hs := CollisionShape3D.new()
 	var box := BoxShape3D.new()
@@ -347,11 +349,16 @@ func hitboxes_at_yaw(yaw: float, pitch: float = 0.0) -> Array:
 	var h := lerpf(Net.PLAYER_HULL_H, Net.PLAYER_DUCK_H, duck_amt)
 	var eh := lerpf(Net.EYE_STAND, Net.EYE_DUCK, duck_amt)
 	var o := global_position
-	# Down pitch 89 drops / drives the head along aim — 2018 AA visual + hitbox.
-	var head := o + Vector3(0, eh, 0) + look * 0.12
+	# Pitch-down 89: spine folds so the head sits on the chest, below the shoulders.
+	var t := clampf(absf(pitch) / 89.0, 0.0, 1.0)
+	if pitch > 90.0:
+		t = 1.0
+	var head_y := lerpf(eh, Net.hu(40.0) * lerpf(1.0, 0.82, duck_amt), t)
+	var head := o + Vector3(0, head_y, 0) + f * Net.hu(lerpf(2.0, 16.0, t)) + look * Net.hu(2.0)
+	var chest := o + Vector3(0, lerpf(h * 0.68, h * 0.42, t), 0) + f * Net.hu(lerpf(1.0, 10.0, t))
 	return [
 		{"group": "head", "pos": head, "radius": Net.HEAD_R},
-		{"group": "chest", "pos": o + Vector3(0, h * 0.68, 0) + f * 0.03, "radius": 0.16},
+		{"group": "chest", "pos": chest, "radius": 0.16},
 		{"group": "stomach", "pos": o + Vector3(0, h * 0.48, 0), "radius": 0.15},
 		{"group": "pelvis", "pos": o + Vector3(0, h * 0.32, 0), "radius": 0.14},
 		{"group": "arms", "pos": o + Vector3(0, h * 0.62, 0) + rgt * 0.22, "radius": 0.08},
@@ -368,7 +375,7 @@ func _move(delta: float) -> void:
 func _use(delta: float) -> void:
 	if weapon_id == "c4" and holding_bomb and team == TEAM_T:
 		var site := _on_site()
-		if site != "" and (is_bot or (is_local and Input.is_action_pressed("use"))):
+		if site != "" and ((is_bot and bot_use) or (is_local and Input.is_action_pressed("use"))):
 			if not planting:
 				planting = true
 				plant_left = 3.2
@@ -384,7 +391,7 @@ func _use(delta: float) -> void:
 	else:
 		planting = false
 	if team == TEAM_CT and Match.bomb_planted and global_position.distance_to(Match.bomb_pos) < 1.2:
-		if is_bot or (is_local and Input.is_action_pressed("use")):
+		if (is_bot and bot_use) or (is_local and Input.is_action_pressed("use")):
 			if not defusing:
 				defusing = true
 				defuse_left = 5.0 if kit else 10.0
