@@ -11,20 +11,47 @@ func load_file(path := "res://assets/maps/de_mirage/nav.json") -> void:
 	loaded = false
 	areas.clear()
 	by_id.clear()
-	if not FileAccess.file_exists(path):
+	_load_shards()
+	if areas.is_empty() and FileAccess.file_exists(path):
+		var f := FileAccess.open(path, FileAccess.READ)
+		if f:
+			var j = JSON.parse_string(f.get_as_text())
+			if typeof(j) == TYPE_DICTIONARY:
+				areas = j.get("areas", [])
+	if areas.is_empty():
 		push_warning("nav.json missing")
 		return
-	var f := FileAccess.open(path, FileAccess.READ)
-	if f == null:
-		return
-	var j = JSON.parse_string(f.get_as_text())
-	if typeof(j) != TYPE_DICTIONARY:
-		return
-	areas = j.get("areas", [])
 	for i in areas.size():
 		by_id[int(areas[i].id)] = i
 	loaded = areas.size() > 0
 	print("MirageNav areas=%d" % areas.size())
+
+
+func _load_shards() -> void:
+	var man_path := "res://assets/maps/de_mirage/nav_manifest.json"
+	if not FileAccess.file_exists(man_path):
+		return
+	var mf := FileAccess.open(man_path, FileAccess.READ)
+	if mf == null:
+		return
+	var man = JSON.parse_string(mf.get_as_text())
+	if typeof(man) != TYPE_DICTIONARY:
+		return
+	var n := int(man.get("shards", 0))
+	var collected: Array = []
+	for i in n:
+		var sp := "res://assets/maps/de_mirage/nav_%02d.json" % i
+		if not FileAccess.file_exists(sp):
+			return
+		var sf := FileAccess.open(sp, FileAccess.READ)
+		if sf == null:
+			return
+		var part = JSON.parse_string(sf.get_as_text())
+		if typeof(part) != TYPE_DICTIONARY:
+			return
+		collected.append_array(part.get("areas", []))
+	if collected.size() > 0:
+		areas = collected
 
 
 func area_index_at(pos: Vector3) -> int:
