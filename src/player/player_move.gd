@@ -29,12 +29,10 @@ static func step(p, delta: float) -> void:
 			p.velocity.y = Net.JUMP_IMPULSE
 	if p.qa_wish.length_squared() > 0.0001:
 		wish = p.qa_wish.normalized()
-	# Bots never freeze on autostop — that was the AFK lock after they spotted someone.
-	if not p.is_bot:
-		if p.want_autostop or (p.is_local and bool(Cheat.t("rage/autostop", true)) and p.last_rage.get("shoot", false)):
-			wish = Vector3.ZERO
-			p.velocity.x *= 0.4
-			p.velocity.z *= 0.4
+	if p.want_autostop or (p.is_local and not p.is_bot and bool(Cheat.t("rage/autostop", true)) and p.last_rage.get("shoot", false)):
+		wish = Vector3.ZERO
+		p.velocity.x *= 0.35
+		p.velocity.z *= 0.35
 	if bool(Cheat.t("aa/slowwalk", false)):
 		wish *= float(Cheat.t("aa/slowwalk_spd", 80)) / 250.0
 	p.duck_amt = move_toward(p.duck_amt, 1.0 if p.ducking else 0.0, delta / 0.2)

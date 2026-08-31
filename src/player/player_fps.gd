@@ -69,9 +69,11 @@ static func camera(p, dt: float) -> void:
 		else:
 			p.viewmodel.scale = Vector3.ONE
 	if tp:
-		var dist := float(Cheat.t("visuals/tp_dist", 120)) * Net.HU
+		# Rear-diagonal, raised — you see the pitch-down 89 dummy and the yaw axes.
+		var dist := float(Cheat.t("visuals/tp_dist", 100)) * Net.HU
 		var look := -basis.z
-		var desired := focus - look * dist + Vector3(0.0, 0.12, 0.0)
+		var right := basis.x
+		var desired := focus - look * dist + Vector3(0.0, 0.52, 0.0) + right * 0.58
 		var space: PhysicsDirectSpaceState3D = p.get_world_3d().direct_space_state
 		if space:
 			var q := PhysicsRayQueryParameters3D.create(focus, desired)

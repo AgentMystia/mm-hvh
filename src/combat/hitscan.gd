@@ -59,8 +59,8 @@ static func trace_to_exit(space: PhysicsDirectSpaceState3D, enter: Vector3, dir:
 	return {"ok": false, "pos": enter, "thickness": maxd, "hit": {}}
 
 
-static func line_clear(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array, local := false) -> bool:
-	if space == null or not Perf.take_ray(local):
+static func los(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array) -> bool:
+	if space == null:
 		return false
 	var q := PhysicsRayQueryParameters3D.create(from, to)
 	q.collision_mask = 1
@@ -70,7 +70,13 @@ static func line_clear(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vect
 	var h := space.intersect_ray(q)
 	if h.is_empty():
 		return true
-	return h.position.distance_to(to) <= 0.18
+	return h.position.distance_to(to) <= 0.22
+
+
+static func line_clear(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array, local := false) -> bool:
+	if space == null or not Perf.take_ray(local):
+		return false
+	return los(space, from, to, exclude)
 
 
 static func fire_bullet(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array, pen_power: float, start_dmg: float) -> Dictionary:

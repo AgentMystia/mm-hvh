@@ -1,6 +1,6 @@
 class_name BotAI
 extends RefCounted
-## MM HvH bot: always hunt living enemies, plant/defuse only when clear, rage without AFK.
+## MM HvH bot: hold a site, shoot only with LOS, never spray or charge.
 
 const PRESETS := [
 	{"enable": true, "pitch": 1, "yaw": 1, "yaw_base": 1, "jitter": true, "jitter_range": 18, "fake": 2, "fake_limit": 58, "lby": 4, "lby_delta": 118, "freestanding": true, "fakelag": true, "fakelag_amt": 14},
@@ -20,14 +20,17 @@ var route_i := 0
 var _stuck := 0.0
 var _last_xz := Vector3.ZERO
 var _hunt: Player = null
+var _see := false
+var _site := 0
 
 
 func setup(p: Player, idx: int) -> void:
 	player = p
 	style = idx % PRESETS.size()
+	_site = idx % 2
 	p.aa.src = PRESETS[style].duplicate()
 	p.player_name = _name(idx, p.team)
-	retarget = 0.04 * float(idx)
+	retarget = 0.05 * float(idx)
 
 
 func _name(i: int, team: int) -> String:
@@ -45,22 +48,27 @@ func tick(delta: float, world: MapWorld, all: Array) -> void:
 			player.want_autostop = false
 		return
 	_hunt = _nearest_enemy(all)
-	retarget -= delta
-	if retarget <= 0.0:
-		_pick_goal(world)
-		_rebuild_route(world)
-		retarget = randf_range(0.28, 0.55)
-	_move_along_route(delta, world)
-	_unstick(delta, world)
-	player.bot_use = _should_use(world)
-	if player.weapon_id == "c4" and not player.bot_use:
-		player.equip(str(player.inv.get(1, player.inv.get(2, "glock"))))
+	if (Engine.get_physics_frames() + style) % 2 == 0:
+		_see = _los(_hunt)
 	if player.clip <= 0:
 		PlayerCombat.reload_weapon(player)
 		if player.clip <= 0 and player.inv.has(2):
 			player.equip(str(player.inv[2]))
-	if Match.in_play():
-		_shoot()
+	player.bot_use = false
+	player.want_autostop = false
+	if _see and _hunt != null and Match.in_play():
+		_hold_and_shoot()
+		return
+	retarget -= delta
+	if retarget <= 0.0:
+		_pick_goal(world)
+		_rebuild_route(world)
+		retarget = randf_range(0.9, 1.6)
+	_walk_route()
+	_unstick(delta, world)
+	player.bot_use = _should_use(world)
+	if player.weapon_id == "c4" and not player.bot_use:
+		player.equip(str(player.inv.get(1, player.inv.get(2, "glock"))))
 
 
 func _nearest_enemy(all: Array) -> Player:
@@ -76,10 +84,65 @@ func _nearest_enemy(all: Array) -> Player:
 	return best
 
 
-func _move_along_route(delta: float, world: MapWorld) -> void:
+func _los(target: Player) -> bool:
+	if target == null or not is_instance_valid(target) or not target.alive:
+		return false
+	var space: PhysicsDirectSpaceState3D = player.get_world_3d().direct_space_state
+	if space == null:
+		return false
+	var to: Vector3 = target.eye()
+	var boxes: Array = target.hitboxes_at_yaw(target.aa.real_yaw, target.aa.real_pitch)
+	if boxes.size() > 1:
+		to = boxes[1].pos
+	elif not boxes.is_empty():
+		to = boxes[0].pos
+	return Hitscan.los(space, player.eye(), to, [player.get_rid()])
+
+
+func _hold_and_shoot() -> void:
+	var d: float = player.global_position.distance_to(_hunt.global_position)
+	var away: Vector3 = player.global_position - _hunt.global_position
+	away.y = 0.0
+	# Peek-shoot: stop to fire. Only back up if they are in our face.
+	if d < 3.2 and away.length_squared() > 0.01:
+		player.bot_wish = away.normalized()
+		player.want_autostop = false
+	else:
+		player.bot_wish = Vector3.ZERO
+		player.want_autostop = true
+	player.bot_jump = false
+	var to: Vector3 = _hunt.eye() - player.eye()
+	if to.length_squared() > 0.0001:
+		player.view_yaw = rad_to_deg(atan2(-to.x, -to.z))
+	if player.weapon_id == "c4" or player.weapon_id == "knife":
+		return
+	var w := Weapons.get_w(player.weapon_id)
+	if bool(w.get("revolver", false)):
+		player._cock_revolver()
+	if bool(w.get("zoom", false)) and not player.scoped:
+		player.scoped = true
+		return
+	var spd: float = Vector2(player.velocity.x, player.velocity.z).length()
+	if spd > Net.hu(40.0):
+		return
+	if not player.is_on_floor():
+		return
+	if player.time < player.next_attack or player.clip <= 0:
+		return
+	if bool(w.get("revolver", false)) and not player.revolver_ready:
+		return
+	var aim: Vector3 = _hunt.eye()
+	var boxes: Array = _hunt.hitboxes_at_yaw(_hunt.aa.real_yaw, _hunt.aa.real_pitch)
+	if not boxes.is_empty():
+		aim = boxes[0].pos
+	var dir: Vector3 = aim - player.eye()
+	if dir.length_squared() < 0.0001:
+		return
+	player._fire(dir.normalized(), true)
+
+
+func _walk_route() -> void:
 	var wp := _waypoint()
-	if _hunt != null and player.global_position.distance_to(_hunt.global_position) < 14.0:
-		wp = _hunt.global_position
 	var to := wp - player.global_position
 	var climb := to.y
 	to.y = 0.0
@@ -92,13 +155,8 @@ func _move_along_route(delta: float, world: MapWorld) -> void:
 		to.y = 0.0
 		dist = to.length()
 	var wish := Vector3.ZERO
-	if dist > 0.10:
+	if dist > 0.35:
 		wish = to.normalized()
-	elif _hunt != null:
-		var side := Net.right_vec(player.view_yaw)
-		if (Engine.get_physics_frames() + style) % 40 < 20:
-			side = -side
-		wish = side
 	player.bot_wish = wish
 	player.bot_jump = climb > 0.28 and dist < 1.8
 	if wish.length_squared() > 0.01:
@@ -112,60 +170,29 @@ func _unstick(delta: float, world: MapWorld) -> void:
 	else:
 		_stuck = 0.0
 	_last_xz = xz
-	if _stuck < 0.32:
+	if _stuck < 0.40:
 		return
 	_stuck = 0.0
 	player.bot_jump = true
 	route_i = mini(route_i + 2, maxi(route.size() - 1, 0))
 	if world != null and world.nav != null and bool(world.nav.loaded):
-		goal = world.nav.nearby_center(player.global_position, 2.0, 12.0)
-		if _hunt:
-			goal = goal.lerp(_hunt.global_position, 0.45)
+		goal = world.nav.nearby_center(player.global_position, 2.0, 10.0)
 		_rebuild_route(world)
 
 
-func _should_use(world: MapWorld) -> bool:
-	var enemy_d := 1e9
-	if _hunt:
-		enemy_d = player.global_position.distance_to(_hunt.global_position)
+func _should_use(_world: MapWorld) -> bool:
+	if _see:
+		return false
 	if player.team == Match.Team.T and player.holding_bomb:
 		var site := player._on_site()
-		if site != "" and enemy_d > 16.0:
+		if site != "":
 			if player.weapon_id != "c4":
 				player.equip("c4")
 			return true
 	if player.team == Match.Team.CT and Match.bomb_planted:
-		if player.global_position.distance_to(Match.bomb_pos) < 1.15 and enemy_d > 10.0:
+		if player.global_position.distance_to(Match.bomb_pos) < 1.15:
 			return true
 	return false
-
-
-func _shoot() -> void:
-	player.want_autostop = false
-	if _hunt == null or not is_instance_valid(_hunt) or not _hunt.alive:
-		return
-	if player.weapon_id == "c4" or player.weapon_id == "knife":
-		return
-	var w := Weapons.get_w(player.weapon_id)
-	var aim: Vector3 = _hunt.head_pos()
-	var boxes: Array = _hunt.hitboxes_at_yaw(_hunt.aa.real_yaw, _hunt.aa.real_pitch)
-	if not boxes.is_empty():
-		aim = boxes[0].pos
-	var from: Vector3 = player.eye()
-	var dir := (aim - from)
-	if dir.length_squared() < 0.0001:
-		return
-	dir = dir.normalized()
-	player.view_yaw = rad_to_deg(atan2(-dir.x, -dir.z))
-	if bool(w.get("revolver", false)):
-		player._cock_revolver()
-	if bool(w.get("zoom", false)) and not player.scoped:
-		player.scoped = true
-	# Ignore hitchance / autostop so remaining bots still frag after the local player dies.
-	if player.time >= player.next_attack and player.clip > 0:
-		if bool(w.get("revolver", false)) and not player.revolver_ready:
-			return
-		player._fire(dir, true)
 
 
 func _waypoint() -> Vector3:
@@ -184,28 +211,19 @@ func _rebuild_route(world: MapWorld) -> void:
 		route = [goal]
 
 
+func _site_center(world: MapWorld, which: int) -> Vector3:
+	if world == null or world.sites.is_empty():
+		return player.spawn_origin
+	var s: Dictionary = world.sites[which % world.sites.size()]
+	var c: Array = s.center
+	return Vector3(float(c[0]), float(c[1]), float(c[2]))
+
+
 func _pick_goal(world: MapWorld) -> void:
-	if _hunt:
-		goal = _hunt.global_position
+	if player.holding_bomb:
+		goal = _site_center(world, _site)
 		return
-	if player.team == Match.Team.T:
-		if player.holding_bomb and world.sites.size() > 0:
-			var s: Dictionary = world.sites[0] if randf() > 0.45 else world.sites[mini(1, world.sites.size() - 1)]
-			var c: Array = s.center
-			goal = Vector3(c[0], float(c[1]), c[2])
-			return
-		if world.sites.size() > 0:
-			var s2: Dictionary = world.sites[randi() % world.sites.size()]
-			var c2: Array = s2.center
-			goal = Vector3(c2[0], float(c2[1]), c2[2])
-			return
-	else:
-		if Match.bomb_planted:
-			goal = Match.bomb_pos
-			return
-		if world.sites.size() > 0:
-			var hold_s: Dictionary = world.sites[player.get_instance_id() % world.sites.size()]
-			var hc: Array = hold_s.center
-			goal = Vector3(hc[0], float(hc[1]), hc[2]) + Vector3(randf_range(-2, 2), 0, randf_range(-2, 2))
-			return
-	goal = player.spawn_origin
+	if player.team == Match.Team.CT and Match.bomb_planted:
+		goal = Match.bomb_pos
+		return
+	goal = _site_center(world, _site) + Vector3(randf_range(-1.8, 1.8), 0.0, randf_range(-1.8, 1.8))

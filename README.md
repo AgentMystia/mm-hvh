@@ -36,7 +36,7 @@ python3 tools/serve.py --port 43187 --dir export/web
 - **Anti-aim** — pitch, yaw, fake, jitter, freestanding, manual Z/X/C, fake lag, fake duck, slowwalk
 - **LBY breaker** — moving LBY = real; stop 0.22s then 1.1s; flick real onto LBY, hold real away between flicks
 - **Resolver** — moving LBY, breaker inverse delta, brute on misses. **Resolved yaw is the visual yaw**: enemy chams and skeleton follow it. Misses rotate brute/delta.
-- **Thirdperson** — CS:GO pitch-down 89 dummy: the spine folds at the pelvis so the head sits **below the shoulders**, looking at the floor. AWP along the left side, knife on the right hip. Fake yaw is a faint ghost; LBY is yellow legs only. AA numbers sit in the left indicators.
+- **Thirdperson** — CS:GO pitch-down 89 dummy (spine folds, head below the shoulders). **REAL** (red), **FAKE** (blue) and **LBY** (yellow) yaw axes stick out of the player. Fake chams are a faint ghost; LBY is yellow legs.
 - Insert (also Home, backtick, F10, or the on-screen **MENU**) opens the cheat menu. Config saves to `user://mm_hvh.json`
 
 ## Controls
