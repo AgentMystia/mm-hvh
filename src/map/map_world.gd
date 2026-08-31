@@ -3,6 +3,7 @@ extends Node3D
 ## Loads converted CS:GO de_mirage (VBSP v21) plus bomb sites, spawns, cover props.
 
 const NavScript := preload("res://src/map/mirage_nav.gd")
+const ColScript := preload("res://src/map/map_collision.gd")
 
 var ents: Dictionary = {}
 var t_spawns: Array = []
@@ -48,6 +49,7 @@ func _mesh() -> void:
 			var inst := (packed as PackedScene).instantiate()
 			inst.name = "MirageMesh"
 			add_child(inst)
+			_tune_visuals(inst)
 			loaded = true
 	if not loaded:
 		_mesh_from_obj()
@@ -72,9 +74,30 @@ func _mesh_from_obj() -> void:
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = Color(0.72, 0.62, 0.48)
 	mat.roughness = 0.9
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
+	mat.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
 	mi.material_override = mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(mi)
-	_make_trimesh(mi)
+
+
+func _tune_visuals(n: Node) -> void:
+	if n is GeometryInstance3D:
+		var gi := n as GeometryInstance3D
+		gi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		gi.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	if n is MeshInstance3D:
+		var mi := n as MeshInstance3D
+		if mi.mesh:
+			for s in mi.mesh.get_surface_count():
+				var mat := mi.get_active_material(s)
+				if mat is BaseMaterial3D:
+					var sm := mat as BaseMaterial3D
+					sm.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
+					sm.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
+					sm.disable_receive_shadows = true
+	for c in n.get_children():
+		_tune_visuals(c)
 
 
 func _make_trimesh(n: Node) -> void:
@@ -98,19 +121,10 @@ func _collision() -> void:
 func _collision_mesh() -> void:
 	if not ResourceLoader.exists("res://assets/maps/de_mirage/collision.obj"):
 		return
-	var mi := MeshInstance3D.new()
-	mi.name = "MirageCollision"
-	mi.visible = false
 	var mesh = load("res://assets/maps/de_mirage/collision.obj")
 	if mesh is Mesh:
-		mi.mesh = mesh
-		add_child(mi)
-		mi.create_trimesh_collision()
-		for c in mi.get_children():
-			if c is StaticBody3D:
-				(c as StaticBody3D).collision_layer = 1
-				(c as StaticBody3D).collision_mask = 0
-				(c as StaticBody3D).set_meta("surf", "plaster")
+		var chunks := ColScript.add_chunked(self, mesh, 12.0)
+		print("MirageCollision chunks=%d" % chunks)
 
 
 func _fallback_ground() -> void:
@@ -141,21 +155,24 @@ func _props() -> void:
 		cs.shape = sh
 		cs.position = Vector3(0, sz[1] * 0.5, 0)
 		body.add_child(cs)
-		var mi := MeshInstance3D.new()
-		var bm := BoxMesh.new()
-		bm.size = sh.size
-		mi.mesh = bm
-		mi.position = cs.position
-		var mat := StandardMaterial3D.new()
-		var nm := str(p.get("name", "")).to_lower()
-		if "van" in nm or "truck" in nm:
-			mat.albedo_color = Color(0.35, 0.38, 0.22)
-		elif "wood" in nm or "crate" in nm:
-			mat.albedo_color = Color(0.45, 0.32, 0.18)
-		else:
-			mat.albedo_color = Color(0.5, 0.46, 0.38)
-		mi.material_override = mat
-		body.add_child(mi)
+		if not OS.has_feature("web"):
+			var mi := MeshInstance3D.new()
+			var bm := BoxMesh.new()
+			bm.size = sh.size
+			mi.mesh = bm
+			mi.position = cs.position
+			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			var mat := StandardMaterial3D.new()
+			mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			var nm := str(p.get("name", "")).to_lower()
+			if "van" in nm or "truck" in nm:
+				mat.albedo_color = Color(0.35, 0.38, 0.22)
+			elif "wood" in nm or "crate" in nm:
+				mat.albedo_color = Color(0.45, 0.32, 0.18)
+			else:
+				mat.albedo_color = Color(0.5, 0.46, 0.38)
+			mi.material_override = mat
+			body.add_child(mi)
 		body.position = Vector3(o[0], o[1], o[2])
 		body.rotation_degrees = Vector3(p.get("pitch", 0), p.get("yaw", 0), p.get("roll", 0))
 		add_child(body)
@@ -204,17 +221,16 @@ func _env() -> void:
 	e.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	e.ambient_light_color = Color(0.72, 0.64, 0.52)
 	e.ambient_light_energy = 0.55
-	e.fog_enabled = true
-	e.fog_light_color = Color(0.62, 0.7, 0.78)
-	e.fog_density = 0.004
-	e.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	e.fog_enabled = false
+	e.tonemap_mode = Environment.TONE_MAPPER_LINEAR
+	e.glow_enabled = false
 	env.environment = e
 	add_child(env)
 	sun = DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-48, 35, 0)
 	sun.light_energy = 1.15
 	sun.light_color = Color(1.0, 0.93, 0.82)
-	sun.shadow_enabled = true
+	sun.shadow_enabled = false
 	add_child(sun)
 	_apply_night()
 	Cheat.changed.connect(_apply_night)

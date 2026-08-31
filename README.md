@@ -12,6 +12,8 @@ Public GitHub Pages (anyone can open this):
 
 Repo: https://github.com/AgentMystia/mm-hvh
 
+Pages is rebuilt on each push to `main` by GitHub Actions: Godot 4.7.2 exports the Web preset from source (player look, 18 HU steps, nav shards, autowall), then deploys `export/web`. The committed `export/web` folder is a local snapshot; the live site is the CI artifact.
+
 Local preview (same files):
 
 ```bash
@@ -69,6 +71,8 @@ godot --headless --path . --export-release Web export/web/index.html
 ```
 
 Threads are **off**, so the build runs on ordinary HTTPS (Vercel, nginx, GitHub Pages) without SharedArrayBuffer / COOP-COEP. After a fresh Godot export, set `ensureCrossOriginIsolationHeaders` to `false` in `export/web/index.html` if Godot turned it back on.
+
+The web build targets **60 FPS**: Jolt physics, chunked collision, no MSAA/shadows/fog, vis-first ragebot traces, and 0.8 3D resolution. Watermark shows live FPS.
 
 ## Docker
 

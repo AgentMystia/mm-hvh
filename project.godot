@@ -12,6 +12,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
+Perf="*res://src/autoload/perf.gd"
 Net="*res://src/autoload/net.gd"
 Weapons="*res://src/autoload/weapons.gd"
 Cheat="*res://src/autoload/cheat.gd"
@@ -159,15 +160,20 @@ aa_back={
 [physics]
 common/physics_ticks_per_second=64
 3d/default_gravity=20.32
-3d/physics_engine="GodotPhysics3D"
+3d/physics_engine="Jolt Physics"
+
+[jolt_physics_3d]
+simulation/use_enhanced_internal_edge_removal=true
+collisions/use_shape_margins=false
 
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 renderer/rendering_method.web="gl_compatibility"
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/msaa_3d=0
 textures/canvas_textures/default_texture_filter=0
-lights_and_shadows/directional_shadow/size=2048
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 environment/defaults/default_clear_color=Color(0.42, 0.58, 0.78, 1)
 
 [debug]
