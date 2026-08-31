@@ -40,6 +40,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p export/web
+          python3 tools/double_side_collision.py
           godot --headless --path "$GITHUB_WORKSPACE" --import
           godot --headless --path "$GITHUB_WORKSPACE" --export-release Web "$GITHUB_WORKSPACE/export/web/index.html"
           python3 tools/patch_web_html.py
