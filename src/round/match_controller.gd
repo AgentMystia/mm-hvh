@@ -148,7 +148,7 @@ func _qa_tick() -> void:
 	if local_player == null or world == null:
 		return
 	if _qa_frames == 12:
-		print("QA t=%d y=%.3f floor=%s pitch=%.1f gun=%s menu=%s" % [_qa_frames, local_player.global_position.y, str(local_player.is_on_floor()), local_player.aa.real_pitch, local_player.weapon_id, str(Cheat.menu_open)])
+		print("QA t=%d y=%.3f floor=%s pitch=%.1f gun=%s menu=%s" % [_qa_frames, local_player.global_position.y, str(local_player.grounded), local_player.aa.real_pitch, local_player.weapon_id, str(Cheat.menu_open)])
 		var b := Net.view_basis(local_player.view_pitch, local_player.view_yaw)
 		var ld := Net.look_dir(local_player.view_pitch, local_player.view_yaw)
 		print("QA look_dot=%.3f vfov=%.1f roll=%.5f step=%.1fHU" % [(-b.z).dot(ld), local_player.cam.fov, b.x.y, Net.STEP / Net.HU])
@@ -191,16 +191,20 @@ func _qa_tick() -> void:
 		print("QA bots hunting=%d/%d" % [hunting, bots.size()])
 	if _qa_frames == 24:
 		_qa_stair_y0 = local_player.global_position.y
-		print("QA stair start y=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [_qa_stair_y0, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		print("QA stair start y=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [_qa_stair_y0, str(local_player.grounded), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+	if _qa_frames == 50 or _qa_frames == 120:
+		print("QA stair mid t=%d y=%.3f dy=%.3f steps=%d floor=%s pos=%.2f,%.2f,%.2f" % [_qa_frames, local_player.global_position.y, local_player.global_position.y - _qa_stair_y0, local_player.qa_steps, str(local_player.grounded), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
 	if _qa_frames == 80:
-		# Stay on the treads after the climb so end-Y is not a fall off the side.
-		if local_player.qa_steps >= 4:
+		if (local_player.global_position.y - _qa_stair_y0) > 1.45:
 			local_player.qa_wish = Vector3.ZERO
 			local_player.velocity = Vector3.ZERO
-		print("QA stair hold y=%.3f dy=%.3f steps=%d floor=%s" % [local_player.global_position.y, local_player.global_position.y - _qa_stair_y0, local_player.qa_steps, str(local_player.is_on_floor())])
+		print("QA stair hold y=%.3f dy=%.3f steps=%d floor=%s" % [local_player.global_position.y, local_player.global_position.y - _qa_stair_y0, local_player.qa_steps, str(local_player.grounded)])
 	if _qa_frames == 220:
+		if local_player.qa_wish.length_squared() > 0.0001 and (local_player.global_position.y - _qa_stair_y0) > 1.2:
+			local_player.qa_wish = Vector3.ZERO
+			local_player.velocity = Vector3.ZERO
 		var dy := local_player.global_position.y - _qa_stair_y0
-		print("QA stair end y=%.3f dy=%.3f (%.1f HU) steps=%d floor=%s pos=%.2f,%.2f,%.2f" % [local_player.global_position.y, dy, dy / Net.HU, local_player.qa_steps, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		print("QA stair end y=%.3f dy=%.3f (%.1f HU) steps=%d floor=%s pos=%.2f,%.2f,%.2f" % [local_player.global_position.y, dy, dy / Net.HU, local_player.qa_steps, str(local_player.grounded), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
 		if not bots.is_empty() and bots[0].player:
 			var bp: Vector3 = bots[0].player.global_position
 			print("QA bot0 moved=%.2f route_i=%d/%d pos=%.2f,%.2f,%.2f" % [_qa_bot0.distance_to(bp), bots[0].route_i, bots[0].route.size(), bp.x, bp.y, bp.z])
@@ -220,7 +224,8 @@ func _qa_tick() -> void:
 			if hn.length_squared() < 0.0001:
 				hn = Vector3(1.0, 0.0, 0.0)
 			hn = hn.normalized()
-			local_player.global_position = hit.position + hn * 0.39 + Vector3(0.0, 0.04, 0.0)
+			local_player.global_position = hit.position + hn * 0.50 + Vector3(0.0, 0.04, 0.0)
+			_qa_drop_to_floor(local_player)
 			local_player.qa_wish = Vector3(-hn.z, 0.0, hn.x)
 		else:
 			local_player.global_position = Vector3(32.07, -5.70, -8.20)
@@ -229,8 +234,64 @@ func _qa_tick() -> void:
 		print("QA wallslide start pos=%.2f,%.2f,%.2f wish=%.2f,%.2f" % [_qa_wall0.x, _qa_wall0.y, _qa_wall0.z, local_player.qa_wish.x, local_player.qa_wish.z])
 	if _qa_frames == 255:
 		var wdx := Vector2(local_player.global_position.x - _qa_wall0.x, local_player.global_position.z - _qa_wall0.z).length()
-		print("QA wallslide dxz=%.3f dy=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [wdx, local_player.global_position.y - _qa_wall0.y, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		print("QA wallslide dxz=%.3f dy=%.3f floor=%s velxz=%.3f pos=%.2f,%.2f,%.2f" % [wdx, local_player.global_position.y - _qa_wall0.y, str(local_player.grounded), Vector2(local_player.velocity.x, local_player.velocity.z).length(), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
 		local_player.qa_wish = Vector3.ZERO
+	if _qa_frames == 258:
+		# Head-on into T-house: must stop, stay on floor, not launch or NaN.
+		var space3 := local_player.get_world_3d().direct_space_state
+		var from2 := Vector3(28.26, -3.80, 16.19)
+		var hit2: Dictionary = {}
+		if space3:
+			var q2 := PhysicsRayQueryParameters3D.create(from2, Vector3(22.00, -3.80, 16.19))
+			q2.collision_mask = 1
+			hit2 = space3.intersect_ray(q2)
+		if hit2:
+			var n2: Vector3 = hit2.normal
+			var hn2 := Vector3(n2.x, 0.0, n2.z)
+			if hn2.length_squared() < 0.0001:
+				hn2 = Vector3(1.0, 0.0, 0.0)
+			hn2 = hn2.normalized()
+			local_player.global_position = hit2.position + hn2 * 0.45 + Vector3(0.0, 0.04, 0.0)
+			_qa_drop_to_floor(local_player)
+			local_player.velocity = Vector3.ZERO
+			local_player.qa_wish = -hn2
+		else:
+			local_player.global_position = Vector3(28.26, -3.76, 16.19)
+			local_player.qa_wish = Vector3(-1.0, 0.0, 0.0)
+		_qa_wall0 = local_player.global_position
+		print("QA headon start pos=%.2f,%.2f,%.2f wish=%.2f,%.2f" % [_qa_wall0.x, _qa_wall0.y, _qa_wall0.z, local_player.qa_wish.x, local_player.qa_wish.z])
+	if _qa_frames == 290:
+		var hdx := Vector2(local_player.global_position.x - _qa_wall0.x, local_player.global_position.z - _qa_wall0.z).length()
+		var hdy: float = local_player.global_position.y - _qa_wall0.y
+		print("QA headon dxz=%.3f dy=%.3f floor=%s finite=%s velxz=%.3f pos=%.2f,%.2f,%.2f" % [hdx, hdy, str(local_player.grounded), str(Net.finite3(local_player.global_position) and Net.finite3(local_player.velocity)), Vector2(local_player.velocity.x, local_player.velocity.z).length(), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		local_player.qa_wish = Vector3.ZERO
+	if _qa_frames == 292:
+		var bad := 0
+		var low := 0
+		for p in players:
+			if p == null or not p.alive:
+				continue
+			if not Net.finite3(p.global_position) or not Net.finite3(p.velocity):
+				bad += 1
+			if p.global_position.y < -12.0:
+				low += 1
+		print("QA sanity bad=%d low=%d players=%d local_y=%.3f" % [bad, low, players.size(), local_player.global_position.y])
+
+
+func _qa_drop_to_floor(p: Player) -> void:
+	var space := p.get_world_3d().direct_space_state
+	if space == null:
+		return
+	var o: Vector3 = p.global_position
+	var q := PhysicsRayQueryParameters3D.create(o + Vector3(0.0, 0.5, 0.0), o + Vector3(0.0, -4.0, 0.0))
+	q.collision_mask = 1
+	q.exclude = [p.get_rid()]
+	var hit: Dictionary = space.intersect_ray(q)
+	if hit and hit.has("position"):
+		p.global_position.y = float(hit.position.y) + 0.004
+		p.velocity = Vector3.ZERO
+		p.grounded = true
+		p.move_ok = p.global_position
 
 
 func _qa_sweep(space: PhysicsDirectSpaceState3D, tag: String, origin: Vector3) -> void:
