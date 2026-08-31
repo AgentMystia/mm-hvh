@@ -73,6 +73,9 @@ var bot_fire := false
 var bot_use := false
 var qa_wish := Vector3.ZERO
 var qa_steps := 0
+var move_stuck := 0
+var grounded := true
+var move_ok := Vector3.ZERO
 var _origin_prev := Vector3.ZERO
 var _origin_curr := Vector3.ZERO
 var _cam_fov := 90.0
@@ -83,21 +86,23 @@ func _ready() -> void:
 	rage = Ragebot.new(resolver)
 	collision_layer = 2
 	collision_mask = 1
-	floor_stop_on_slope = true
+	# FLOATING: we clip ourselves (Source ClipVelocity). GROUNDED+slide rides trimesh walls.
+	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+	floor_stop_on_slope = false
 	floor_block_on_wall = false
 	floor_max_angle = deg_to_rad(45.573)
-	# 8 HU snap rides wall lips; Source sticks with a short ground trace.
-	floor_snap_length = Net.hu(2.0)
-	safe_margin = 0.002
-	max_slides = 8
-	# 0° = always slide along walls (CS). 15° stopped you dead when hugging a wall.
-	# Vertical suction is stripped in PlayerMove._stop_edge_lift, not here.
-	wall_min_slide_angle = 0.0
+	floor_snap_length = 0.0
+	safe_margin = 0.008
+	max_slides = 4
+	wall_min_slide_angle = deg_to_rad(90.0)
+	up_direction = Vector3.UP
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	set_process(true)
 	var hs := CollisionShape3D.new()
-	var box := BoxShape3D.new()
-	box.size = Vector3(Net.PLAYER_HULL_W, Net.PLAYER_HULL_H, Net.PLAYER_HULL_W)
-	hs.shape = box
+	var cap := CapsuleShape3D.new()
+	cap.radius = Net.PLAYER_HULL_W * 0.5
+	cap.height = Net.PLAYER_HULL_H
+	hs.shape = cap
 	hs.position = Vector3(0, Net.PLAYER_HULL_H * 0.5, 0)
 	add_child(hs)
 	hull = hs
@@ -226,7 +231,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 		return
 	var enemies := _enemies()
-	aa.on_ground = is_on_floor()
+	aa.on_ground = grounded
 	aa.tick(delta, Vector3(view_pitch, view_yaw, 0), velocity, global_position, enemies, get_world_3d())
 	_fakelag()
 	_revolver(delta)
@@ -239,8 +244,17 @@ func _physics_process(delta: float) -> void:
 		if bool(last_rage.get("cock", false)):
 			_cock_revolver()
 		if bool(last_rage.get("shoot", false)):
-			_fire(last_rage.dir, true)
+			var aim: Vector3 = last_rage.dir
+			if Net.finite3(aim) and aim.length_squared() > 0.0001:
+				_fire(aim, true)
 	_move(delta)
+	if not Net.finite3(global_position) or not Net.finite3(velocity) or global_position.y < -18.0:
+		if Net.finite3(move_ok) and move_ok.y > -18.0:
+			global_position = move_ok
+		else:
+			global_position = spawn_origin
+		velocity = Vector3.ZERO
+		grounded = true
 	if is_local:
 		_origin_prev = _origin_curr
 		_origin_curr = global_position
@@ -418,7 +432,7 @@ func _on_site() -> String:
 func _footsteps(delta: float) -> void:
 	foot_cd -= delta
 	var spd := Vector2(velocity.x, velocity.z).length()
-	if is_on_floor() and spd > 1.2 and foot_cd <= 0.0:
+	if grounded and spd > 1.2 and foot_cd <= 0.0:
 		foot_cd = 0.38
 		Sfx.play("res://assets/sounds/sfx/foot%d.wav" % (randi_range(1, 4)), global_position, -14)
 	var kept: Array = []

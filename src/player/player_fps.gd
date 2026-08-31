@@ -74,6 +74,8 @@ static func camera(p, dt: float) -> void:
 		return
 	if not (basis.x.is_finite() and basis.y.is_finite() and basis.z.is_finite()):
 		return
+	if absf(basis.determinant()) < 0.0001:
+		return
 	basis = basis.orthonormalized()
 	if tp:
 		# Rear-diagonal, raised — you see the pitch-down 89 dummy and the yaw axes.
