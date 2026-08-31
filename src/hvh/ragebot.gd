@@ -51,7 +51,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 			continue
 		resolver.observe(e, Net.TICK)
 		var ryaw := resolver.resolve(e)
-		e.resolved_yaw = ryaw
+		e.resolved_yaw = ryaw  # ESP/chams/skeleton follow this true-yaw guess
 		e.resolved_label = resolver.label(e)
 		var pts := _points(e, ryaw)
 		for p in pts:
@@ -69,6 +69,8 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 				md = int(Cheat.t("rage/mindmg_ovr", 0))
 			if int(info.dmg) < md and int(info.dmg) < e.health:
 				continue
+			if bool(Cheat.t("rage/baim_lethal", true)) and p.group == "head" and int(info.dmg) < e.health:
+				pass
 			var score := float(info.dmg) + hc * 0.25
 			if p.group == "head" and not bool(Cheat.t("rage/prefer_body", false)):
 				score += 50.0
@@ -93,6 +95,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 	if bool(w.get("zoom", false)) and bool(Cheat.t("rage/autoscope", true)) and not me.scoped:
 		out.scope = true
 		want_scope = true
+		# 2018 delay shot until scoped inaccuracy drops
 		if bool(Cheat.t("rage/delay_shot", false)) or w.id == "awp" or w.id == "ssg08":
 			if not me.scoped:
 				return out
@@ -101,6 +104,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 		want_autostop = true
 	var can_fire := bool(Cheat.t("rage/autoshoot", true))
 	if is_r8 and bool(Cheat.t("rage/auto_revolver", true)):
+		# Hold cock every tick; only fire when postpone ready (2018 auto-revolver).
 		can_fire = can_fire and me.revolver_ready
 	if not me.is_on_floor() and not bool(Cheat.t("rage/shoot_jump", false)):
 		if w.get("type") == "sniper" or is_r8:
