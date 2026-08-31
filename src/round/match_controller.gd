@@ -9,6 +9,8 @@ var local_player: Player
 var hud: GameHUD
 var bomb_node: Node3D
 var _qa_frames := 0
+var _qa_stair_y0 := 0.0
+var _qa_bot0 := Vector3.ZERO
 
 
 func _ready() -> void:
@@ -135,11 +137,98 @@ func _physics_process(delta: float) -> void:
 	_update_resolve()
 	_sync_bomb()
 	_qa_frames += 1
-	if (_qa_frames == 12 or _qa_frames == 64) and local_player:
+	_qa_tick()
+
+
+func _qa_tick() -> void:
+	if DisplayServer.get_name() != "headless":
+		return
+	if local_player == null or world == null:
+		return
+	if _qa_frames == 12:
 		print("QA t=%d y=%.3f floor=%s pitch=%.1f gun=%s menu=%s" % [_qa_frames, local_player.global_position.y, str(local_player.is_on_floor()), local_player.aa.real_pitch, local_player.weapon_id, str(Cheat.menu_open)])
-		if _qa_frames == 64:
-			for p in players:
-				print("  %s y=%.3f floor=%s" % [p.player_name, p.global_position.y, str(p.is_on_floor())])
+		var b := Net.view_basis(local_player.view_pitch, local_player.view_yaw)
+		var ld := Net.look_dir(local_player.view_pitch, local_player.view_yaw)
+		print("QA look_dot=%.3f vfov=%.1f roll=%.5f step=%.1fHU" % [(-b.z).dot(ld), local_player.cam.fov, b.x.y, Net.STEP / Net.HU])
+		var nareas := 0
+		if world.nav != null:
+			nareas = world.nav.areas.size()
+		print("QA nav=%d" % nareas)
+		var a_site := Vector3(-11.176, -4.267, 55.067)
+		if world.nav != null and bool(world.nav.loaded):
+			var hops: Array = world.nav.path(local_player.global_position, a_site)
+			print("QA path_t_to_a hops=%d" % hops.size())
+		local_player.global_position = Vector3(32.07, -5.70, -8.20)
+		local_player.velocity = Vector3.ZERO
+		local_player.qa_wish = Vector3(0.0, 0.0, 1.0)
+		local_player.qa_steps = 0
+		_qa_stair_y0 = local_player.global_position.y
+		if not bots.is_empty() and bots[0].player:
+			_qa_bot0 = bots[0].player.global_position
+			bots[0].goal = a_site
+			bots[0].retarget = 999.0
+			bots[0]._rebuild_route(world)
+			print("QA bot0 route=%d" % bots[0].route.size())
+		var space := local_player.get_world_3d().direct_space_state
+		if space:
+			_qa_sweep(space, "tspawn", Vector3(34.95, -2.03, 7.72))
+			_qa_sweep(space, "palace", Vector3(20.96, -0.20, 51.75))
+			_qa_sweep(space, "connector", Vector3(-17.14, -4.80, 21.59))
+			_qa_sweep(space, "mid", Vector3(0.00, -3.20, 15.56))
+			_qa_wall(space, "palace_window", Vector3(20.96, -0.20, 51.75), Vector3(8.00, -0.20, 53.50), 2.5, 115.0)
+			_qa_wall(space, "connector", Vector3(-17.14, -4.80, 21.59), Vector3(-6.99, -4.80, 16.51), 2.0, 86.0)
+			_qa_wall(space, "a_site_wall", Vector3(-13.02, -0.20, 38.42), Vector3(-8.00, -0.20, 38.42), 2.5, 115.0)
+			_qa_wall(space, "tspawn_house", Vector3(28.26, -3.80, 16.19), Vector3(22.00, -3.80, 16.19), 2.0, 86.0)
+			_qa_wall(space, "open_air", Vector3(32.07, -3.20, -8.20), Vector3(32.07, -0.20, -8.20), 2.5, 115.0)
+	if _qa_frames == 24:
+		_qa_stair_y0 = local_player.global_position.y
+		print("QA stair start y=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [_qa_stair_y0, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+	if _qa_frames == 80:
+		if local_player.qa_steps >= 4:
+			local_player.qa_wish = Vector3.ZERO
+			local_player.velocity = Vector3.ZERO
+		print("QA stair hold y=%.3f dy=%.3f steps=%d floor=%s" % [local_player.global_position.y, local_player.global_position.y - _qa_stair_y0, local_player.qa_steps, str(local_player.is_on_floor())])
+	if _qa_frames == 220:
+		var dy := local_player.global_position.y - _qa_stair_y0
+		print("QA stair end y=%.3f dy=%.3f (%.1f HU) steps=%d floor=%s pos=%.2f,%.2f,%.2f" % [local_player.global_position.y, dy, dy / Net.HU, local_player.qa_steps, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		if not bots.is_empty() and bots[0].player:
+			var bp: Vector3 = bots[0].player.global_position
+			print("QA bot0 moved=%.2f route_i=%d/%d pos=%.2f,%.2f,%.2f" % [_qa_bot0.distance_to(bp), bots[0].route_i, bots[0].route.size(), bp.x, bp.y, bp.z])
+
+
+func _qa_sweep(space: PhysicsDirectSpaceState3D, tag: String, origin: Vector3) -> void:
+	var bang := 0
+	var solid := 0
+	var miss := 0
+	var samples: Array = []
+	for i in 24:
+		var a := float(i) * 15.0
+		var rad := deg_to_rad(a)
+		var d := Vector3(-sin(rad), 0.0, -cos(rad))
+		var r: Dictionary = Hitscan.fire_bullet(space, origin, origin + d * 6.0, [], 2.5, 115.0)
+		var th: Array = r.get("thick", [])
+		if int(r.walls) == 0:
+			miss += 1
+		elif bool(r.reached):
+			bang += 1
+			if samples.size() < 6:
+				samples.append(th)
+		else:
+			solid += 1
+			if samples.size() < 8:
+				samples.append(th)
+	print("QA sweep %s miss=%d bang=%d solid=%d thick=%s" % [tag, miss, bang, solid, str(samples)])
+
+
+func _qa_wall(space: PhysicsDirectSpaceState3D, label: String, frm: Vector3, too: Vector3, pen: float, dmg0: float) -> void:
+	var q := PhysicsRayQueryParameters3D.create(frm, too)
+	q.collision_mask = 1
+	var hit := space.intersect_ray(q)
+	var enter := "none"
+	if hit:
+		enter = "dist=%.2fm nY=%.2f" % [frm.distance_to(hit.position), float(hit.normal.y)]
+	var r: Dictionary = Hitscan.fire_bullet(space, frm, too, [], pen, dmg0)
+	print("QA wall %s enter=%s dmg=%.1f walls=%d reached=%s thick=%s" % [label, enter, float(r.dmg), int(r.walls), str(r.reached), str(r.get("thick", []))])
 
 
 func _update_resolve() -> void:
