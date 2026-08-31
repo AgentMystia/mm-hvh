@@ -299,11 +299,11 @@ func _draw_aa_arrows(sz: Vector2) -> void:
 		return
 	if not bool(Cheat.t("aa/enable", true)):
 		return
-	var c := sz * 0.5 + Vector2(0, 78)
-	_arrow(c, lp.aa.real_yaw, Color(1.0, 0.25, 0.2, 0.92), 44.0)
-	_arrow(c, lp.aa.fake_yaw, Color(0.25, 0.55, 1.0, 0.92), 34.0)
-	_arrow(c, lp.aa.lby, Color(0.95, 0.85, 0.2, 0.9), 24.0)
-	_t(c + Vector2(-92, 60), "REAL %.0f   FAKE %.0f   LBY %.0f" % [lp.aa.real_yaw, lp.aa.fake_yaw, lp.aa.lby], 11, Color(0.75, 0.78, 0.82), true)
+	# Keep arrows off the player dummy (was overlaying REAL/FAKE/LBY on the body).
+	var c := Vector2(72.0, sz.y * 0.5 + 168.0)
+	_arrow(c, lp.aa.real_yaw, Color(1.0, 0.25, 0.2, 0.92), 28.0)
+	_arrow(c, lp.aa.fake_yaw, Color(0.25, 0.55, 1.0, 0.92), 20.0)
+	_arrow(c, lp.aa.lby, Color(0.95, 0.85, 0.2, 0.9), 14.0)
 
 
 func _arrow(c: Vector2, yaw_deg: float, col: Color, radius: float) -> void:
@@ -442,6 +442,8 @@ func _draw_indicators(sz: Vector2) -> void:
 		_t(Vector2(x, y + 64), "FL  %d" % int(Cheat.t("aa/fakelag_amt", 14)), 12, Color(0.7, 0.7, 0.75), true)
 	_t(Vector2(x, y + 80), "RES %s" % (lp.resolved_label if false else RES_N[clampi(int(Cheat.t("rage/resolver_type", 3)), 0, 3)]), 12, Color(0.95, 0.55, 0.4), true)
 	_t(Vector2(x, y + 112), "LOOK  p %.0f  y %.0f  z %.2f" % [lp.view_pitch, lp.view_yaw, lp.global_position.y], 12, Color(0.95, 0.95, 0.7), true)
+	if bool(Cheat.t("aa/enable", true)):
+		_t(Vector2(x, y + 128), "R %.0f  F %.0f  LBY %.0f" % [lp.aa.real_yaw, lp.aa.fake_yaw, lp.aa.lby], 12, Color(0.85, 0.82, 0.7), true)
 
 
 func _draw_plant(sz: Vector2) -> void:
