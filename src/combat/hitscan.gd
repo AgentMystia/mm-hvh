@@ -35,29 +35,27 @@ static func _surf_mod(hit: Dictionary) -> float:
 
 
 static func trace_to_exit(space: PhysicsDirectSpaceState3D, enter: Vector3, dir: Vector3, exclude: Array) -> Dictionary:
-	# Triangle-mesh stand-in for CS:GO TraceToExit: skip the enter plane (and its
-	# double-sided backface) then take the next world hit within 90 HU as the far side.
+	# Public 2018 autowall TraceToExit: walk 4 HU at a time (max 90 HU), then
+	# trace back from the probe to the enter point. The first surface sitting
+	# next to the probe is the far face of the brush.
 	var maxd := Net.hu(EXIT_MAX_HU)
-	var min_thick := Net.hu(1.2)
-	var pos := enter
-	for _i in 8:
-		var start := pos + dir * Net.hu(0.55)
-		var traveled: float = enter.distance_to(start)
-		if traveled >= maxd:
-			break
-		var q := PhysicsRayQueryParameters3D.create(start, start + dir * (maxd - traveled))
+	var step := Net.hu(EXIT_STEP_HU)
+	var dist := 0.0
+	while dist < maxd - 0.001:
+		dist += step
+		var probe := enter + dir * dist
+		var q := PhysicsRayQueryParameters3D.create(probe, enter)
 		q.collision_mask = 1
 		q.exclude = exclude
+		q.hit_from_inside = true
+		q.hit_back_faces = true
 		var h := space.intersect_ray(q)
 		if h.is_empty():
-			return {"ok": false, "pos": enter, "thickness": maxd, "hit": {}}
-		var thick: float = enter.distance_to(h.position)
-		if thick < min_thick:
-			pos = h.position
 			continue
-		if thick <= maxd + 0.02:
+		var to_probe: float = probe.distance_to(h.position)
+		var thick: float = enter.distance_to(h.position)
+		if to_probe <= step * 1.85 and thick >= Net.hu(1.2) and thick <= maxd + 0.02:
 			return {"ok": true, "pos": h.position, "thickness": thick, "hit": h}
-		break
 	return {"ok": false, "pos": enter, "thickness": maxd, "hit": {}}
 
 
@@ -65,44 +63,51 @@ static func fire_bullet(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vec
 	var dir := (to - from)
 	var span := dir.length()
 	if span < 0.01:
-		return {"dmg": 0, "walls": 0, "reached": false}
+		return {"dmg": 0, "walls": 0, "reached": false, "thick": []}
 	dir /= span
 	var pos := from
 	var remain := span
 	var dmg := start_dmg
 	var walls := 0
+	var thicks: Array = []
 	var hits_left := MAX_PENS
 	while hits_left > 0 and dmg >= 1.0:
 		if remain < 0.04:
-			return {"dmg": dmg, "walls": walls, "reached": true}
+			return {"dmg": dmg, "walls": walls, "reached": true, "thick": thicks}
 		var q := PhysicsRayQueryParameters3D.create(pos, pos + dir * remain)
 		q.collision_mask = 1
 		q.exclude = exclude
+		q.hit_from_inside = true
+		q.hit_back_faces = true
 		var h := space.intersect_ray(q)
 		if h.is_empty():
-			return {"dmg": dmg, "walls": walls, "reached": true}
+			return {"dmg": dmg, "walls": walls, "reached": true, "thick": thicks}
 		var hitp: Vector3 = h.position
 		if hitp.distance_to(to) <= 0.16:
-			return {"dmg": dmg, "walls": walls, "reached": true}
+			return {"dmg": dmg, "walls": walls, "reached": true, "thick": thicks}
+		# Entered a wall. Need an exit within 90 HU or this is a solid.
 		var ex := trace_to_exit(space, hitp, dir, exclude)
 		if not bool(ex.ok):
-			return {"dmg": 0, "walls": walls + 1, "reached": false}
+			thicks.append(-snappedf(float(ex.thickness) / Net.HU, 0.1))
+			return {"dmg": 0, "walls": walls + 1, "reached": false, "thick": thicks}
 		var thick_hu: float = float(ex.thickness) / Net.HU
 		if thick_hu < 0.5:
 			thick_hu = 0.5
+		thicks.append(snappedf(thick_hu, 0.1))
 		var modifier: float = 1.0 / maxf(_surf_mod(h), 0.05)
+		# 2018 HandleBulletPenetration lost-damage (Source inches).
 		var pen := maxf(pen_power, 0.05)
 		var lost := dmg * 0.16 + (thick_hu * thick_hu * modifier) / 24.0 + modifier * 3.0 * maxf(0.0, (3.0 / pen) * 1.25)
 		dmg -= lost
 		walls += 1
 		if dmg < 1.0:
-			return {"dmg": 0, "walls": walls, "reached": false}
+			return {"dmg": 0, "walls": walls, "reached": false, "thick": thicks}
 		pos = Vector3(ex.pos) + dir * Net.hu(1.0)
 		remain = pos.distance_to(to)
 		hits_left -= 1
 	if pos.distance_to(to) < 0.2:
-		return {"dmg": dmg, "walls": walls, "reached": true}
-	return {"dmg": 0, "walls": walls, "reached": false}
+		return {"dmg": dmg, "walls": walls, "reached": true, "thick": thicks}
+	return {"dmg": 0, "walls": walls, "reached": false, "thick": thicks}
 
 
 static func walls_to(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array) -> Dictionary:
