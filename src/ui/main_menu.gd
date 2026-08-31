@@ -41,7 +41,7 @@ func _build() -> void:
 	_btn("PLAY AS TERRORIST", Vector2(52, 320), Color(0.72, 0.52, 0.18), _on_play_t)
 	_btn("PLAY AS COUNTER-TERRORIST", Vector2(52, 380), Color(0.28, 0.48, 0.72), _on_play_ct)
 	var keys := Label.new()
-	keys.text = "WASD move   mouse look   LMB fire   RMB scope/R8 fan\nE plant/defuse   B buy   Insert cheat   Tab scoreboard   F thirdperson\nZ/X/C manual AA left/back/right"
+	keys.text = "WASD move   mouse look   LMB fire   RMB scope/R8 fan\nE plant/defuse   B buy   Insert/Home/`/F10 or MENU cheat   Tab scoreboard   F thirdperson\nZ/X/C manual AA left/back/right"
 	keys.position = Vector2(52, 460)
 	keys.size = Vector2(700, 80)
 	keys.add_theme_font_size_override("font_size", 14)

@@ -246,11 +246,21 @@ func autobuy() -> void:
 					buy("deagle")
 
 
+func _click_is_menu_chrome(mp: Vector2) -> bool:
+	var vp := get_viewport().get_visible_rect().size
+	if mp.x > vp.x - 110.0 and mp.y > vp.y - 90.0:
+		return true
+	if mp.y < 36.0 and mp.x > vp.x - 420.0:
+		return true
+	return false
+
+
 func _input(event: InputEvent) -> void:
 	if not is_local:
 		return
-	if event is InputEventMouseButton and event.pressed and not Cheat.menu_open and not Cheat.buy_open:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not Cheat.menu_open and not Cheat.buy_open:
+		if not _click_is_menu_chrome(event.position):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if not alive or Cheat.menu_open or Cheat.buy_open:
 		return
 	if event is InputEventMouseMotion:

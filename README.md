@@ -35,7 +35,7 @@ python3 tools/serve.py --port 43187 --dir export/web
 - **LBY breaker** — moving LBY = real; stop 0.22s then 1.1s; flick real onto LBY, hold real away between flicks
 - **Resolver** — moving LBY, breaker inverse delta, brute on misses. **Resolved yaw is the visual yaw**: enemy chams and skeleton follow it. Misses rotate brute/delta.
 - **Thirdperson** — local Real (red), Fake (blue), LBY (yellow) layers
-- Insert opens the menu. Config saves to `user://mm_hvh.json`
+- Insert (also Home, backtick, F10, or the on-screen **MENU**) opens the cheat menu. Config saves to `user://mm_hvh.json`
 
 ## Controls
 
@@ -45,7 +45,7 @@ python3 tools/serve.py --port 43187 --dir export/web
 | LMB / RMB | Fire / scope (R8 RMB = fan fire) |
 | E | Plant / defuse (hold) |
 | B | Buy menu |
-| Insert | Cheat menu |
+| Insert / Home / ` / F10 / MENU | Cheat menu |
 | Tab | Scoreboard |
 | F | Thirdperson |
 | Z / X / C | Manual AA left / back / right |

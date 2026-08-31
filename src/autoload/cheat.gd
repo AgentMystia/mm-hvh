@@ -9,11 +9,99 @@ var buy_open := false
 var accent := Color(0.517, 0.768, 0.298)
 var cfg: Dictionary = {}
 var player_ovr: Dictionary = {}  # instance_id -> {side, force_yaw}
+var _menu_toggle_ms := 0
+var _web_menu_cb = null
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_defaults()
 	load_cfg()
+	_bind_menu_keys()
+	if OS.has_feature("web"):
+		_install_web_menu()
+
+
+func _bind_menu_keys() -> void:
+	if not InputMap.has_action("cheat_menu"):
+		InputMap.add_action("cheat_menu")
+	# Web HTML5 often leaves physical_keycode at 0 for Insert — bind keycode too.
+	for code in [KEY_INSERT, KEY_HOME, KEY_QUOTELEFT, KEY_F10, KEY_END]:
+		var e := InputEventKey.new()
+		e.keycode = code
+		e.physical_keycode = code
+		if not InputMap.event_is_action(e, "cheat_menu"):
+			InputMap.action_add_event("cheat_menu", e)
+	var f := InputEventKey.new()
+	f.keycode = KEY_F
+	f.physical_keycode = KEY_F
+	if not InputMap.event_is_action(f, "thirdperson"):
+		InputMap.action_add_event("thirdperson", f)
+
+
+func _install_web_menu() -> void:
+	# Keep the callback referenced or the JS proxy is garbage-collected.
+	_web_menu_cb = JavaScriptBridge.create_callback(_on_web_menu)
+	var window := JavaScriptBridge.get_interface("window")
+	if window == null:
+		return
+	window._hvhMenuCb = _web_menu_cb
+	JavaScriptBridge.eval("""
+(function () {
+  if (window.__hvhMenuHook) return;
+  window.__hvhMenuHook = true;
+  function fire(e) {
+    if (e) { try { e.preventDefault(); e.stopPropagation(); } catch (err) {} }
+    if (window._hvhMenuCb) { try { window._hvhMenuCb(); } catch (err) {} }
+  }
+  function isMenu(e) {
+    var c = e.code || '', k = e.key || '', kc = e.keyCode || 0;
+    return c === 'Insert' || k === 'Insert' || c === 'Home' || k === 'Home'
+      || c === 'End' || k === 'End' || c === 'Backquote' || k === '`'
+      || c === 'F10' || k === 'F10' || c === 'NumpadInsert' || kc === 45;
+  }
+  window.addEventListener('keydown', function (e) {
+    if (!isMenu(e)) return;
+    fire(e);
+  }, true);
+  if (document.getElementById('hvh-menu-btn')) return;
+  var b = document.createElement('button');
+  b.id = 'hvh-menu-btn';
+  b.type = 'button';
+  b.textContent = 'MENU';
+  b.title = 'Insert / Home / ` / F10';
+  b.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;pointer-events:auto;font:700 12px sans-serif;letter-spacing:0.06em;color:#e4eedc;background:#10151b;border:1px solid #84c44c;padding:10px 14px;cursor:pointer;opacity:0.94;';
+  b.addEventListener('click', function (e) { fire(e); });
+  document.body.appendChild(b);
+})();
+""")
+
+
+func _on_web_menu(_args: Array) -> void:
+	toggle_menu()
+
+
+func is_menu_toggle_event(event: InputEvent) -> bool:
+	if event.is_action_pressed("cheat_menu"):
+		return true
+	if event is InputEventKey and event.pressed and not event.echo:
+		var k: int = event.keycode
+		var p: int = event.physical_keycode
+		if k in [KEY_INSERT, KEY_HOME, KEY_QUOTELEFT, KEY_F10, KEY_END]:
+			return true
+		if p in [KEY_INSERT, KEY_HOME, KEY_QUOTELEFT, KEY_F10, KEY_END]:
+			return true
+		# HTML5 sometimes delivers Insert as KEY_UNKNOWN with unicode 0 and label
+		if OS.get_keycode_string(k).to_lower() in ["insert", "home", "f10"]:
+			return true
+	return false
+
+
+func _input(event: InputEvent) -> void:
+	if is_menu_toggle_event(event):
+		toggle_menu()
+		buy_open = false
+		get_viewport().set_input_as_handled()
 
 
 func _defaults() -> void:
@@ -152,6 +240,10 @@ func s(path: String, val: Variant) -> void:
 
 
 func toggle_menu() -> void:
+	var now := Time.get_ticks_msec()
+	if now - _menu_toggle_ms < 90:
+		return
+	_menu_toggle_ms = now
 	menu_open = not menu_open
 	if menu_open:
 		buy_open = false

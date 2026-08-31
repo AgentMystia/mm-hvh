@@ -68,7 +68,7 @@ func is_pistol_round() -> bool:
 
 
 func is_buy_time() -> bool:
-	return phase == Phase.FREEZE or (phase == Phase.LIVE and buy_left > 0.0 and not bomb_planted)
+	return phase == Phase.WARMUP or phase == Phase.FREEZE or (phase == Phase.LIVE and buy_left > 0.0 and not bomb_planted)
 
 
 func in_play() -> bool:

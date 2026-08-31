@@ -66,6 +66,8 @@ func _spawn_players() -> void:
 			ai.setup(p, i)
 			bots.append(ai)
 	_place_spawns(true)
+	for p in players:
+		p.autobuy()
 
 
 func _place_spawns(give_bomb: bool) -> void:
@@ -134,7 +136,7 @@ func _physics_process(delta: float) -> void:
 	_sync_bomb()
 	_qa_frames += 1
 	if (_qa_frames == 12 or _qa_frames == 64) and local_player:
-		print("QA t=%d y=%.3f floor=%s pitch=%.1f" % [_qa_frames, local_player.global_position.y, str(local_player.is_on_floor()), local_player.aa.real_pitch])
+		print("QA t=%d y=%.3f floor=%s pitch=%.1f gun=%s menu=%s" % [_qa_frames, local_player.global_position.y, str(local_player.is_on_floor()), local_player.aa.real_pitch, local_player.weapon_id, str(Cheat.menu_open)])
 		if _qa_frames == 64:
 			for p in players:
 				print("  %s y=%.3f floor=%s" % [p.player_name, p.global_position.y, str(p.is_on_floor())])

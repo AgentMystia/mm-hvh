@@ -19,6 +19,7 @@ func _ready() -> void:
 	_props()
 	_sites()
 	_env()
+	_spawn_pads()
 
 
 func _load_ents() -> void:
@@ -264,7 +265,11 @@ func snap_spawn(origin: Vector3) -> Vector3:
 	q.collision_mask = 1
 	var hit := space.intersect_ray(q)
 	if hit:
-		return Vector3(origin.x, hit.position.y + 0.04, origin.z)
+		var hy := hit.position.y + 0.04
+		# Brush collision can sit under the visible displacement. Don't bury the player.
+		if hy < origin.y - 0.28:
+			return origin
+		return Vector3(origin.x, hy, origin.z)
 	return origin
 
 

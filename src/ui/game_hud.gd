@@ -58,11 +58,15 @@ func _process(_dt: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("cheat_menu"):
-		Cheat.toggle_menu()
-		Cheat.buy_open = false
-		get_viewport().set_input_as_handled()
-		return
+	# Menu toggle lives on Cheat autoload (web Insert is physical-keycode dead).
+	# Still accept a click on the on-canvas MENU / watermark.
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var mb := event as InputEventMouseButton
+		for h in _hits:
+			if h.rect.has_point(mb.position):
+				h.fn.call()
+				get_viewport().set_input_as_handled()
+				return
 	if event.is_action_pressed("buy"):
 		if Match.is_buy_time():
 			Cheat.buy_open = not Cheat.buy_open
@@ -98,13 +102,7 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if Cheat.menu_open and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var mb := event as InputEventMouseButton
-		var mp: Vector2 = mb.position
-		for h in _hits:
-			if h.rect.has_point(mp):
-				h.fn.call()
-				get_viewport().set_input_as_handled()
-				break
+		get_viewport().set_input_as_handled()
 
 
 func _buy_key(code: int) -> void:
@@ -169,9 +167,17 @@ func _draw_watermark(sz: Vector2) -> void:
 	var ping := Match.ping_ms
 	var txt := "skeet.cc  |  HVH 2018  |  de_mirage  |  %dtick  |  %dms" % [Match.tickrate, ping]
 	var w := F_MONO.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x
-	draw_rect(Rect2(sz.x - w - 22, 8, w + 14, 22), Color(0.05, 0.06, 0.08, 0.78))
+	var wr := Rect2(sz.x - w - 22, 8, w + 14, 22)
+	draw_rect(wr, Color(0.05, 0.06, 0.08, 0.78))
 	draw_rect(Rect2(sz.x - w - 22, 8, 3, 22), Cheat.accent)
 	_t(Vector2(sz.x - w - 14, 24), txt, 13, Color(0.85, 0.9, 0.95, 0.95), true)
+	_hit(wr, func(): Cheat.toggle_menu())
+	var menu := Rect2(sz.x - 96, sz.y - 78, 80, 28)
+	draw_rect(menu, Color(0.07, 0.09, 0.11, 0.92))
+	draw_rect(menu, Cheat.accent, false, 1.2)
+	_t(menu.position + Vector2(14, 19), "MENU", 13, Color(0.9, 0.95, 0.85), true)
+	_hit(menu, func(): Cheat.toggle_menu())
+	_t(Vector2(sz.x - 268, sz.y - 86), "Insert / Home / ` / F10", 10, Color(0.55, 0.6, 0.58), true)
 
 
 func _draw_round_bar(sz: Vector2) -> void:
@@ -427,6 +433,10 @@ func _draw_indicators(sz: Vector2) -> void:
 		var rc := Color(0.3, 0.9, 0.4) if lp.revolver_ready else Color(0.9, 0.7, 0.2)
 		var st := "READY" if lp.revolver_ready else ("COCK %.0f%%" % (lp.revolver_cock_frac() * 100.0) if lp.cocking else "idle")
 		_t(Vector2(x, y + 32), "R8  %s" % st, 12, rc, true)
+	if Input.is_action_pressed("move_left"):
+		_t(Vector2(x, y + 96), "A  +left", 12, Color(0.45, 0.95, 0.55), true)
+	elif Input.is_action_pressed("move_right"):
+		_t(Vector2(x, y + 96), "D  +right", 12, Color(0.45, 0.95, 0.55), true)
 	if bool(Cheat.t("aa/enable", true)):
 		_t(Vector2(x, y + 48), "AA  %s  PITCH %s" % [YAW_N[clampi(int(Cheat.t("aa/yaw", 1)), 0, YAW_N.size() - 1)], PITCH_N[clampi(int(Cheat.t("aa/pitch", 1)), 0, PITCH_N.size() - 1)]], 12, Color(0.55, 0.75, 1.0), true)
 	if bool(Cheat.t("aa/fakelag", true)):
@@ -500,7 +510,7 @@ func _draw_buy(sz: Vector2) -> void:
 		_t(Vector2(panel.position.x + 24, y), "[%s]  %s" % [ln[0], ln[1]], 14, col, true)
 		_t(Vector2(panel.position.x + 340, y), "$%d" % cost, 14, col, true)
 		y += 26
-	_t(panel.position + Vector2(16, panel.size.y - 18), "ESC close    pistol: Duals / Deagle / R8    Insert: cheat", 11, Color(0.6, 0.62, 0.65))
+	_t(panel.position + Vector2(16, panel.size.y - 18), "ESC close    pistol: Duals / Deagle / R8    Insert/Home/MENU: cheat", 11, Color(0.6, 0.62, 0.65))
 
 
 func _draw_menu(sz: Vector2) -> void:
@@ -539,7 +549,7 @@ func _draw_menu(sz: Vector2) -> void:
 			y = _tog(x, y, "Resolver", "rage/resolver")
 			y = _enum(x, y, "Resolver", "rage/resolver_type", RES_N)
 			y = _enum(x, y, "Override", "rage/resolver_override", OVR_N)
-			_t(Vector2(x, y + 10), "F1–F4 tabs   click to change   Insert close", 11, Color(0.5, 0.52, 0.55))
+			_t(Vector2(x, y + 10), "F1–F4 tabs   click to change   Insert / Home / MENU close", 11, Color(0.5, 0.52, 0.55))
 		1:
 			y = _tog(x, y, "Enabled", "aa/enable")
 			y = _enum(x, y, "Pitch", "aa/pitch", PITCH_N)
