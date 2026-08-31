@@ -41,7 +41,7 @@ python3 tools/serve.py --port 43187 --dir export/web
 
 | Key | Action |
 | --- | --- |
-| WASD / mouse | Move / look |
+| WASD / mouse | Move / look (CS:GO `m_yaw` 0.022, default sens 2.0, horizontal FOV) |
 | LMB / RMB | Fire / scope (R8 RMB = fan fire) |
 | E | Plant / defuse (hold) |
 | B | Buy menu |
@@ -82,6 +82,8 @@ Serves the contents of `export/web` through nginx.
 ## Map
 
 `assets/maps/de_mirage/` is converted from CS:GO `de_mirage.bsp` (VBSP v21) via `tools/convert_bsp.py` (Source inches → meters, Godot `x, z, -y`). Radar uses playable spawn/site bounds, not the skybox AABB.
+
+Bots A* on official `de_mirage.nav` (903 areas). Player movement uses Source `sv_stepsize` **18 HU** step-up. Autowall is 2018 FireBullet / TraceToExit (4 HU steps, max 90 HU) with lost damage from thickness² / 24 — not paper walls.
 
 ## Credits
 
