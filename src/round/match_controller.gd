@@ -183,6 +183,7 @@ func _qa_tick() -> void:
 			_qa_wall(space, "open_air", Vector3(32.07, -3.20, -8.20), Vector3(32.07, -0.20, -8.20), 2.5, 115.0)
 		if local_player.model:
 			print(local_player.model.qa_pose_line())
+			print("QA axes R=%.0f F=%.0f LBY=%.0f visible=%s" % [local_player.aa.real_yaw, local_player.aa.fake_yaw, local_player.aa.lby, str(local_player.model.axis_real != null and local_player.model.axis_real.visible)])
 		var hunting := 0
 		for ai in bots:
 			if ai._hunt != null:
