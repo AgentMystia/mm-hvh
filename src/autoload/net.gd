@@ -61,3 +61,22 @@ static func look_basis(dir: Vector3) -> Basis:
 	if absf(d.dot(up)) > 0.995:
 		up = Vector3.RIGHT
 	return Basis.looking_at(d, up)
+
+
+static func view_basis(pitch_deg: float, yaw_deg: float) -> Basis:
+	# FPS camera: yaw around world Y, pitch around the *horizontal* right axis.
+	# Right stays world-horizontal so the horizon never rolls (Source viewangles).
+	var fwd := look_dir(pitch_deg, yaw_deg)
+	var right := right_vec(yaw_deg)
+	var up := right.cross(fwd)
+	if up.length_squared() < 0.0001:
+		up = Vector3.UP
+	else:
+		up = up.normalized()
+	return Basis(right, up, -fwd)
+
+
+static func hfov_to_vfov(hfov_deg: float, aspect: float) -> float:
+	# CS:GO / Quake FOV is horizontal. Godot Camera3D.fov is vertical.
+	var a := maxf(aspect, 0.05)
+	return rad_to_deg(2.0 * atan(tan(deg_to_rad(hfov_deg) * 0.5) / a))
