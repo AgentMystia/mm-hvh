@@ -125,3 +125,12 @@ func _ready() -> void:
 	_origin_curr = global_position
 	resolved_yaw = view_yaw
 	add_to_group("players")
+
+
+func eye() -> Vector3:
+	var h := lerpf(Net.EYE_STAND, Net.EYE_DUCK, duck_amt)
+	return global_position + Vector3(0, h, 0)
+
+
+func head_pos() -> Vector3:
+	return eye()
