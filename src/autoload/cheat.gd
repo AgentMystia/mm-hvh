@@ -58,12 +58,24 @@ func _install_web_menu() -> void:
     var c = e.code || '', k = e.key || '', kc = e.keyCode || 0;
     return c === 'Insert' || k === 'Insert' || c === 'Home' || k === 'Home'
       || c === 'End' || k === 'End' || c === 'Backquote' || k === '`'
-      || c === 'F10' || k === 'F10' || c === 'NumpadInsert' || kc === 45;
+      || c === 'F10' || k === 'F10' || c === 'NumpadInsert' || kc === 45
+      || kc === 36 || kc === 192 || kc === 121;
   }
-  window.addEventListener('keydown', function (e) {
+  function onKey(e) {
     if (!isMenu(e)) return;
     fire(e);
-  }, true);
+  }
+  window.addEventListener('keydown', onKey, true);
+  document.addEventListener('keydown', onKey, true);
+  function hookCanvas() {
+    var c = document.getElementById('canvas');
+    if (!c || c.__hvhKeys) return;
+    c.__hvhKeys = true;
+    c.addEventListener('keydown', onKey, true);
+    c.setAttribute('tabindex', '0');
+  }
+  hookCanvas();
+  setInterval(hookCanvas, 400);
   if (document.getElementById('hvh-menu-btn')) return;
   var b = document.createElement('button');
   b.id = 'hvh-menu-btn';
