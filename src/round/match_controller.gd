@@ -11,6 +11,7 @@ var bomb_node: Node3D
 var _qa_frames := 0
 var _qa_stair_y0 := 0.0
 var _qa_bot0 := Vector3.ZERO
+var _qa_wall0 := Vector3.ZERO
 
 
 func _ready() -> void:
@@ -167,9 +168,6 @@ func _qa_tick() -> void:
 		_qa_stair_y0 = local_player.global_position.y
 		if not bots.is_empty() and bots[0].player:
 			_qa_bot0 = bots[0].player.global_position
-			bots[0].goal = a_site
-			bots[0].retarget = 999.0
-			bots[0]._rebuild_route(world)
 			print("QA bot0 route=%d" % bots[0].route.size())
 		var space := local_player.get_world_3d().direct_space_state
 		if space:
@@ -183,6 +181,13 @@ func _qa_tick() -> void:
 			_qa_wall(space, "a_site_wall", Vector3(-13.02, -0.20, 38.42), Vector3(-8.00, -0.20, 38.42), 2.5, 115.0)
 			_qa_wall(space, "tspawn_house", Vector3(28.26, -3.80, 16.19), Vector3(22.00, -3.80, 16.19), 2.0, 86.0)
 			_qa_wall(space, "open_air", Vector3(32.07, -3.20, -8.20), Vector3(32.07, -0.20, -8.20), 2.5, 115.0)
+		if local_player.model:
+			print(local_player.model.qa_pose_line())
+		var hunting := 0
+		for ai in bots:
+			if ai._hunt != null:
+				hunting += 1
+		print("QA bots hunting=%d/%d" % [hunting, bots.size()])
 	if _qa_frames == 24:
 		_qa_stair_y0 = local_player.global_position.y
 		print("QA stair start y=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [_qa_stair_y0, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
@@ -198,6 +203,33 @@ func _qa_tick() -> void:
 		if not bots.is_empty() and bots[0].player:
 			var bp: Vector3 = bots[0].player.global_position
 			print("QA bot0 moved=%.2f route_i=%d/%d pos=%.2f,%.2f,%.2f" % [_qa_bot0.distance_to(bp), bots[0].route_i, bots[0].route.size(), bp.x, bp.y, bp.z])
+	if _qa_frames == 222:
+		local_player.qa_wish = Vector3.ZERO
+		local_player.velocity = Vector3.ZERO
+		var space2 := local_player.get_world_3d().direct_space_state
+		var from := Vector3(28.26, -3.80, 16.19)
+		var hit: Dictionary = {}
+		if space2:
+			var q := PhysicsRayQueryParameters3D.create(from, Vector3(22.00, -3.80, 16.19))
+			q.collision_mask = 1
+			hit = space2.intersect_ray(q)
+		if hit:
+			var n: Vector3 = hit.normal
+			var hn := Vector3(n.x, 0.0, n.z)
+			if hn.length_squared() < 0.0001:
+				hn = Vector3(1.0, 0.0, 0.0)
+			hn = hn.normalized()
+			local_player.global_position = hit.position + hn * 0.39 + Vector3(0.0, 0.04, 0.0)
+			local_player.qa_wish = Vector3(-hn.z, 0.0, hn.x)
+		else:
+			local_player.global_position = Vector3(32.07, -5.70, -8.20)
+			local_player.qa_wish = Vector3(0.0, 0.0, 1.0)
+		_qa_wall0 = local_player.global_position
+		print("QA wallslide start pos=%.2f,%.2f,%.2f wish=%.2f,%.2f" % [_qa_wall0.x, _qa_wall0.y, _qa_wall0.z, local_player.qa_wish.x, local_player.qa_wish.z])
+	if _qa_frames == 255:
+		var wdx := Vector2(local_player.global_position.x - _qa_wall0.x, local_player.global_position.z - _qa_wall0.z).length()
+		print("QA wallslide dxz=%.3f dy=%.3f floor=%s pos=%.2f,%.2f,%.2f" % [wdx, local_player.global_position.y - _qa_wall0.y, str(local_player.is_on_floor()), local_player.global_position.x, local_player.global_position.y, local_player.global_position.z])
+		local_player.qa_wish = Vector3.ZERO
 
 
 func _qa_sweep(space: PhysicsDirectSpaceState3D, tag: String, origin: Vector3) -> void:
