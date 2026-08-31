@@ -51,7 +51,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 			continue
 		resolver.observe(e, Net.TICK)
 		var ryaw := resolver.resolve(e)
-		e.resolved_yaw = ryaw  # ESP/chams/skeleton follow this true-yaw guess
+		e.resolved_yaw = ryaw
 		e.resolved_label = resolver.label(e)
 		var pts := _points(e, ryaw)
 		for p in pts:
@@ -69,8 +69,6 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 				md = int(Cheat.t("rage/mindmg_ovr", 0))
 			if int(info.dmg) < md and int(info.dmg) < e.health:
 				continue
-			if bool(Cheat.t("rage/baim_lethal", true)) and p.group == "head" and int(info.dmg) < e.health:
-				pass
 			var score := float(info.dmg) + hc * 0.25
 			if p.group == "head" and not bool(Cheat.t("rage/prefer_body", false)):
 				score += 50.0
@@ -95,7 +93,6 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 	if bool(w.get("zoom", false)) and bool(Cheat.t("rage/autoscope", true)) and not me.scoped:
 		out.scope = true
 		want_scope = true
-		# 2018 delay shot until scoped inaccuracy drops
 		if bool(Cheat.t("rage/delay_shot", false)) or w.id == "awp" or w.id == "ssg08":
 			if not me.scoped:
 				return out
@@ -104,7 +101,6 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 		want_autostop = true
 	var can_fire := bool(Cheat.t("rage/autoshoot", true))
 	if is_r8 and bool(Cheat.t("rage/auto_revolver", true)):
-		# Hold cock every tick; only fire when postpone ready (2018 auto-revolver).
 		can_fire = can_fire and me.revolver_ready
 	if not me.is_on_floor() and not bool(Cheat.t("rage/shoot_jump", false)):
 		if w.get("type") == "sniper" or is_r8:
@@ -137,18 +133,18 @@ func _points(e: Node, yaw: float) -> Array:
 func _trace(from: Vector3, to: Vector3, space: PhysicsDirectSpaceState3D, me: Player, enemy: Node, group: String) -> Dictionary:
 	var w := Weapons.get_w(me.weapon_id)
 	var dist := from.distance_to(to)
-	var walls := Hitscan.walls_to(space, from, to, [me.get_rid()])
-	if not bool(walls.reached):
-		if not bool(Cheat.t("rage/autowall", true)):
+	var base := float(Weapons.damage_vs(w, group, enemy.armor > 0, enemy.helmet, dist))
+	var exclude: Array = [me.get_rid()]
+	if not bool(Cheat.t("rage/autowall", true)):
+		var vis := Hitscan.fire_bullet(space, from, to, exclude, 99.0, base)
+		if int(vis.walls) > 0 or not bool(vis.reached):
 			return {"dmg": 0, "spread_ok": false}
+		return {"dmg": int(base), "spread_ok": true}
+	var pen := float(w.get("pen", 1.0))
+	var r := Hitscan.fire_bullet(space, from, to, exclude, pen, base)
+	if not bool(r.reached) or float(r.dmg) < 1.0:
 		return {"dmg": 0, "spread_ok": false}
-	var n: int = int(walls.walls)
-	if n > 0 and not bool(Cheat.t("rage/autowall", true)):
-		return {"dmg": 0, "spread_ok": false}
-	var dmg := Weapons.damage_vs(w, group, enemy.armor > 0, enemy.helmet, dist)
-	if n > 0:
-		dmg = int(dmg * (0.62 if n == 1 else 0.32))
-	return {"dmg": dmg, "spread_ok": n == 0}
+	return {"dmg": int(r.dmg), "spread_ok": int(r.walls) == 0}
 
 
 func _hitchance(me: Player, aim: Vector3, clean: bool, w: Dictionary) -> float:

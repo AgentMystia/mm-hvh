@@ -62,6 +62,7 @@ func tick(delta: float, world: MapWorld, all: Array) -> void:
 		wish = to.normalized()
 		player.view_yaw = rad_to_deg(atan2(-wish.x, -wish.z))
 	player.bot_wish = wish
+	# Jump only to climb, not constant bhop — bhop on stairs wedges the hull.
 	player.bot_jump = climb > 0.28 and dist < 1.6
 	if Match.in_play():
 		var enemies: Array = []
