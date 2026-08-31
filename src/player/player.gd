@@ -219,13 +219,7 @@ func autobuy() -> void:
 		return
 	if not can_buy():
 		return
-	if bool(Cheat.t("misc/autobuy_armor", true)) or is_bot:
-		if money >= 1000 and not helmet:
-			buy("helmet")
-		elif money >= 650 and armor < 100:
-			buy("kevlar")
-		if team == TEAM_CT and not kit and money >= 400 and not Match.is_pistol_round():
-			buy("kit")
+	# Pistol round is $800 — buy the pistol first or kevlar eats the R8.
 	if Match.is_pistol_round():
 		var pid := str(Cheat.t("misc/autobuy_pistol", "r8"))
 		if is_bot:
@@ -233,7 +227,9 @@ func autobuy() -> void:
 		if not buy(pid):
 			if not buy("deagle"):
 				buy("elite")
+		_autobuy_armor()
 		return
+	_autobuy_armor()
 	var sn := str(Cheat.t("misc/autobuy_sniper", "awp"))
 	if is_bot:
 		sn = ["awp", "ssg08", "auto"][absi(player_name.hash()) % 3]
@@ -244,6 +240,17 @@ func autobuy() -> void:
 			if not buy("ssg08"):
 				if not buy("r8"):
 					buy("deagle")
+
+
+func _autobuy_armor() -> void:
+	if not bool(Cheat.t("misc/autobuy_armor", true)) and not is_bot:
+		return
+	if money >= 1000 and not helmet:
+		buy("helmet")
+	elif money >= 650 and armor < 100:
+		buy("kevlar")
+	if team == TEAM_CT and not kit and money >= 400 and not Match.is_pistol_round():
+		buy("kit")
 
 
 func _click_is_menu_chrome(mp: Vector2) -> bool:
