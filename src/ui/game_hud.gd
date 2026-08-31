@@ -164,8 +164,7 @@ func _draw() -> void:
 
 
 func _draw_watermark(sz: Vector2) -> void:
-	var ping := Match.ping_ms
-	var txt := "skeet.cc  |  HVH 2018  |  de_mirage  |  %dtick  |  %dms" % [Match.tickrate, ping]
+	var txt := "skeet.cc  |  HVH 2018  |  de_mirage  |  %dfps  |  %dtick" % [Engine.get_frames_per_second(), Match.tickrate]
 	var w := F_MONO.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x
 	var wr := Rect2(sz.x - w - 22, 8, w + 14, 22)
 	draw_rect(wr, Color(0.05, 0.06, 0.08, 0.78))
@@ -364,7 +363,7 @@ func _draw_esp(_sz: Vector2) -> void:
 				flags.append("LBY")
 			flags.append(p.resolved_label)
 			_t(Vector2(box.end.x + 4, box.position.y + 12), " ".join(flags), 10, Color(0.95, 0.75, 0.35), true)
-		if bool(Cheat.t("visuals/skeleton", true)):
+		if bool(Cheat.t("visuals/skeleton", true)) and Engine.get_frames_per_second() >= 40:
 			_draw_skel(cam, p)
 		_t(Vector2(box.position.x, box.position.y - 16), "yaw %.0f" % p.resolved_yaw, 10, Color(1.0, 0.45, 0.35), true)
 
