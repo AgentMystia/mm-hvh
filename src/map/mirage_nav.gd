@@ -92,6 +92,23 @@ func _center(i: int) -> Vector3:
 	return Vector3(float(c[0]), float(c[1]), float(c[2]))
 
 
+func nearby_center(pos: Vector3, min_d := 1.5, max_d := 10.0) -> Vector3:
+	if not loaded or areas.is_empty():
+		return pos + Vector3(randf_range(-3, 3), 0.0, randf_range(-3, 3))
+	var picks: Array = []
+	var min2 := min_d * min_d
+	var max2 := max_d * max_d
+	for i in areas.size():
+		var c: Array = areas[i].c
+		var p := Vector3(float(c[0]), float(c[1]), float(c[2]))
+		var d: float = p.distance_squared_to(pos)
+		if d >= min2 and d <= max2:
+			picks.append(p)
+	if picks.is_empty():
+		return _center(nearest_index(pos))
+	return picks[randi() % picks.size()]
+
+
 func path(from_pos: Vector3, to_pos: Vector3) -> Array:
 	if not loaded or areas.is_empty():
 		return [to_pos]

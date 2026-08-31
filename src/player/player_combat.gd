@@ -67,7 +67,7 @@ static func fire(p, dir: Vector3, silent: bool, r8_alt := false) -> void:
 		hit_someone = true
 		if e.health <= 0:
 			p.resolver.hit(e)
-			break
+		break
 	if not hit_someone and p.last_rage.get("target", null) != null:
 		var t = p.last_rage.target
 		if t and is_instance_valid(t):
@@ -123,10 +123,10 @@ static func attack_manual(p) -> void:
 		p._fire(Net.look_dir(p.view_pitch, p.view_yaw), false, true)
 		p.revolver_ready = tmp_ready
 	if Input.is_action_pressed("reload"):
-		reload(p)
+		reload_weapon(p)
 
 
-static func reload(p) -> void:
+static func reload_weapon(p) -> void:
 	var w := Weapons.get_w(p.weapon_id)
 	if p.clip >= int(w.clip) or p.reserve <= 0:
 		return
