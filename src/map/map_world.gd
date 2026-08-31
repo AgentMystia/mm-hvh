@@ -2,6 +2,8 @@ class_name MapWorld
 extends Node3D
 ## Loads converted CS:GO de_mirage (VBSP v21) plus bomb sites, spawns, cover props.
 
+const NavScript := preload("res://src/map/mirage_nav.gd")
+
 var ents: Dictionary = {}
 var t_spawns: Array = []
 var ct_spawns: Array = []
@@ -9,6 +11,7 @@ var sites: Array = []
 var radar_tex: Texture2D
 var sun: DirectionalLight3D
 var env: WorldEnvironment
+var nav = null
 
 
 func _ready() -> void:
@@ -20,6 +23,8 @@ func _ready() -> void:
 	_sites()
 	_env()
 	_spawn_pads()
+	nav = NavScript.new()
+	nav.load_file()
 
 
 func _load_ents() -> void:
@@ -81,6 +86,7 @@ func _make_trimesh(n: Node) -> void:
 			if c is StaticBody3D:
 				(c as StaticBody3D).collision_layer = 1
 				(c as StaticBody3D).collision_mask = 0
+				(c as StaticBody3D).set_meta("surf", "plaster")
 	for c in n.get_children():
 		_make_trimesh(c)
 
@@ -104,6 +110,7 @@ func _collision_mesh() -> void:
 			if c is StaticBody3D:
 				(c as StaticBody3D).collision_layer = 1
 				(c as StaticBody3D).collision_mask = 0
+				(c as StaticBody3D).set_meta("surf", "plaster")
 
 
 func _fallback_ground() -> void:
