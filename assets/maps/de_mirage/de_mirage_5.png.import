@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlqeswgmkolky"
-path="res://.godot/imported/de_mirage_5.png-c6b73302d67b72db2d179f77d8475549.ctex"
+path.s3tc="res://.godot/imported/de_mirage_5.png-c6b73302d67b72db2d179f77d8475549.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9b2f542273de99c649d181b534d6717d"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/maps/de_mirage/de_mirage_5.png"
-dest_files=["res://.godot/imported/de_mirage_5.png-c6b73302d67b72db2d179f77d8475549.ctex"]
+dest_files=["res://.godot/imported/de_mirage_5.png-c6b73302d67b72db2d179f77d8475549.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
