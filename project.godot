@@ -161,10 +161,12 @@ aa_back={
 common/physics_ticks_per_second=64
 3d/default_gravity=20.32
 3d/physics_engine="Jolt Physics"
-
-[jolt_physics_3d]
-simulation/use_enhanced_internal_edge_removal=true
-collisions/use_shape_margins=false
+jolt_physics_3d/simulation/use_enhanced_internal_edge_removal=true
+jolt_physics_3d/queries/use_enhanced_internal_edge_removal=true
+jolt_physics_3d/motion_queries/use_enhanced_internal_edge_removal=true
+jolt_physics_3d/motion_queries/recovery_amount=0.2
+jolt_physics_3d/motion_queries/recovery_iterations=4
+jolt_physics_3d/limits/max_linear_velocity=200.0
 
 [rendering]
 renderer/rendering_method="gl_compatibility"

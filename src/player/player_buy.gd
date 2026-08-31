@@ -18,6 +18,9 @@ static func reset_round(p, origin: Vector3, yaw: float, give_c4: bool) -> void:
 	p.velocity = Vector3.ZERO
 	p.global_position = origin
 	p.spawn_origin = origin
+	p.move_ok = origin
+	p.grounded = true
+	p.move_stuck = 0
 	p.view_yaw = yaw
 	p.spawn_yaw = yaw
 	p.lag_origin = origin

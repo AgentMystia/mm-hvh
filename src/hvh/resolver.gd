@@ -35,7 +35,7 @@ func observe(p: Node, dt: float) -> void:
 	var r := rec(p)
 	var aa: AntiAim = p.aa
 	var spd: float = Vector2(p.velocity.x, p.velocity.z).length()
-	r.moving = spd > Net.hu(1.1) and p.is_on_floor()
+	r.moving = spd > Net.hu(1.1) and bool(p.grounded)
 	if absf(Net.ang_delta(aa.lby, r.last_lby)) > 1.0:
 		if not r.moving and absf(Net.ang_delta(aa.lby, r.last_moving_lby)) > 60.0:
 			r.broken = true
