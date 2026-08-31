@@ -53,16 +53,18 @@ func _part(size: Vector3, pos: Vector3, sphere := false) -> MeshInstance3D:
 		var s := SphereMesh.new()
 		s.radius = size.x * 0.5
 		s.height = size.y
-		s.radial_segments = 10
-		s.rings = 6
+		s.radial_segments = 6
+		s.rings = 4
 		mi.mesh = s
 	else:
 		var b := BoxMesh.new()
 		b.size = size
 		mi.mesh = b
 	mi.position = pos
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
 	mi.material_override = mat
 	return mi
 
@@ -192,11 +194,17 @@ func _apply(mi: MeshInstance3D, c: Color, transparent: bool, through := false) -
 		sm = (_xqz_mat if through else _vis_mat).duplicate() as ShaderMaterial
 		mi.material_override = sm
 	sm.set_shader_parameter("albedo", Vector4(c.r, c.g, c.b, c.a))
-	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF if transparent else GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 
 func _std(mi: MeshInstance3D, c: Color) -> void:
-	var mat := StandardMaterial3D.new()
+	var mat: StandardMaterial3D
+	if mi.material_override is StandardMaterial3D:
+		mat = mi.material_override as StandardMaterial3D
+	else:
+		mat = StandardMaterial3D.new()
+		mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		mat.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
+		mi.material_override = mat
 	mat.albedo_color = c
-	mat.roughness = 0.85
-	mi.material_override = mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

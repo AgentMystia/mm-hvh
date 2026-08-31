@@ -98,6 +98,7 @@ func _place_spawns(give_bomb: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	Perf.begin_physics()
 	match Match.phase:
 		Match.Phase.WARMUP:
 			Match.warmup_left -= delta

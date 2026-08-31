@@ -87,7 +87,7 @@ func _ready() -> void:
 	floor_max_angle = deg_to_rad(45.573)
 	floor_snap_length = Net.hu(8.0)
 	safe_margin = Net.hu(1.5)
-	max_slides = 8
+	max_slides = 4 if OS.has_feature("web") else 6
 	wall_min_slide_angle = deg_to_rad(0.0)
 	set_process(true)
 	var hs := CollisionShape3D.new()
@@ -105,7 +105,7 @@ func _ready() -> void:
 	cam = Camera3D.new()
 	cam.fov = 90
 	cam.near = 0.06
-	cam.far = 400
+	cam.far = 180 if OS.has_feature("web") else 400
 	cam.keep_aspect = Camera3D.KEEP_HEIGHT
 	cam.top_level = true
 	cam.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
