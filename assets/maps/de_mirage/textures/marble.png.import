@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de24rvvgdwgbo"
-path="res://.godot/imported/marble.png-cd9128b84b9cbf0ee993f21a7dd2a67b.ctex"
+path.s3tc="res://.godot/imported/marble.png-cd9128b84b9cbf0ee993f21a7dd2a67b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/maps/de_mirage/textures/marble.png"
-dest_files=["res://.godot/imported/marble.png-cd9128b84b9cbf0ee993f21a7dd2a67b.ctex"]
+dest_files=["res://.godot/imported/marble.png-cd9128b84b9cbf0ee993f21a7dd2a67b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bne2v7nixhim1"
-path="res://.godot/imported/market.png-bf0821e078b6bde38a1e8b3cbe2253ab.ctex"
+path.s3tc="res://.godot/imported/market.png-bf0821e078b6bde38a1e8b3cbe2253ab.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/maps/de_mirage/textures/market.png"
-dest_files=["res://.godot/imported/market.png-bf0821e078b6bde38a1e8b3cbe2253ab.ctex"]
+dest_files=["res://.godot/imported/market.png-bf0821e078b6bde38a1e8b3cbe2253ab.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

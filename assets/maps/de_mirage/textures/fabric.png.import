@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b728my74kxx2r"
-path="res://.godot/imported/fabric.png-624c0ad2941165b6a352614ba187a4b1.ctex"
+path.s3tc="res://.godot/imported/fabric.png-624c0ad2941165b6a352614ba187a4b1.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/maps/de_mirage/textures/fabric.png"
-dest_files=["res://.godot/imported/fabric.png-624c0ad2941165b6a352614ba187a4b1.ctex"]
+dest_files=["res://.godot/imported/fabric.png-624c0ad2941165b6a352614ba187a4b1.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
