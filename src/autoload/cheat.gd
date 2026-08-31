@@ -188,7 +188,7 @@ func _defaults() -> void:
 			"chams_resolved": true,  # enemy chams follow resolved real yaw
 			"chams_fake": true,  # ghost at fake yaw
 			"chams_mat": 0,
-			"chams_col": [0.2, 0.85, 0.35, 1.0],
+			"chams_col": [0.12, 0.42, 1.0, 1.0],
 			"chams_xqz_col": [0.85, 0.25, 0.55, 1.0],
 			"chams_fake_col": [0.25, 0.45, 1.0, 0.35],
 			"local_chams": true,
