@@ -299,11 +299,44 @@ func _draw_aa_arrows(sz: Vector2) -> void:
 		return
 	if not bool(Cheat.t("aa/enable", true)):
 		return
-	# Keep arrows off the player dummy (was overlaying REAL/FAKE/LBY on the body).
 	var c := Vector2(72.0, sz.y * 0.5 + 168.0)
 	_arrow(c, lp.aa.real_yaw, Color(1.0, 0.25, 0.2, 0.92), 28.0)
 	_arrow(c, lp.aa.fake_yaw, Color(0.25, 0.55, 1.0, 0.92), 20.0)
 	_arrow(c, lp.aa.lby, Color(0.95, 0.85, 0.2, 0.9), 14.0)
+	_t(c + Vector2(-18, 36), "REAL", 9, Color(1.0, 0.28, 0.2), true)
+	_t(c + Vector2(8, 36), "FAKE", 9, Color(0.3, 0.55, 1.0), true)
+	_t(c + Vector2(8, 48), "LBY", 9, Color(1.0, 0.86, 0.2), true)
+	_draw_aa_world_axes()
+
+
+func _draw_aa_world_axes() -> void:
+	if match_ctrl == null:
+		return
+	var cam := get_viewport().get_camera_3d()
+	if cam == null:
+		return
+	var tp := bool(Cheat.t("visuals/thirdperson", true))
+	for p in match_ctrl.players:
+		if p == null or not p.alive:
+			continue
+		if p.is_local and not tp:
+			continue
+		_world_axis(cam, p, p.aa.real_yaw, Color(1.0, 0.22, 0.16, 0.95), "REAL", 1.55)
+		_world_axis(cam, p, p.aa.fake_yaw, Color(0.22, 0.50, 1.0, 0.92), "FAKE", 1.18)
+		_world_axis(cam, p, p.aa.lby, Color(1.0, 0.86, 0.14, 0.95), "LBY", 0.88)
+
+
+func _world_axis(cam: Camera3D, p: Player, yaw: float, col: Color, label: String, length: float) -> void:
+	var o: Vector3 = p.global_position + Vector3(0.0, 0.42, 0.0)
+	var tip: Vector3 = o + Net.yaw_vec(yaw) * length
+	if cam.is_position_behind(o) or cam.is_position_behind(tip):
+		return
+	var a: Vector2 = cam.unproject_position(o)
+	var b: Vector2 = cam.unproject_position(tip)
+	draw_line(a, b, Color(0, 0, 0, 0.55), 5.0)
+	draw_line(a, b, col, 3.0)
+	draw_circle(b, 5.0, col)
+	_t(b + Vector2(6, -2), label, 11, col, true)
 
 
 func _arrow(c: Vector2, yaw_deg: float, col: Color, radius: float) -> void:
@@ -589,7 +622,7 @@ func _draw_menu(sz: Vector2) -> void:
 			y = _tog(x, y, "Local real chams", "visuals/local_real")
 			y = _tog(x, y, "Local fake chams", "visuals/local_fake")
 			y = _tog(x, y, "Local LBY chams", "visuals/local_lby")
-			y = _tog(x, y, "AA arrows", "visuals/aa_arrows")
+			y = _tog(x, y, "AA axes (REAL/FAKE/LBY)", "visuals/aa_arrows")
 			_t(Vector2(x, y + 8), "Enemy chams/skeleton = resolver true yaw", 11, Color(0.95, 0.55, 0.4))
 		3:
 			y = _tog(x, y, "Bunnyhop", "misc/bhop")
