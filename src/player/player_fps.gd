@@ -33,6 +33,8 @@ static func view_origin(p) -> Vector3:
 static func camera(p, dt: float) -> void:
 	if not p.is_local or p.cam == null:
 		return
+	if not is_instance_valid(p) or not p.is_inside_tree():
+		return
 	p.cam.current = true
 	p.yaw_helper.rotation = Vector3(0.0, deg_to_rad(p.view_yaw), 0.0)
 	var aspect := 16.0 / 9.0
@@ -68,6 +70,11 @@ static func camera(p, dt: float) -> void:
 			p.viewmodel.scale = Vector3(1.15, 1.2, 0.7)
 		else:
 			p.viewmodel.scale = Vector3.ONE
+	if not Net.finite3(focus):
+		return
+	if not (basis.x.is_finite() and basis.y.is_finite() and basis.z.is_finite()):
+		return
+	basis = basis.orthonormalized()
 	if tp:
 		# Rear-diagonal, raised — you see the pitch-down 89 dummy and the yaw axes.
 		var dist := float(Cheat.t("visuals/tp_dist", 100)) * Net.HU
@@ -75,48 +82,22 @@ static func camera(p, dt: float) -> void:
 		var right := basis.x
 		var desired := focus - look * dist + Vector3(0.0, 0.82, 0.0) + right * 0.72
 		var space: PhysicsDirectSpaceState3D = p.get_world_3d().direct_space_state
-		if space:
+		if space and Net.finite3(desired) and focus.distance_squared_to(desired) > 0.0004:
 			var q := PhysicsRayQueryParameters3D.create(focus, desired)
 			q.collision_mask = 1
 			q.exclude = [p.get_rid()]
+			q.hit_from_inside = true
 			var hit: Dictionary = space.intersect_ray(q)
-			if hit:
-				desired = hit.position + hit.normal * 0.08
+			if hit and hit.has("position"):
+				var n: Vector3 = Net.sanitize3(hit.get("normal", Vector3.ZERO), Vector3.UP)
+				desired = hit.position + n * 0.08
+		if not Net.finite3(desired):
+			desired = focus
 		p.cam.global_transform = Transform3D(basis, desired)
 	else:
 		p.cam.global_transform = Transform3D(basis, focus)
 
 
-static func try_step(p, saved_pos: Vector3, saved_vel: Vector3) -> void:
-	# Source CGameMovement::StepMove — sv_stepsize 18 HU.
-	if Vector2(saved_vel.x, saved_vel.z).length_squared() < 0.002:
-		return
-	var wall := false
-	for i in p.get_slide_collision_count():
-		if p.get_slide_collision(i).get_normal().y < 0.7:
-			wall = true
-			break
-	if not wall:
-		return
-	var down_pos: Vector3 = p.global_position
-	var down_vel: Vector3 = p.velocity
-	var down_xz: float = Vector2(down_pos.x - saved_pos.x, down_pos.z - saved_pos.z).length_squared()
-	p.global_position = saved_pos
-	p.velocity = saved_vel
-	var ceiling: KinematicCollision3D = p.move_and_collide(Vector3(0, Net.STEP, 0))
-	if ceiling and ceiling.get_normal().y < -0.2:
-		p.global_position = down_pos
-		p.velocity = down_vel
-		return
-	p.move_and_slide()
-	p.move_and_collide(Vector3(0, -Net.STEP - 0.08, 0))
-	var up_pos: Vector3 = p.global_position
-	var up_xz: float = Vector2(up_pos.x - saved_pos.x, up_pos.z - saved_pos.z).length_squared()
-	var dy: float = up_pos.y - saved_pos.y
-	# Same-height "better XZ" is unsticking from a wall edge, not a stair.
-	if up_xz <= down_xz + 0.00004 or dy < Net.hu(2.0) or dy > Net.STEP + 0.05:
-		p.global_position = down_pos
-		p.velocity = down_vel
-		return
-	p.velocity.y = minf(p.velocity.y, 0.0)
-	p.qa_steps += 1
+static func try_step(_p, _saved_pos: Vector3, _saved_vel: Vector3) -> bool:
+	# StepMove lives in PlayerMove. Kept so old call sites parse.
+	return false
