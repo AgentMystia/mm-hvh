@@ -29,10 +29,12 @@ static func step(p, delta: float) -> void:
 			p.velocity.y = Net.JUMP_IMPULSE
 	if p.qa_wish.length_squared() > 0.0001:
 		wish = p.qa_wish.normalized()
-	if p.want_autostop or (p.is_local and bool(Cheat.t("rage/autostop", true)) and p.last_rage.get("shoot", false)):
-		wish = Vector3.ZERO
-		p.velocity.x *= 0.4
-		p.velocity.z *= 0.4
+	# Bots never freeze on autostop — that was the AFK lock after they spotted someone.
+	if not p.is_bot:
+		if p.want_autostop or (p.is_local and bool(Cheat.t("rage/autostop", true)) and p.last_rage.get("shoot", false)):
+			wish = Vector3.ZERO
+			p.velocity.x *= 0.4
+			p.velocity.z *= 0.4
 	if bool(Cheat.t("aa/slowwalk", false)):
 		wish *= float(Cheat.t("aa/slowwalk_spd", 80)) / 250.0
 	p.duck_amt = move_toward(p.duck_amt, 1.0 if p.ducking else 0.0, delta / 0.2)
@@ -67,6 +69,7 @@ static func step(p, delta: float) -> void:
 	p.move_and_slide()
 	_stop_edge_lift(p, saved_pos, saved_vel, was_floor)
 	_Fps.try_step(p, saved_pos, saved_vel)
+	_unstuck_along_wall(p, wish, saved_pos, maxsp)
 
 
 static func _stop_edge_lift(p, saved_pos: Vector3, saved_vel: Vector3, was_floor: bool) -> void:
@@ -93,6 +96,46 @@ static func _stop_edge_lift(p, saved_pos: Vector3, saved_vel: Vector3, was_floor
 	var dy: float = p.global_position.y - saved_pos.y
 	if dy > 0.006:
 		p.global_position.y = saved_pos.y
+
+
+static func _unstuck_along_wall(p, wish: Vector3, saved_pos: Vector3, maxsp: float) -> void:
+	# Hugging a wall with W/A/D used to zero velocity (min slide angle). Slide tangent instead.
+	if p.qa_wish.length_squared() > 0.0001:
+		return
+	if not p.is_on_floor():
+		return
+	if p.get_slide_collision_count() <= 0:
+		return
+	if wish.length_squared() < 0.01:
+		return
+	var dxz := Vector2(p.global_position.x - saved_pos.x, p.global_position.z - saved_pos.z)
+	if dxz.length() > 0.012:
+		return
+	var nsum := Vector3.ZERO
+	for i in p.get_slide_collision_count():
+		var n: Vector3 = p.get_slide_collision(i).get_normal()
+		if n.y >= 0.55:
+			continue
+		var hn := Vector3(n.x, 0.0, n.z)
+		if hn.length_squared() > 0.0001:
+			nsum += hn
+	if nsum.length_squared() < 0.0001:
+		nsum = Vector3(-wish.x, 0.0, -wish.z)
+	var n := nsum.normalized()
+	p.global_position += n * 0.03
+	var tangent := Vector3(-n.z, 0.0, n.x)
+	if wish.dot(tangent) < 0.0:
+		tangent = -tangent
+	if absf(wish.dot(tangent)) < 0.08:
+		tangent = Vector3(-wish.z, 0.0, wish.x)
+		if tangent.length_squared() < 0.0001:
+			return
+		tangent = tangent.normalized()
+	var spd: float = maxf(maxsp * 0.82, Net.hu(80.0))
+	p.velocity.x = tangent.x * spd
+	p.velocity.z = tangent.z * spd
+	p.velocity.y = minf(p.velocity.y, 0.0)
+	p.move_and_slide()
 
 
 static func autostrafe(p) -> Vector3:

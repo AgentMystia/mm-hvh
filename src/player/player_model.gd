@@ -1,7 +1,6 @@
 class_name PlayerModel
 extends Node3D
-## Readable CS player dummy: head, torso, arms, legs, gun.
-## Real / fake / LBY still yaw independently for 2018 AA.
+## CS:GO 2018 dummy. Pitch-down 89 folds the spine so the head sits below the shoulders.
 
 var player: Player
 var rig_vis: Node3D
@@ -73,48 +72,57 @@ func _cyl(r: float, h: float) -> CylinderMesh:
 func _humanoid(with_legs: bool, with_gun: bool, legs_only := false) -> Node3D:
 	var root := Node3D.new()
 	if with_legs:
-		root.add_child(_mi(_box(Vector3(0.28, 0.16, 0.16)), Vector3(0, 0.92, 0), "pants"))
+		root.add_child(_mi(_box(Vector3(0.30, 0.14, 0.18)), Vector3(0, 0.90, 0.01), "pants"))
 		for s in [-1.0, 1.0]:
-			var thigh := _mi(_cyl(0.065, 0.38), Vector3(0.09 * s, 0.68, 0), "pants")
-			root.add_child(thigh)
-			var calf := _mi(_cyl(0.05, 0.36), Vector3(0.09 * s, 0.32, 0.01), "pants")
-			root.add_child(calf)
-			var foot := _mi(_box(Vector3(0.10, 0.07, 0.22)), Vector3(0.09 * s, 0.045, 0.04), "boot")
-			root.add_child(foot)
+			root.add_child(_mi(_cyl(0.068, 0.40), Vector3(0.10 * s, 0.66, 0.01), "pants"))
+			root.add_child(_mi(_cyl(0.052, 0.36), Vector3(0.10 * s, 0.30, 0.02), "pants"))
+			root.add_child(_mi(_box(Vector3(0.11, 0.07, 0.24)), Vector3(0.10 * s, 0.045, 0.05), "boot"))
+		var knife := _mi(_box(Vector3(0.03, 0.22, 0.05)), Vector3(0.18, 0.52, 0.04), "gun")
+		knife.name = "knife"
+		root.add_child(knife)
 	if legs_only:
 		return root
-	var stomach := _mi(_box(Vector3(0.30, 0.22, 0.16)), Vector3(0, 1.08, 0.01), "shirt")
+	var spine := Node3D.new()
+	spine.name = "spine"
+	spine.position = Vector3(0, 0.96, 0)
+	root.add_child(spine)
+	var stomach := _mi(_box(Vector3(0.32, 0.22, 0.18)), Vector3(0, 0.10, 0.03), "shirt")
 	stomach.name = "stomach"
-	root.add_child(stomach)
-	var chest := _mi(_box(Vector3(0.36, 0.30, 0.18)), Vector3(0, 1.32, 0.02), "shirt")
+	spine.add_child(stomach)
+	var chest := _mi(_box(Vector3(0.40, 0.28, 0.20)), Vector3(0, 0.30, 0.05), "shirt")
 	chest.name = "chest"
-	root.add_child(chest)
-	var neck := _mi(_cyl(0.045, 0.10), Vector3(0, 1.50, 0.02), "skin")
-	root.add_child(neck)
-	var head := _mi(_sph(0.115), Vector3(0, 1.64, 0.02), "skin")
+	spine.add_child(chest)
+	var neck := _mi(_cyl(0.046, 0.10), Vector3(0, 0.46, 0.00), "skin")
+	spine.add_child(neck)
+	# Head sits forward of the neck so a 89° spine fold drops it *below* the shoulders.
+	var head := _mi(_sph(0.118), Vector3(0, 0.58, -0.10), "skin")
 	head.name = "head"
-	root.add_child(head)
-	var helm := _mi(_sph(0.122), Vector3(0, 1.66, 0.01), "helm")
+	spine.add_child(head)
+	var helm := _mi(_sph(0.125), Vector3(0, 0.60, -0.09), "helm")
 	helm.name = "helm"
-	root.add_child(helm)
+	spine.add_child(helm)
 	for s in [-1.0, 1.0]:
-		var shoulder := _mi(_sph(0.055), Vector3(0.20 * s, 1.40, 0.02), "shirt")
-		root.add_child(shoulder)
-		var upper := _mi(_cyl(0.042, 0.28), Vector3(0.24 * s, 1.22, 0.04), "shirt")
-		upper.rotation_degrees = Vector3(18.0, 0.0, -22.0 * s)
-		root.add_child(upper)
-		var fore := _mi(_cyl(0.036, 0.26), Vector3(0.28 * s, 1.00, 0.14), "skin")
-		fore.rotation_degrees = Vector3(72.0, 0.0, -8.0 * s)
-		root.add_child(fore)
+		var shoulder := _mi(_sph(0.062), Vector3(0.22 * s, 0.36, 0.06), "shirt")
+		if s < 0.0:
+			shoulder.name = "shoulder_l"
+		else:
+			shoulder.name = "shoulder_r"
+		spine.add_child(shoulder)
+		var upper := _mi(_cyl(0.044, 0.30), Vector3(0.26 * s, 0.18, 0.02), "shirt")
+		upper.rotation_degrees = Vector3(28.0, 0.0, -18.0 * s)
+		spine.add_child(upper)
+		var fore := _mi(_cyl(0.038, 0.28), Vector3(0.28 * s, -0.02, -0.12), "skin")
+		fore.rotation_degrees = Vector3(78.0, 0.0, -6.0 * s)
+		spine.add_child(fore)
 	if with_gun:
-		var gun := Node3D.new()
-		gun.name = "gun"
-		gun.position = Vector3(0.18, 1.12, -0.08)
-		gun.add_child(_mi(_box(Vector3(0.05, 0.09, 0.28)), Vector3(0, 0.02, -0.04), "gun"))
-		gun.add_child(_mi(_box(Vector3(0.028, 0.028, 0.38)), Vector3(0, 0.04, -0.32), "gun"))
-		gun.add_child(_mi(_box(Vector3(0.04, 0.12, 0.07)), Vector3(0, -0.07, 0.02), "gun"))
-		gun.add_child(_mi(_box(Vector3(0.04, 0.07, 0.14)), Vector3(0, 0.01, 0.16), "gun"))
-		root.add_child(gun)
+		# Long AWP along the left of the torso — hunched, it lies parallel to the ground.
+		var awp := Node3D.new()
+		awp.name = "gun"
+		awp.position = Vector3(-0.16, 0.18, 0.04)
+		awp.add_child(_mi(_box(Vector3(0.05, 0.90, 0.07)), Vector3(0, 0.10, 0), "gun"))
+		awp.add_child(_mi(_box(Vector3(0.08, 0.12, 0.10)), Vector3(0, 0.28, 0.06), "gun"))
+		awp.add_child(_mi(_box(Vector3(0.04, 0.16, 0.04)), Vector3(0, 0.52, 0.01), "gun"))
+		spine.add_child(awp)
 	return root
 
 
@@ -142,7 +150,7 @@ func tick() -> void:
 		visible = false
 		return
 	visible = true
-	scale.y = lerpf(1.0, 0.72, player.duck_amt)
+	scale.y = lerpf(1.0, 0.78, player.duck_amt)
 	if local:
 		_tick_local()
 	else:
@@ -157,28 +165,30 @@ func _tick_enemy() -> void:
 	rig_lby.visible = false
 	var chams := bool(Cheat.t("visuals/chams", true))
 	if chams:
-		_paint_chams(rig_vis, _col("visuals/chams_col", Color(0.2, 0.85, 0.35, 1)), false, false)
+		_paint_chams(rig_vis, _col("visuals/chams_col", Color(0.2, 0.55, 1.0, 1)), false, false)
 	else:
 		_paint_team(rig_vis)
 	rig_fake.visible = bool(Cheat.t("visuals/chams_fake", true))
 	if rig_fake.visible:
-		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.25)
-		_paint_chams(rig_fake, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true, false)
+		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.15)
+		_paint_chams(rig_fake, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.28)), true, false)
 	rig_xqz.visible = bool(Cheat.t("visuals/chams_xqz", true))
 	if rig_xqz.visible:
-		_pose(rig_xqz, vis_yaw, player.aa.real_pitch * 0.35)
+		_pose(rig_xqz, vis_yaw, player.aa.real_pitch)
 		_paint_chams(rig_xqz, _col("visuals/chams_xqz_col", Color(0.85, 0.25, 0.55, 1)), true, true)
 
 
 func _tick_local() -> void:
 	var chams := bool(Cheat.t("visuals/local_chams", true))
-	# Solid team dummy at real yaw — this is the readable player.
 	rig_vis.visible = (not chams) or bool(Cheat.t("visuals/local_real", true))
 	_pose(rig_vis, player.aa.real_yaw, player.aa.real_pitch)
-	_paint_team(rig_vis)
+	if chams:
+		_paint_chams(rig_vis, _col("visuals/chams_col", Color(0.2, 0.55, 1.0, 1)), false, false)
+	else:
+		_paint_team(rig_vis)
 	rig_fake.visible = chams and bool(Cheat.t("visuals/local_fake", true))
 	if rig_fake.visible:
-		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch)
+		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.15)
 		_paint_chams(rig_fake, _col("visuals/local_fake_col", Color(0.25, 0.5, 1, 0.28)), true, false)
 	rig_lby.visible = chams and bool(Cheat.t("visuals/local_lby", true))
 	if rig_lby.visible:
@@ -187,21 +197,46 @@ func _tick_local() -> void:
 	rig_xqz.visible = false
 
 
+func _vis_pitch(pitch: float) -> float:
+	if pitch > 90.0:
+		return 89.0
+	return clampf(pitch, -89.0, 89.0)
+
+
 func _pose(rig: Node3D, yaw: float, pitch: float) -> void:
 	rig.rotation = Vector3(0.0, deg_to_rad(yaw), 0.0)
-	var p := pitch
-	if p > 90.0:
-		p = 89.0
-	var head := rig.get_node_or_null("head")
-	var helm := rig.get_node_or_null("helm")
-	var look := Net.look_dir(p, 0.0)
+	var p := _vis_pitch(pitch)
+	var spine := rig.get_node_or_null("spine") as Node3D
+	if spine == null:
+		return
+	# Fold the whole upper body at the pelvis. 89 down → torso parallel to the floor.
+	spine.rotation = Vector3(-deg_to_rad(p) * 0.98, 0.0, 0.0)
+	var head := spine.get_node_or_null("head") as Node3D
+	var helm := spine.get_node_or_null("helm") as Node3D
+	var extra := -deg_to_rad(p) * 0.22
 	if head:
-		head.position = Vector3(0, 1.64, 0.02) + look * 0.10
-		head.rotation = Vector3(deg_to_rad(p) * 0.85, 0.0, 0.0)
+		head.rotation = Vector3(extra, 0.0, 0.0)
 	if helm:
-		helm.position = Vector3(0, 1.66, 0.01) + look * 0.10
-		helm.rotation = Vector3(deg_to_rad(p) * 0.85, 0.0, 0.0)
+		helm.rotation = Vector3(extra, 0.0, 0.0)
 		helm.visible = player.team == Match.Team.CT or player.helmet
+
+
+func qa_pose_line() -> String:
+	if rig_vis == null or player == null:
+		return "QA pose missing"
+	_pose(rig_vis, player.aa.real_yaw, player.aa.real_pitch)
+	var spine := rig_vis.get_node_or_null("spine") as Node3D
+	if spine == null:
+		return "QA pose nodes missing"
+	var head := spine.get_node_or_null("head") as Node3D
+	var sh := spine.get_node_or_null("shoulder_l") as Node3D
+	if head == null or sh == null:
+		return "QA pose nodes missing"
+	var hy: float = head.global_position.y
+	var sy: float = sh.global_position.y
+	return "QA pose pitch=%.1f spine_x=%.1f head_y=%.3f shoulder_y=%.3f head_below=%s" % [
+		player.aa.real_pitch, rad_to_deg(spine.rotation.x), hy, sy, str(hy < sy - 0.02)
+	]
 
 
 func _col(path: String, fallback: Color) -> Color:
