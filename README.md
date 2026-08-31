@@ -36,7 +36,7 @@ python3 tools/serve.py --port 43187 --dir export/web
 - **Anti-aim** — pitch, yaw, fake, jitter, freestanding, manual Z/X/C, fake lag, fake duck, slowwalk
 - **LBY breaker** — moving LBY = real; stop 0.22s then 1.1s; flick real onto LBY, hold real away between flicks
 - **Resolver** — moving LBY, breaker inverse delta, brute on misses. **Resolved yaw is the visual yaw**: enemy chams and skeleton follow it. Misses rotate brute/delta.
-- **Thirdperson** — local Real (red), Fake (blue), LBY (yellow) layers
+- **Thirdperson** — CS-style player dummy (head / torso / arms / legs / gun). Fake yaw is a blue ghost, LBY is yellow legs. AA numbers sit in the left indicators, not on the model.
 - Insert (also Home, backtick, F10, or the on-screen **MENU**) opens the cheat menu. Config saves to `user://mm_hvh.json`
 
 ## Controls

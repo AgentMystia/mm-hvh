@@ -1,44 +1,29 @@
 class_name PlayerModel
 extends Node3D
-## CS:GO-style player: legs at LBY, fake-yaw body, real-yaw ghost (local TP).
-## Enemies render at resolver true-yaw (chams/skeleton follow resolve).
+## Readable CS player dummy: head, torso, arms, legs, gun.
+## Real / fake / LBY still yaw independently for 2018 AA.
 
 var player: Player
-var legs: MeshInstance3D
-var body_fake: MeshInstance3D
-var body_real: MeshInstance3D
-var head_fake: MeshInstance3D
-var head_real: MeshInstance3D
-var xqz: MeshInstance3D
-var weapon_mesh: MeshInstance3D
+var rig_vis: Node3D
+var rig_fake: Node3D
+var rig_lby: Node3D
+var rig_xqz: Node3D
 var _xqz_mat: ShaderMaterial
 var _vis_mat: ShaderMaterial
-var _fake_mat: ShaderMaterial
-var _real_mat: ShaderMaterial
-var _lby_mat: ShaderMaterial
 
 
 func setup(p: Player) -> void:
 	player = p
 	_xqz_mat = _shd("res://assets/shaders/chams_xqz.gdshader")
 	_vis_mat = _shd("res://assets/shaders/chams_vis.gdshader")
-	_fake_mat = _shd("res://assets/shaders/chams_vis.gdshader")
-	_real_mat = _shd("res://assets/shaders/chams_vis.gdshader")
-	_lby_mat = _shd("res://assets/shaders/chams_vis.gdshader")
-	legs = _part(Vector3(0.32, 0.7, 0.22), Vector3(0, 0.35, 0))
-	body_fake = _part(Vector3(0.38, 0.55, 0.22), Vector3(0, 1.05, 0))
-	head_fake = _part(Vector3(0.22, 0.22, 0.22), Vector3(0, 1.52, 0), true)
-	body_real = _part(Vector3(0.36, 0.52, 0.20), Vector3(0, 1.05, 0))
-	head_real = _part(Vector3(0.20, 0.20, 0.20), Vector3(0, 1.52, 0), true)
-	xqz = _part(Vector3(0.42, 1.55, 0.26), Vector3(0, 0.85, 0))
-	weapon_mesh = _gun()
-	body_fake.add_child(weapon_mesh)
-	add_child(legs)
-	add_child(body_fake)
-	add_child(head_fake)
-	add_child(body_real)
-	add_child(head_real)
-	add_child(xqz)
+	rig_vis = _humanoid(true, true)
+	rig_fake = _humanoid(true, true)
+	rig_lby = _humanoid(true, false)
+	rig_xqz = _humanoid(false, false)
+	add_child(rig_vis)
+	add_child(rig_fake)
+	add_child(rig_lby)
+	add_child(rig_xqz)
 
 
 func _shd(path: String) -> ShaderMaterial:
@@ -47,42 +32,100 @@ func _shd(path: String) -> ShaderMaterial:
 	return m
 
 
-func _part(size: Vector3, pos: Vector3, sphere := false) -> MeshInstance3D:
-	var mi := MeshInstance3D.new()
-	if sphere:
-		var s := SphereMesh.new()
-		s.radius = size.x * 0.5
-		s.height = size.y
-		s.radial_segments = 6
-		s.rings = 4
-		mi.mesh = s
-	else:
-		var b := BoxMesh.new()
-		b.size = size
-		mi.mesh = b
-	mi.position = pos
-	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+func _mi(mesh: Mesh, pos: Vector3, kind: String) -> MeshInstance3D:
+	var n := MeshInstance3D.new()
+	n.mesh = mesh
+	n.position = pos
+	n.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	n.set_meta("kind", kind)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
-	mi.material_override = mat
-	return mi
+	n.material_override = mat
+	return n
 
 
-func _gun() -> MeshInstance3D:
-	var mi := MeshInstance3D.new()
-	var b := BoxMesh.new()
-	b.size = Vector3(0.06, 0.08, 0.55)
-	mi.mesh = b
-	mi.position = Vector3(0.18, 0.05, -0.28)
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(0.12, 0.12, 0.12)
-	mi.material_override = mat
-	return mi
+func _box(size: Vector3) -> BoxMesh:
+	var m := BoxMesh.new()
+	m.size = size
+	return m
 
 
-func _team_color() -> Color:
-	return Color(0.72, 0.52, 0.22) if player.team == Match.Team.T else Color(0.35, 0.48, 0.38)
+func _sph(r: float) -> SphereMesh:
+	var m := SphereMesh.new()
+	m.radius = r
+	m.height = r * 2.0
+	m.radial_segments = 10
+	m.rings = 6
+	return m
+
+
+func _cyl(r: float, h: float) -> CylinderMesh:
+	var m := CylinderMesh.new()
+	m.top_radius = r
+	m.bottom_radius = r
+	m.height = h
+	m.radial_segments = 8
+	m.rings = 1
+	return m
+
+
+func _humanoid(with_legs: bool, with_gun: bool) -> Node3D:
+	var root := Node3D.new()
+	if with_legs:
+		root.add_child(_mi(_box(Vector3(0.28, 0.16, 0.16)), Vector3(0, 0.92, 0), "pants"))
+		for s in [-1.0, 1.0]:
+			var thigh := _mi(_cyl(0.065, 0.38), Vector3(0.09 * s, 0.68, 0), "pants")
+			root.add_child(thigh)
+			var calf := _mi(_cyl(0.05, 0.36), Vector3(0.09 * s, 0.32, 0.01), "pants")
+			root.add_child(calf)
+			var foot := _mi(_box(Vector3(0.10, 0.07, 0.22)), Vector3(0.09 * s, 0.045, 0.04), "boot")
+			root.add_child(foot)
+	var stomach := _mi(_box(Vector3(0.30, 0.22, 0.16)), Vector3(0, 1.08, 0.01), "shirt")
+	stomach.name = "stomach"
+	root.add_child(stomach)
+	var chest := _mi(_box(Vector3(0.36, 0.30, 0.18)), Vector3(0, 1.32, 0.02), "shirt")
+	chest.name = "chest"
+	root.add_child(chest)
+	var neck := _mi(_cyl(0.045, 0.10), Vector3(0, 1.50, 0.02), "skin")
+	root.add_child(neck)
+	var head := _mi(_sph(0.115), Vector3(0, 1.64, 0.02), "skin")
+	head.name = "head"
+	root.add_child(head)
+	var helm := _mi(_sph(0.122), Vector3(0, 1.66, 0.01), "helm")
+	helm.name = "helm"
+	root.add_child(helm)
+	for s in [-1.0, 1.0]:
+		var shoulder := _mi(_sph(0.055), Vector3(0.20 * s, 1.40, 0.02), "shirt")
+		root.add_child(shoulder)
+		var upper := _mi(_cyl(0.042, 0.28), Vector3(0.24 * s, 1.22, 0.04), "shirt")
+		upper.rotation_degrees = Vector3(18.0, 0.0, -22.0 * s)
+		root.add_child(upper)
+		var fore := _mi(_cyl(0.036, 0.26), Vector3(0.28 * s, 1.00, 0.14), "skin")
+		fore.rotation_degrees = Vector3(72.0, 0.0, -8.0 * s)
+		root.add_child(fore)
+	if with_gun:
+		var gun := Node3D.new()
+		gun.name = "gun"
+		gun.position = Vector3(0.18, 1.12, -0.08)
+		gun.add_child(_mi(_box(Vector3(0.05, 0.09, 0.28)), Vector3(0, 0.02, -0.04), "gun"))
+		gun.add_child(_mi(_box(Vector3(0.028, 0.028, 0.38)), Vector3(0, 0.04, -0.32), "gun"))
+		gun.add_child(_mi(_box(Vector3(0.04, 0.12, 0.07)), Vector3(0, -0.07, 0.02), "gun"))
+		gun.add_child(_mi(_box(Vector3(0.04, 0.07, 0.14)), Vector3(0, 0.01, 0.16), "gun"))
+		root.add_child(gun)
+	return root
+
+
+func _pal() -> Dictionary:
+	var t := player.team == Match.Team.T
+	return {
+		"skin": Color(0.86, 0.68, 0.52),
+		"shirt": Color(0.62, 0.42, 0.20) if t else Color(0.22, 0.34, 0.40),
+		"pants": Color(0.42, 0.36, 0.22) if t else Color(0.14, 0.18, 0.22),
+		"boot": Color(0.18, 0.14, 0.10),
+		"gun": Color(0.10, 0.10, 0.11),
+		"helm": Color(0.55, 0.38, 0.18) if t else Color(0.16, 0.22, 0.26),
+	}
 
 
 func tick() -> void:
@@ -93,90 +136,70 @@ func tick() -> void:
 		return
 	var local := player.is_local
 	var tp := bool(Cheat.t("visuals/thirdperson", true))
-	var show_local := local and tp
-	# Hide first-person body for local unless thirdperson.
 	if local and not tp:
 		visible = false
 		return
 	visible = true
-	var duck := player.duck_amt
-	scale.y = lerpf(1.0, 0.72, duck)
-	var team_c := _team_color()
-	# Enemy: main body at RESOLVED true yaw (what ragebot shoots).
-	# Optional fake ghost at networked fake yaw.
-	if not local:
-		var use_res := bool(Cheat.t("visuals/chams_resolved", true))
-		var vis_yaw := player.resolved_yaw if use_res else player.aa.fake_yaw
-		_pose_on(body_fake, vis_yaw, player.aa.real_pitch * 0.4)
-		_pose_on(head_fake, vis_yaw, player.aa.real_pitch, true)
-		_pose_on(legs, player.aa.lby, 0.0)
-		_pose_on(xqz, vis_yaw, player.aa.real_pitch * 0.35)
-		body_real.visible = bool(Cheat.t("visuals/chams_fake", true))
-		head_real.visible = body_real.visible
-		if body_real.visible:
-			_pose_on(body_real, player.aa.fake_yaw, player.aa.real_pitch * 0.25)
-			_pose_on(head_real, player.aa.fake_yaw, player.aa.real_pitch, true)
-			_apply(body_real, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true)
-			_apply(head_real, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true)
-		var vis_c := _col("visuals/chams_col", Color(0.2, 0.85, 0.35, 1))
-		var xqz_c := _col("visuals/chams_xqz_col", Color(0.85, 0.25, 0.55, 1))
-		if bool(Cheat.t("visuals/chams", true)):
-			_apply(body_fake, vis_c, false)
-			_apply(head_fake, vis_c, false)
-			_apply(legs, vis_c, false)
-		else:
-			_std(body_fake, team_c)
-			_std(head_fake, team_c.lightened(0.1))
-			_std(legs, team_c.darkened(0.15))
-		xqz.visible = bool(Cheat.t("visuals/chams_xqz", true))
-		if xqz.visible:
-			_apply(xqz, xqz_c, true, true)
-		return
-	# Local thirdperson: Real / Fake / LBY layers (2018 AA debug).
-	if not show_local:
-		return
-	_pose_on(body_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.4)
-	_pose_on(head_fake, player.aa.fake_yaw, player.aa.real_pitch, true)
-	_pose_on(body_real, player.aa.real_yaw, player.aa.real_pitch * 0.45)
-	_pose_on(head_real, player.aa.real_yaw, player.aa.real_pitch, true)
-	_pose_on(legs, player.aa.lby, 0.0)
-	xqz.visible = false
-	body_fake.visible = bool(Cheat.t("visuals/local_fake", true)) and bool(Cheat.t("visuals/local_chams", true))
-	head_fake.visible = body_fake.visible
-	body_real.visible = bool(Cheat.t("visuals/local_real", true)) and bool(Cheat.t("visuals/local_chams", true))
-	head_real.visible = body_real.visible
-	legs.visible = bool(Cheat.t("visuals/local_lby", true)) and bool(Cheat.t("visuals/local_chams", true))
-	if body_fake.visible:
-		_apply(body_fake, _col("visuals/local_fake_col", Color(0.2, 0.45, 1, 0.45)), true)
-		_apply(head_fake, _col("visuals/local_fake_col", Color(0.2, 0.45, 1, 0.45)), true)
-	if body_real.visible:
-		_apply(body_real, _col("visuals/local_real_col", Color(1.0, 0.2, 0.2, 0.55)), true)
-		_apply(head_real, _col("visuals/local_real_col", Color(1.0, 0.2, 0.2, 0.55)), true)
-	if legs.visible:
-		_apply(legs, _col("visuals/local_lby_col", Color(1.0, 0.85, 0.15, 0.7)), true)
-	if not bool(Cheat.t("visuals/local_chams", true)):
-		_std(body_fake, team_c)
-		_std(head_fake, team_c)
-		_std(legs, team_c.darkened(0.2))
-		body_fake.visible = true
-		head_fake.visible = true
-		legs.visible = true
-		body_real.visible = false
-		head_real.visible = false
+	scale.y = lerpf(1.0, 0.72, player.duck_amt)
+	if local:
+		_tick_local()
+	else:
+		_tick_enemy()
 
 
-func _pose_on(n: Node3D, yaw: float, pitch: float, is_head := false) -> void:
+func _tick_enemy() -> void:
+	var use_res := bool(Cheat.t("visuals/chams_resolved", true))
+	var vis_yaw := player.resolved_yaw if use_res else player.aa.fake_yaw
+	_pose(rig_vis, vis_yaw, player.aa.real_pitch)
+	rig_vis.visible = true
+	rig_lby.visible = false
+	var chams := bool(Cheat.t("visuals/chams", true))
+	if chams:
+		_paint_chams(rig_vis, _col("visuals/chams_col", Color(0.2, 0.85, 0.35, 1)), false, false)
+	else:
+		_paint_team(rig_vis)
+	rig_fake.visible = bool(Cheat.t("visuals/chams_fake", true))
+	if rig_fake.visible:
+		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.25)
+		_paint_chams(rig_fake, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true, false)
+	rig_xqz.visible = bool(Cheat.t("visuals/chams_xqz", true))
+	if rig_xqz.visible:
+		_pose(rig_xqz, vis_yaw, player.aa.real_pitch * 0.35)
+		_paint_chams(rig_xqz, _col("visuals/chams_xqz_col", Color(0.85, 0.25, 0.55, 1)), true, true)
+
+
+func _tick_local() -> void:
+	var chams := bool(Cheat.t("visuals/local_chams", true))
+	# Solid team dummy at real yaw — this is the readable player.
+	rig_vis.visible = (not chams) or bool(Cheat.t("visuals/local_real", true))
+	_pose(rig_vis, player.aa.real_yaw, player.aa.real_pitch)
+	_paint_team(rig_vis)
+	rig_fake.visible = chams and bool(Cheat.t("visuals/local_fake", true))
+	if rig_fake.visible:
+		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch)
+		_paint_chams(rig_fake, _col("visuals/local_fake_col", Color(0.2, 0.45, 1, 0.40)), true, false)
+	rig_lby.visible = chams and bool(Cheat.t("visuals/local_lby", true))
+	if rig_lby.visible:
+		_pose(rig_lby, player.aa.lby, 0.0)
+		_paint_chams(rig_lby, _col("visuals/local_lby_col", Color(1.0, 0.85, 0.15, 0.55)), true, false)
+	rig_xqz.visible = false
+
+
+func _pose(rig: Node3D, yaw: float, pitch: float) -> void:
+	rig.rotation = Vector3(0.0, deg_to_rad(yaw), 0.0)
 	var p := pitch
 	if p > 90.0:
 		p = 89.0
-	n.rotation = Vector3(deg_to_rad(p), deg_to_rad(yaw), 0.0)
-	if is_head:
-		# 89° down puts the head on the chest — readable 2018 AA pitch.
-		n.position = Vector3(0, 1.52, 0) + Net.look_dir(p, yaw) * 0.42
-
-
-func _yaw_on(n: Node3D, yaw: float) -> void:
-	_pose_on(n, yaw, 0.0)
+	var head := rig.get_node_or_null("head")
+	var helm := rig.get_node_or_null("helm")
+	var look := Net.look_dir(p, 0.0)
+	if head:
+		head.position = Vector3(0, 1.64, 0.02) + look * 0.10
+		head.rotation = Vector3(deg_to_rad(p) * 0.85, 0.0, 0.0)
+	if helm:
+		helm.position = Vector3(0, 1.66, 0.01) + look * 0.10
+		helm.rotation = Vector3(deg_to_rad(p) * 0.85, 0.0, 0.0)
+		helm.visible = player.team == Match.Team.CT or player.helmet
 
 
 func _col(path: String, fallback: Color) -> Color:
@@ -186,7 +209,30 @@ func _col(path: String, fallback: Color) -> Color:
 	return fallback
 
 
-func _apply(mi: MeshInstance3D, c: Color, transparent: bool, through := false) -> void:
+func _paint_team(rig: Node3D) -> void:
+	var pal: Dictionary = _pal()
+	_walk_mesh(rig, func(mi: MeshInstance3D) -> void:
+		var kind := str(mi.get_meta("kind", "shirt"))
+		_std(mi, pal.get(kind, pal["shirt"]))
+		if kind == "helm":
+			mi.visible = player.team == Match.Team.CT or player.helmet
+	)
+
+
+func _paint_chams(rig: Node3D, c: Color, transparent: bool, through: bool) -> void:
+	_walk_mesh(rig, func(mi: MeshInstance3D) -> void:
+		_apply(mi, c, transparent, through)
+	)
+
+
+func _walk_mesh(n: Node, fn: Callable) -> void:
+	if n is MeshInstance3D:
+		fn.call(n)
+	for c in n.get_children():
+		_walk_mesh(c, fn)
+
+
+func _apply(mi: MeshInstance3D, c: Color, _transparent: bool, through := false) -> void:
 	var sm: ShaderMaterial
 	if mi.material_override is ShaderMaterial:
 		sm = mi.material_override as ShaderMaterial
@@ -207,4 +253,5 @@ func _std(mi: MeshInstance3D, c: Color) -> void:
 		mat.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
 		mi.material_override = mat
 	mat.albedo_color = c
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

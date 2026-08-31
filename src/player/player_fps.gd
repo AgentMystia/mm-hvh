@@ -98,7 +98,7 @@ static func try_step(p, saved_pos: Vector3, saved_vel: Vector3) -> void:
 		return
 	var down_pos: Vector3 = p.global_position
 	var down_vel: Vector3 = p.velocity
-	var down_xz := Vector2(down_pos.x - saved_pos.x, down_pos.z - saved_pos.z).length_squared()
+	var down_xz: float = Vector2(down_pos.x - saved_pos.x, down_pos.z - saved_pos.z).length_squared()
 	p.global_position = saved_pos
 	p.velocity = saved_vel
 	var ceiling: KinematicCollision3D = p.move_and_collide(Vector3(0, Net.STEP, 0))
@@ -108,10 +108,13 @@ static func try_step(p, saved_pos: Vector3, saved_vel: Vector3) -> void:
 		return
 	p.move_and_slide()
 	p.move_and_collide(Vector3(0, -Net.STEP - 0.08, 0))
-	var up_xz := Vector2(p.global_position.x - saved_pos.x, p.global_position.z - saved_pos.z).length_squared()
-	if up_xz < down_xz + 0.00004:
+	var up_pos: Vector3 = p.global_position
+	var up_xz: float = Vector2(up_pos.x - saved_pos.x, up_pos.z - saved_pos.z).length_squared()
+	var dy: float = up_pos.y - saved_pos.y
+	# Same-height "better XZ" is unsticking from a wall edge, not a stair.
+	if up_xz <= down_xz + 0.00004 or dy < Net.hu(2.0) or dy > Net.STEP + 0.05:
 		p.global_position = down_pos
 		p.velocity = down_vel
-	else:
-		p.velocity.y = minf(p.velocity.y, 0.0)
-		p.qa_steps += 1
+		return
+	p.velocity.y = minf(p.velocity.y, 0.0)
+	p.qa_steps += 1

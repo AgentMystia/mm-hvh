@@ -21,7 +21,7 @@ static func step(p, delta: float) -> void:
 				if Input.is_action_pressed("jump") and p.is_on_floor():
 					p.velocity.y = Net.JUMP_IMPULSE
 			elif Input.is_action_just_pressed("jump") and p.is_on_floor():
-					p.velocity.y = Net.JUMP_IMPULSE
+				p.velocity.y = Net.JUMP_IMPULSE
 	if p.is_bot:
 		wish = p.bot_wish
 		p.ducking = p.bot_duck
@@ -56,12 +56,43 @@ static func step(p, delta: float) -> void:
 	else:
 		accelerate(p, wish, minf(maxsp, Net.AIR_CAP), Net.AIRACCELERATE, delta)
 		p.velocity.y -= Net.GRAVITY * delta
-	p.hull.shape.size = Vector3(Net.PLAYER_HULL_W, lerpf(Net.PLAYER_HULL_H, Net.PLAYER_DUCK_H, p.duck_amt), Net.PLAYER_HULL_W)
-	p.hull.position.y = p.hull.shape.size.y * 0.5
+	var hull_h: float = lerpf(Net.PLAYER_HULL_H, Net.PLAYER_DUCK_H, p.duck_amt)
+	var box: BoxShape3D = p.hull.shape as BoxShape3D
+	if box != null:
+		box.size = Vector3(Net.PLAYER_HULL_W, hull_h, Net.PLAYER_HULL_W)
+	p.hull.position.y = hull_h * 0.5
 	var saved_pos: Vector3 = p.global_position
 	var saved_vel: Vector3 = p.velocity
+	var was_floor: bool = p.is_on_floor()
 	p.move_and_slide()
+	_stop_edge_lift(p, saved_pos, saved_vel, was_floor)
 	_Fps.try_step(p, saved_pos, saved_vel)
+
+
+static func _stop_edge_lift(p, saved_pos: Vector3, saved_vel: Vector3, was_floor: bool) -> void:
+	# Trimesh edges give normals with +Y; move_and_slide then rides the wall.
+	if not was_floor:
+		return
+	if saved_vel.y > Net.hu(80.0):
+		return
+	var into_wall := 0.0
+	var hv := Vector3(saved_vel.x, 0.0, saved_vel.z)
+	var hvn := hv.normalized() if hv.length_squared() > 0.0001 else Vector3.ZERO
+	for i in p.get_slide_collision_count():
+		var n: Vector3 = p.get_slide_collision(i).get_normal()
+		if n.y >= 0.45:
+			continue
+		var hn := Vector3(n.x, 0.0, n.z)
+		if hn.length_squared() > 0.0001 and hvn.length_squared() > 0.0001:
+			into_wall = maxf(into_wall, -hvn.dot(hn.normalized()))
+	if p.velocity.y > 0.0:
+		p.velocity.y = 0.0
+	# Walking into a riser — leave height for try_step. Along-wall lift is suction.
+	if into_wall >= 0.32:
+		return
+	var dy: float = p.global_position.y - saved_pos.y
+	if dy > 0.006:
+		p.global_position.y = saved_pos.y
 
 
 static func autostrafe(p) -> Vector3:

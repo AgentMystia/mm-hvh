@@ -85,10 +85,12 @@ func _ready() -> void:
 	floor_stop_on_slope = true
 	floor_block_on_wall = false
 	floor_max_angle = deg_to_rad(45.573)
-	floor_snap_length = Net.hu(8.0)
-	safe_margin = Net.hu(1.5)
+	# 8 HU snap rides wall lips; Source sticks with a short ground trace.
+	floor_snap_length = Net.hu(2.0)
+	safe_margin = 0.001
 	max_slides = 4 if OS.has_feature("web") else 6
-	wall_min_slide_angle = deg_to_rad(0.0)
+	# 0° slides around every trimesh corner ("wall suction").
+	wall_min_slide_angle = deg_to_rad(15.0)
 	set_process(true)
 	var hs := CollisionShape3D.new()
 	var box := BoxShape3D.new()
