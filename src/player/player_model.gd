@@ -16,10 +16,10 @@ func setup(p: Player) -> void:
 	player = p
 	_xqz_mat = _shd("res://assets/shaders/chams_xqz.gdshader")
 	_vis_mat = _shd("res://assets/shaders/chams_vis.gdshader")
-	rig_vis = _humanoid(true, true)
-	rig_fake = _humanoid(true, true)
-	rig_lby = _humanoid(true, false)
-	rig_xqz = _humanoid(false, false)
+	rig_vis = _humanoid(true, true, false)
+	rig_fake = _humanoid(true, true, false)
+	rig_lby = _humanoid(true, false, true)
+	rig_xqz = _humanoid(false, false, false)
 	add_child(rig_vis)
 	add_child(rig_fake)
 	add_child(rig_lby)
@@ -70,7 +70,7 @@ func _cyl(r: float, h: float) -> CylinderMesh:
 	return m
 
 
-func _humanoid(with_legs: bool, with_gun: bool) -> Node3D:
+func _humanoid(with_legs: bool, with_gun: bool, legs_only := false) -> Node3D:
 	var root := Node3D.new()
 	if with_legs:
 		root.add_child(_mi(_box(Vector3(0.28, 0.16, 0.16)), Vector3(0, 0.92, 0), "pants"))
@@ -81,6 +81,8 @@ func _humanoid(with_legs: bool, with_gun: bool) -> Node3D:
 			root.add_child(calf)
 			var foot := _mi(_box(Vector3(0.10, 0.07, 0.22)), Vector3(0.09 * s, 0.045, 0.04), "boot")
 			root.add_child(foot)
+	if legs_only:
+		return root
 	var stomach := _mi(_box(Vector3(0.30, 0.22, 0.16)), Vector3(0, 1.08, 0.01), "shirt")
 	stomach.name = "stomach"
 	root.add_child(stomach)
@@ -177,7 +179,7 @@ func _tick_local() -> void:
 	rig_fake.visible = chams and bool(Cheat.t("visuals/local_fake", true))
 	if rig_fake.visible:
 		_pose(rig_fake, player.aa.fake_yaw, player.aa.real_pitch)
-		_paint_chams(rig_fake, _col("visuals/local_fake_col", Color(0.2, 0.45, 1, 0.40)), true, false)
+		_paint_chams(rig_fake, _col("visuals/local_fake_col", Color(0.25, 0.5, 1, 0.28)), true, false)
 	rig_lby.visible = chams and bool(Cheat.t("visuals/local_lby", true))
 	if rig_lby.visible:
 		_pose(rig_lby, player.aa.lby, 0.0)
