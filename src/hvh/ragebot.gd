@@ -44,6 +44,7 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 		return out
 	var best: Dictionary = {}
 	var best_score := -1.0
+	var exclude: Array = [me.get_rid()]
 	for e in enemies:
 		if e == null or not is_instance_valid(e) or not e.alive:
 			continue
@@ -53,9 +54,18 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 		var ryaw := resolver.resolve(e)
 		e.resolved_yaw = ryaw  # ESP/chams/skeleton follow this true-yaw guess
 		e.resolved_label = resolver.label(e)
-		var pts := _points(e, ryaw)
+		var pts := _points(me, e, ryaw)
+		var local := me.is_local
 		for p in pts:
-			var info := _trace(me.eye(), p.pos, space, me, e, p.group)
+			var info: Dictionary
+			if Hitscan.line_clear(space, me.eye(), p.pos, exclude, local):
+				var dist := me.eye().distance_to(p.pos)
+				var base := float(Weapons.damage_vs(w, p.group, e.armor > 0, e.helmet, dist))
+				info = {"dmg": int(base), "spread_ok": true}
+			elif bool(Cheat.t("rage/autowall", true)) and Perf.take_wall(local):
+				info = _trace(me.eye(), p.pos, space, me, e, p.group)
+			else:
+				continue
 			if int(info.dmg) <= 0:
 				continue
 			var hc := _hitchance(me, p.pos, bool(info.spread_ok), w)
@@ -116,13 +126,17 @@ func run(me: Player, enemies: Array, space: PhysicsDirectSpaceState3D, now: floa
 	return out
 
 
-func _points(e: Node, yaw: float) -> Array:
+func _points(me: Player, e: Node, yaw: float) -> Array:
 	var hb: Array = e.hitboxes_at_yaw(yaw, float(e.aa.real_pitch))
 	var want: Dictionary = Cheat.t("rage/hitboxes", {"head": true, "chest": true, "stomach": true})
 	var mp := bool(Cheat.t("rage/multipoint", true))
+	if OS.has_feature("web") and not me.is_local:
+		mp = false
 	var pts: Array = []
 	for h in hb:
 		if not bool(want.get(h.group, h.group == "head" or h.group == "chest")):
+			continue
+		if OS.has_feature("web") and not me.is_local and h.group != "head" and h.group != "chest":
 			continue
 		pts.append(h)
 		if mp:

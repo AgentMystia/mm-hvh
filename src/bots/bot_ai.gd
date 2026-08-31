@@ -65,6 +65,10 @@ func tick(delta: float, world: MapWorld, all: Array) -> void:
 	# Jump only to climb, not constant bhop — bhop on stairs wedges the hull.
 	player.bot_jump = climb > 0.28 and dist < 1.6
 	if Match.in_play():
+		var pf := Engine.get_physics_frames()
+		var every := 4 if OS.has_feature("web") else 2
+		if (pf + style) % every != 0:
+			return
 		var enemies: Array = []
 		for p in all:
 			if p != player:

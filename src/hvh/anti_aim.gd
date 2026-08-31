@@ -22,6 +22,8 @@ var choke := 0
 var desync_delta := 58.0
 var last_lby_flick_at := -999.0
 var _time := 0.0
+var _fs_yaw := 0.0
+var _fs_frame := -99
 ## If set, read AA from this dict instead of the local cheat menu (used by bots).
 var src: Dictionary = {}
 
@@ -64,7 +66,11 @@ func tick(dt: float, view: Vector3, vel: Vector3, origin: Vector3, enemies: Arra
 	elif man == 3:
 		real_yaw = Net.ang_norm(view.y + 180.0)
 	if bool(_g("freestanding", true)):
-		real_yaw = _freestand(origin, view.y, walls, real_yaw)
+		var pf := Engine.get_physics_frames()
+		if pf - _fs_frame >= 8:
+			_fs_yaw = _freestand(origin, view.y, walls, real_yaw)
+			_fs_frame = pf
+		real_yaw = _fs_yaw
 	_lby(dt)
 	fake_yaw = _fake(real_yaw)
 	desync_delta = Net.ang_delta(fake_yaw, real_yaw)
@@ -201,6 +207,8 @@ func _freestand(origin: Vector3, view_y: float, world: World3D, current: float) 
 	var best := current
 	var best_frac := -1.0
 	for off in [90.0, -90.0, 180.0, 0.0]:
+		if not Perf.take_ray():
+			break
 		var yaw := Net.ang_norm(view_y + off)
 		var dir := Net.yaw_vec(yaw)
 		var q := PhysicsRayQueryParameters3D.create(eye, eye + dir * 48.0)
