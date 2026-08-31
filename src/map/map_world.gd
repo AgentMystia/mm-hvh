@@ -226,13 +226,41 @@ func _safety_floor() -> void:
 	add_child(body)
 
 
+func _spawn_pads() -> void:
+	# Visual GLB walkable is at info_player Z. Brush collision can sit ~0.6m lower
+	# (under the displacement), which clips players through the visible floor.
+	for arr in [t_spawns, ct_spawns]:
+		if arr.is_empty():
+			continue
+		var min_x := 1e9
+		var max_x := -1e9
+		var min_z := 1e9
+		var max_z := -1e9
+		var y := float(arr[0].origin[1])
+		for s in arr:
+			var o: Array = s.origin
+			min_x = minf(min_x, float(o[0]))
+			max_x = maxf(max_x, float(o[0]))
+			min_z = minf(min_z, float(o[2]))
+			max_z = maxf(max_z, float(o[2]))
+			y = maxf(y, float(o[1]))
+		var body := StaticBody3D.new()
+		body.collision_layer = 1
+		body.collision_mask = 0
+		var cs := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = Vector3(maxf(max_x - min_x, 1.0) + 5.0, 0.22, maxf(max_z - min_z, 1.0) + 5.0)
+		cs.shape = box
+		body.add_child(cs)
+		body.position = Vector3((min_x + max_x) * 0.5, y - 0.11, (min_z + max_z) * 0.5)
+		add_child(body)
+
+
 func snap_spawn(origin: Vector3) -> Vector3:
 	var space := get_world_3d().direct_space_state
 	if space == null:
 		return origin
-	# Short ray from just above the entity origin so we hit the walkable floor,
-	# not a roof or awning starting 6m up.
-	var q := PhysicsRayQueryParameters3D.create(origin + Vector3(0, 0.7, 0), origin + Vector3(0, -2.8, 0))
+	var q := PhysicsRayQueryParameters3D.create(origin + Vector3(0, 0.35, 0), origin + Vector3(0, -1.4, 0))
 	q.collision_mask = 1
 	var hit := space.intersect_ray(q)
 	if hit:

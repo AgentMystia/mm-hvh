@@ -228,6 +228,8 @@ class PrimBuilder:
         self.indices = []
 
     def add_tri(self, verts, albedo):
+        # Y-flip mirrors winding; reverse so floors are visible from above.
+        verts = (verts[0], verts[2], verts[1])
         base = len(self.positions) // 3
         for v in verts:
             px, py, pz = vcomp(v.position, 0), vcomp(v.position, 1), vcomp(v.position, 2)

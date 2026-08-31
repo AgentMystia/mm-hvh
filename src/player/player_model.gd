@@ -106,14 +106,14 @@ func tick() -> void:
 		var use_res := bool(Cheat.t("visuals/chams_resolved", true))
 		var vis_yaw := player.resolved_yaw if use_res else player.aa.fake_yaw
 		_pose_on(body_fake, vis_yaw, player.aa.real_pitch * 0.4)
-		_pose_on(head_fake, vis_yaw, player.aa.real_pitch)
+		_pose_on(head_fake, vis_yaw, player.aa.real_pitch, true)
 		_pose_on(legs, player.aa.lby, 0.0)
 		_pose_on(xqz, vis_yaw, player.aa.real_pitch * 0.35)
 		body_real.visible = bool(Cheat.t("visuals/chams_fake", true))
 		head_real.visible = body_real.visible
 		if body_real.visible:
 			_pose_on(body_real, player.aa.fake_yaw, player.aa.real_pitch * 0.25)
-			_pose_on(head_real, player.aa.fake_yaw, player.aa.real_pitch)
+			_pose_on(head_real, player.aa.fake_yaw, player.aa.real_pitch, true)
 			_apply(body_real, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true)
 			_apply(head_real, _col("visuals/chams_fake_col", Color(0.25, 0.45, 1, 0.35)), true)
 		var vis_c := _col("visuals/chams_col", Color(0.2, 0.85, 0.35, 1))
@@ -134,9 +134,9 @@ func tick() -> void:
 	if not show_local:
 		return
 	_pose_on(body_fake, player.aa.fake_yaw, player.aa.real_pitch * 0.4)
-	_pose_on(head_fake, player.aa.fake_yaw, player.aa.real_pitch)
+	_pose_on(head_fake, player.aa.fake_yaw, player.aa.real_pitch, true)
 	_pose_on(body_real, player.aa.real_yaw, player.aa.real_pitch * 0.45)
-	_pose_on(head_real, player.aa.real_yaw, player.aa.real_pitch)
+	_pose_on(head_real, player.aa.real_yaw, player.aa.real_pitch, true)
 	_pose_on(legs, player.aa.lby, 0.0)
 	xqz.visible = false
 	body_fake.visible = bool(Cheat.t("visuals/local_fake", true)) and bool(Cheat.t("visuals/local_chams", true))
@@ -163,12 +163,14 @@ func tick() -> void:
 		head_real.visible = false
 
 
-func _pose_on(n: Node3D, yaw: float, pitch: float) -> void:
-	# Godot YXZ: +X looks down, matching Source pitch.
+func _pose_on(n: Node3D, yaw: float, pitch: float, is_head := false) -> void:
 	var p := pitch
 	if p > 90.0:
-		p = 89.0  # fake-down still reads as looking at the dirt
+		p = 89.0
 	n.rotation = Vector3(deg_to_rad(p), deg_to_rad(yaw), 0.0)
+	if is_head:
+		# 89° down puts the head on the chest — readable 2018 AA pitch.
+		n.position = Vector3(0, 1.52, 0) + Net.look_dir(p, yaw) * 0.42
 
 
 func _yaw_on(n: Node3D, yaw: float) -> void:
